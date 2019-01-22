@@ -7,6 +7,7 @@ from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
 import json, html 
+from app.models import Vehicle, Maintenance, Maintenance_History, Part
 
 def home(request):
     """Renders the home page."""
