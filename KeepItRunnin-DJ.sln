@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "KeepItRunnin-DJ", "KeepItRunnin-DJ\KeepItRunnin-DJ.pyproj", "{A534D88B-F8F4-4310-8405-4A182FC59EC9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A534D88B-F8F4-4310-8405-4A182FC59EC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A534D88B-F8F4-4310-8405-4A182FC59EC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A534D88B-F8F4-4310-8405-4A182FC59EC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A534D88B-F8F4-4310-8405-4A182FC59EC9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB2832F9-0AAF-4012-8C1A-35FFAEEAF990}
+	EndGlobalSection
+EndGlobal

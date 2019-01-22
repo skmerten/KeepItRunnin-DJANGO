@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KeepItRunnin</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/w3.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/forms.css' %}" />
+    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand">Application name</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav"><li>
+                    <a href="{% url 'vehicleProfile' %}">Vehicle Profile</a></li>
+                    <li><a href="{% url 'maintenanceHome' %}">Maintenance</a></li>
+                    <li><a href="{% url 'partsHome' %}">Parts</a></li>
+                    <li><a href="{% url 'checkIn' %}">Check In</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <h2 class="h1" style="text-align:left;margin-left: 20px">{{ title }} <span style="float:right;font-size:20px; margin-right: 20px">{{ vehicleYear }} {{ make }} {{ model }}</span></h2>
+	<a href='/changeVehicle'><button class="button" type='button' style="float:right; margin-right: 20px" >Choose Vehicle</button></a> 
+    <div class="container body-content">
+{% block content %}{% endblock %}
+        <hr/>
+        <footer>
+            <p>&copy; {{ year }} - KeepItRunnin Maintenance Planner</p>
+        </footer>
+    </div>
+
+    <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
+    <script src="{% static 'app/scripts/respond.js' %}"></script>
+{% block scripts %}{% endblock %}
+
+</body>
+</html>

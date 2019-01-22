@@ -1,0 +1,23 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<form action ="/changeVehicle" method = 'POST'>
+	<h4> Your Vehicles: </h4>
+	<select class="input" id="vehicleOptions" name="choice">
+	</select>
+	<input value="Submit" class="button" type="Submit">
+</form><br>
+<script>
+	var vehicles = {{ !vehicles}};
+	var i;
+	var veh = document.getElementById("vehicleOptions");
+	
+    for (i = 0; i < vehicles.length; i++){
+    	var option = document.createElement("option");
+		option.text = vehicles[i][2] + " " + vehicles[i][3] + " " + vehicles[i][4]  + " " + vehicles[i][5]
+		veh.add(option);
+	}
+</script>
+
+{% endblock %}

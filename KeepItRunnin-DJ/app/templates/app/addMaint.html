@@ -1,0 +1,101 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div style="border-radius: 5px; background-color: #f2f2f2; padding: 20px;">
+	<form action ="/addMaint" id="formEdit" onsubmit="return checkDuplicates();" method = 'POST'>
+		Item*:<br>
+		<input class="input" size="50" required="true" type="text" id="item" name="item"><br>
+
+		Action*:<br>
+		<input class="input" size="50" required="true" type="text" id="action" name="action"><br>
+		 
+		Monthly Interval:<br>
+		<input class="input" type="number" id="months" name="months"><br>
+
+		Mileage Interval:<br>
+		<input class="input" type="number" id="miles" name="miles"><br>
+
+		Materials Needed:<br>
+		<input class="input" size="255" type="text" id="materials" name="materials"><br>
+
+		Comments:<br>
+		<input class="input" size="255" type="text" id="comments" name="comments"><br>
+
+		Next Due Date*:<br>
+		<!-- Error when below is type=date (format issue) -->
+		<input class="input" size="50" required="true" type="date" asp-for="dueDate" asp-format="{0:yyyy/MM/dd}" id="dueDate" name="dueDate"><br>
+
+		</br>
+		Next Due Mileage*:<br>
+		<input class="input" size="50" required="true" type="number" id="dueMile" name="dueMile">
+
+		<br>
+		</br>
+		<input class="button" value="Submit" type="Submit" />
+	</form><br>
+</div>
+<script>
+// Below is not working
+function checkDuplicates(){
+	if ({{mode}} !== 1){
+		var maintenance = {{!maintenance}};
+		var length = {{length}};
+		var item = document.getElementById("item").value;
+		var action = document.getElementById("action").value;
+		var i;
+		var condition;
+		for(i = 0; i < length; i++){	
+			if(maintenance[i][1].trim() === item){
+				if(maintenance[i][2].trim() === action){
+					condition = false;
+					alert("This maintenance plan already exists for this vehicle. Please edit the existing plan or create a new one.")
+					break;
+				}else{
+					condition = true;
+				}
+			}else{
+				condition = true;
+			}
+		}
+		return condition;
+	}
+} 
+
+	id={{id}};
+	currMile = {{curMile}};
+	var miles = document.getElementById("dueMile");
+	miles.value = currMile;
+	document.cookie = "mode=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+	document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+if ({{mode}} == 1){
+	document.cookie = "id="+id;
+	document.cookie = "mode=edit";
+	var record = {{!record}};
+	var item = document.getElementById("item");
+	item.value = record[1].trim();
+	var action = document.getElementById("action");
+	action.value = record[2].trim();
+	var months = document.getElementById("months");
+	months.value = record[3];
+	var miles = document.getElementById("miles");
+	miles.value = record[4];
+	var materials = document.getElementById("materials");
+	materials.value = record[5].trim();
+	var comments = document.getElementById("comments");
+	comments.value = record[6].trim();
+	var dueDate = document.getElementById("dueDate");
+	var dateDue = new Date({{!duedate}});
+	console.log(dateDue)
+	var month = dateDue.getMonth();
+	var day = dateDue.getDate();
+	var year = dateDue.getFullYear();
+	dateString = year + "-" + month + "-" + day;
+	dueDate.value = dateString;
+}else{
+	document.cookie = "mode=add";
+
+}
+</script>
+
+{% endblock %}

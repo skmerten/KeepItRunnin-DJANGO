@@ -1,0 +1,39 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<!-- Create table of all scheduled maintenances from database
+	Place Due date in last column
+	Place Log Now button at end of each row 
+-->
+<div>
+	<table id="schedulMaint2">
+	  <tr>
+		<th>Item</th>
+		<th>Action</th>
+		<th>Monthly Interval</th>
+		<th>Mileage Interval</th>
+		<th>Materials Needed</th>
+		<th>Comments</th>
+	  </tr>
+	  <tr>
+	
+	  </tr>
+	</table>
+</div>
+<script>
+	var numRecords = {{numOfRecords}};
+	var records = {{!rows}};
+	var i;
+	var r;
+	var table = document.getElementById("schedulMaint2");
+	for (r = 0;r<numRecords;r++){
+	newRow = table.insertRow(table.rows.length);
+		for (i = 1;i<7;i++){
+		cell = newRow.insertCell(0);
+		cell.innerHTML = records[r][7-i];
+		}
+	}
+</script>
+
+{% endblock %}

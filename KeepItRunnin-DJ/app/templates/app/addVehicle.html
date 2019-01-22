@@ -1,0 +1,80 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div style="border-radius: 5px; background-color: #f2f2f2; padding: 20px;">
+	<form action ="/addVehicle" method = 'POST'>
+		<h3>Vehicle Information</h3>
+
+		Year*:<br>
+		<input class="input" required="true" type="text" name="year"><br>
+
+		Make*:<br>
+		<input class="input" required="true" type="text" name="make"><br>
+
+		Model*:<br>
+		<input class="input" required="true" type="text" name="model"><br>
+
+		Trim:<br>
+		<input class="input" type="text" name="trim"><br>
+
+		Vehicle ID:<br>
+		<input class="input" type="text" name="vehicle_id"><br>
+
+		Current Mileage*:<br>
+		<input class="input" required="true" type="number" name="mile"><br>
+
+		Notification Email Address:<br>
+		<input class="input" type="text" name="email"><br>
+
+		Notification Phone Number:<br>
+		<input class="input" type="text" name="phone"><br>
+
+		Carrier:<br>
+		<select class="input" name="carrier" onchange="tMobileErr(this.form)">
+			<option value="@mms.att.net">AT@T</option>
+			<option value="@tmomail.net">TMobile</option>
+			<option value="@vtext.com">Verizon</option>
+			<option value="@page.nextel.com">Sprint</option>
+			<option value="@msg.fi.google.com">Project fi</option>
+			<option value="@mms.mycricket.com">Cricket</option>
+			<option value="@mymetropcs.com">MetroPCS</option>
+		</select><br><br>
+
+		<div class="alert" id="warning">
+		  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+		  <strong>Notice:</strong> Due to TMobile spam security policies you may not receive text messages sent by this server.
+		</div>
+
+		<input value="Submit" class="button" type="Submit" />
+	</form><br>
+</div>
+
+
+
+<!--
+<div id="overlay" onclick="helpOff()">
+	<div id="text">Testing</div>
+</div>
+-->
+
+
+<script>
+function tMobileErr(f){
+var warn = document.getElementById("warning");
+	if(f.carrier.value == "@tmomail.net"){
+		warn.style.display='block';
+	}else{
+		warn.style.display='none';
+	}
+}
+function helpOn() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function helpOff() {
+  document.getElementById("overlay").style.display = "none";
+}
+</script>
+
+{% endblock %}

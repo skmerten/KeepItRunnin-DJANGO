@@ -1,0 +1,127 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<!-- A Check In Process should be initiated after a vehicle is added to the DB -->
+
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+<form action ="/checkIn" method = 'POST'>
+	<table id="checkList">
+	  <tr>
+		<th>Checklist</th>
+		<th>Check</th>
+		<th>Is Not Applicable</th>
+	  </tr>
+	  <tr>
+		<td>Break Fluid Levels are OK</td>
+		<td><input type="checkbox" name="BreakFluid">Checked</td>
+		<td><input type="checkbox" name="BreakFluid">Not Applicable</td>
+	  </tr>
+		<td>Engine Oil Level and Condition is OK</td>
+		<td><input type="checkbox" name="Oil">Checked</td>
+		<td><input type="checkbox" name="Oil">Not Applicable</td>
+	  </tr>
+		<td>Engine Coolant Levels are OK</td>
+		<td><input type="checkbox" name="Coolant">Checked</td>
+		<td><input type="checkbox" name="Coolant">Not Applicable</td>
+	  </tr>
+		<td>Transmission Fluid Level and Condition is OK</td>
+		<td><input type="checkbox" name="TranFluid">Checked</td>
+		<td><input type="checkbox" name="TranFluid">Not Applicable</td>
+	  </tr>
+		<td>Low Beam Headlights work</td>
+		<td><input type="checkbox" name="LowBeam">Checked</td>
+		<td><input type="checkbox" name="LowBeam">Not Applicable</td>
+	  </tr>
+		<td>High Beam Headlights work</td>
+		<td><input type="checkbox" name="HighBeam">Checked</td>
+		<td><input type="checkbox" name="HighBeam">Not Applicable</td>
+	  </tr>
+		<td>Front Blinkers work</td>
+		<td><input type="checkbox" name="BlinkerF">Checked</td>
+		<td><input type="checkbox" name="BlinkerF">Not Applicable</td>
+	  </tr>
+		<td>Rear Blinkers work</td>
+		<td><input type="checkbox" name="BlinkerR">Checked</td>
+		<td><input type="checkbox" name="BlinkerR">Not Applicable</td>
+	  </tr>
+		<td>License Plate Lights work</td>
+		<td><input type="checkbox" name="LicenseLight">Checked</td>
+		<td><input type="checkbox" name="LicenseLight">Not Applicable</td>
+	  </tr>
+		<td>Tire Tread is OK</td>
+		<td><input type="checkbox" name="Tread">Checked</td>
+		<td><input type="checkbox" name="Tread">Not Applicable</td>
+	  </tr>
+		<td>Tire Pressure is OK</td>
+		<td><input type="checkbox" name="Press">Checked</td>
+		<td><input type="checkbox" name="Press">Not Applicable</td>
+	  </tr>
+		<td>Tire Lug Nuts are Torqued OK</td>
+		<td><input type="checkbox" name="LugNut">Checked</td>
+		<td><input type="checkbox" name="LugNut">Not Applicable</td>
+	  </tr>
+		<td>Break Pad Wear is OK</td>
+		<td><input type="checkbox" name="BreakPad">Checked</td>
+		<td><input type="checkbox" name="BreakPad">Not Applicable</td>
+	  </tr>
+		<td>Hand Break works</td>
+		<td><input type="checkbox" name="Hand">Checked</td>
+		<td><input type="checkbox" name="Hand">Not Applicable</td>
+	  </tr>
+		<td>No Obvious Drips or Leaks</td>
+		<td><input type="checkbox" name="Leak">Checked</td>
+		<td><input type="checkbox" name="Leak">Not Applicable</td>
+	  </tr>
+		<td>Timing Belt Condition is OK</td>
+		<td><input type="checkbox" name="Timing">Checked</td>
+		<td><input type="checkbox" name="Timing">Not Applicable</td>
+	  </tr>
+		<td>Alternator Belt Condition is OK</td>
+		<td><input type="checkbox" name="Alternator">Checked</td>
+		<td><input type="checkbox" name="Alternator">Not Applicable</td>
+	  </tr>
+		<td>AC Compressor Belt Condition is OK</td>
+		<td><input type="checkbox" name="Compressor">Checked</td>
+		<td><input type="checkbox" name="Compressor">Not Applicable</td>
+	  </tr>
+		<td>Radiator Fan Belt Condition is OK</td>
+		<td><input type="checkbox" name="Fan">Checked</td>
+		<td><input type="checkbox" name="Fan">Not Applicable</td>
+	  </tr>
+		<td>Serpantine Belt Condition is OK</td>
+		<td><input type="checkbox" name="Serpantine">Checked</td>
+		<td><input type="checkbox" name="Serpantine">Not Applicable</td>
+	  </tr>
+		<td>Removable Steering Wheel is Secureable</td>
+		<td><input type="checkbox" name="Steering">Checked</td>
+		<td><input type="checkbox" name="Steering">Not Applicable</td>
+	  </tr> 
+		<td>Cabin Air Filter is OK</td>
+		<td><input type="checkbox" name="Cabin">Checked</td>
+		<td><input type="checkbox" name="Cabin">Not Applicable</td>
+	  </tr>
+		<td>Engine Air Filter is OK</td>
+		<td><input type="checkbox" name="EngineAir">Checked</td>
+		<td><input type="checkbox" name="EngineAir">Not Applicable</td>
+	  </tr>
+	</table>
+    <input value="Check In Vehicle" class="button" type="Submit" />
+<form>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<!-- Create table of all scheduled maintenances from database
+	Place Due date in last column
+	Place Log Now button at end of each row 
+-->
+
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+<form action ="/editMaint" method = 'POST'>
+	<table id="schedulMaint">
+	  <tr>
+		<th>Item</th>
+		<th>Action</th>
+		<th>Monthly Interval</th>
+		<th>Mileage Interval</th>
+		<th>Materials Needed</th>
+		<th>Comments</th>
+		<th>Select Record</th>
+	  </tr>
+	  <tr>
+	
+	  </tr>
+	</table>
+    <input value="Submit" class="button" type="Submit" />
+</form>
+
+<script>
+	var numRecords = {{numOfRecords}};
+	var records = {{rows}};
+	var i;
+	var r;
+	var table = document.getElementById("schedulMaint");
+	for (r = 0;r<numRecords;r++){
+	newRow = table.insertRow(table.rows.length);
+		for (i = 1;i<7;i++){
+		cell = newRow.insertCell(0);
+		cell.innerHTML = records[r][7-i];
+		}
+		cell = newRow.insertCell(6);
+		cell.innerHTML = "<input type='radio' name='recordSelect' value='" + records[r][1].trim() + records[r][2].trim() + "'/>" + records[r][1] + records[r][2];
+	}
+</script>
+
+{% endblock %}

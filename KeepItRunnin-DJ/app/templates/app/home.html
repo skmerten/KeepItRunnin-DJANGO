@@ -1,0 +1,99 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<style type="text/css">
+	#parts {display:inline-block; margin-right:10px; width:200px; margin-bottom:10px; vertical-align: top;} 
+	#maint {display:inline-block; margin-right:10px; width:200px; margin-bottom:10px; vertical-align: top;}
+	#info {display:inline-block; vertical-align:top;} 
+
+	td, th {
+    border: none;
+    text-align: left;
+    padding: 8px;
+	}
+</style>
+
+<div>
+	<div style="margin-left:auto;max-width:200px" id="parts">
+		<div class="w3-container w3-dark-grey" >
+			<h4 style="text-align:center">Parts Needed</h4>
+		</div>
+		<div class="w3-container w3-light-grey w3-left-align w3-padding-16" id="parts_contents">
+			<!-- Parts needed will be added via Javascript -->
+		</div>
+	</div>
+
+	<div style="margin-right:auto;max-width:200px" id="maint">
+		<div class="w3-container w3-dark-grey" >
+			<h4 style="text-align:center">Maintenance Pending</h4>
+		</div>
+		<div class="w3-container w3-light-grey w3-left-align w3-padding-16" id="maint_contents">
+			<!-- Maintenance needed will be added via Javascript -->
+		</div>
+	</div>
+
+	<div id="info" class="w3-container">
+		<table>
+			<tr>
+				<th bgcolor="#616161"><font color="#fff">Year</font></th>
+				<th bgcolor="#616161"><font color="#fff">Make</font></th>
+				<th bgcolor="#616161"><font color="#fff">Model</font></th>
+				<th bgcolor="#616161"><font color="#fff">Trim</font></th>
+				<th bgcolor="#616161"><font color="#fff">Mileage</font></th>
+				<th bgcolor="#616161"><font color="#fff">Checkin</font></th>
+				<th bgcolor="#616161"><font color="#fff">Driveable</font></th>
+			</tr>
+			<tr>
+				<td>{{vehicleYear}}</td>
+				<td>{{make}}</td>
+				<td>{{model}}</td>
+				<td>{{trim}}</td>
+				<td>{{mileage}}</td>
+				<td>{{checkin}}</td>
+				<td>{{driveable}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<!--
+<script>
+function addElement(text, id){
+	var para = document.createElement("p");
+	var node = document.createTextNode(text);
+	para.appendChild(node);
+	var element = document.getElementById(id);
+	element.appendChild(para);
+}
+
+// Set contents of Maint 
+	var maint = {{maint}};
+	if (maint.length == 0){
+		addElement("No Maintenance Due", "maint_contents")
+	}else{
+		for(var i = 0; i<maint.length; i++){
+			addElement(maint[i], "maint_contents");
+		}
+	}
+
+// Set contents of parts
+	var parts = [];
+	if (parts.length == 0){
+		addElement("No Parts Requested", "parts_contents")
+	}else{
+		for(var i = 0; i<parts.length; i++){
+			addElement(parts[i], "parts_contents");
+		}
+	}
+function updateMileage(){
+	var miles = prompt("Enter current mileage", {{mileage}})
+	if(miles == null || miles == "") {
+		alert("Invalid Entry. Mileage not recorded")
+	}else if(miles < {{mileage}}){
+		alert("Mileage must be larger than last reported")
+	}else{
+		alert("Worked")
+	}
+}
+</script>
+    -->
+{% endblock %}
