@@ -5,7 +5,6 @@ Definition of models.
 from django.db import models
 
 class Vehicle(models.Model):
-    vehicle_id = models.CharField(max_length=100)
     active = models.IntegerField(max_length=None)
     year = models.IntegerField(max_length=None)
     make = models.CharField(max_length=100)
@@ -19,8 +18,7 @@ class Vehicle(models.Model):
     vehicle_creation = models.DateTimeField(auto_now_add=True)
 
 class Maintenance(models.Model):
-    vehicle_id = models.CharField(max_length=100)
-    maintenance_id = models.CharField(max_length=100)
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     item = models.CharField(max_length=100)
     action = models.CharField(max_length=100)
     months = models.IntegerField(max_length=None)
