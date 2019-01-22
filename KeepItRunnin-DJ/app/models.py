@@ -16,7 +16,4 @@ class Vehicle(models.Model):
     email = models.CharField(max_length=100)
     phone = models.CharField(max_length=15)
     check_in = models.IntegerField(max_length=None)
-    vehicle_creation = models.DateTimeField(auto_now_add=true)
-
-    def __str__(self):
-        return self.vehicle_id
+    vehicle_creation = models.DateTimeField(auto_now_add=True)
