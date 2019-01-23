@@ -48,6 +48,7 @@ def maintenanceHome(request):
         }
     )
 
+# Below Will Be Removed
 def changeVehicle(request):
     allVehicle = Vehicle.objects.all()
     vehicle = Vehicle.objects.get()
