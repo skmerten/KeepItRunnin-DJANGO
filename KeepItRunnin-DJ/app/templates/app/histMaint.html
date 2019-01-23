@@ -40,19 +40,5 @@ tr:nth-child(even) {
   </tr>
 </table>
 
-<script>
-	var numRecords = {{numOfRecords}};
-	var records = {{!rows}};
-	var i;
-	var r;
-	var table = document.getElementById("schedulMaint2");
-	for (r = 0;r<numRecords;r++){
-	newRow = table.insertRow(table.rows.length);
-		for (i = 0;i<7;i++){
-		cell = newRow.insertCell(0);
-		cell.innerHTML = records[r][6-i];
-		}
-	}
-</script>
 
 {% endblock %}

@@ -21,19 +21,5 @@
 	  </tr>
 	</table>
 </div>
-<script>
-	var numRecords = {{numOfRecords}};
-	var records = {{!rows}};
-	var i;
-	var r;
-	var table = document.getElementById("schedulMaint2");
-	for (r = 0;r<numRecords;r++){
-	newRow = table.insertRow(table.rows.length);
-		for (i = 1;i<7;i++){
-		cell = newRow.insertCell(0);
-		cell.innerHTML = records[r][7-i];
-		}
-	}
-</script>
 
 {% endblock %}

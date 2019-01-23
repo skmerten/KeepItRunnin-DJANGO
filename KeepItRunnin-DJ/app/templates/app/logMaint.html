@@ -48,68 +48,7 @@
 </div>
 
 
-<script>
-	function actionSet(f){
-		var maint = {{ !maint}};
-		var numRecords = {{numOfRecords}};
-		var item = f.item.value;
-		var i;
-		var r;
-		var actions = document.getElementById("actionOptions");
-		var length = actions.options.length;
-		for(r = 0; r < length; r++){
-			actions.options[(length - 1) - r]=null;
-		}
-		for(i = 0; i<numRecords; i++){
-			if (item.replace(/\s/g,"") == maint[i][0].toString().replace(/\s/g,"")){
-				var option = document.createElement("option");
-				option.text = maint[i][1];
-				actions.add(option);
-			}
-		}
-		monthSet(f);
-	}
-	function monthSet(f){
-		f.months.value = null;
-		var maint = {{!maint}};
-		var numRecords = {{numOfRecords}};
-		var item = f.item.value;
-		var action = f.action.value;
-		for (var i = 0; i < numRecords; i++){
-			if ((item.replace(/\s/g,"") === maint[i][0].toString().replace(/\s/g,""))&&(action.replace(/\s/g,"") === maint[i][1].toString().replace(/\s/g,""))){
-				f.months.value = maint[i][2];
-				f.miles.value = maint[i][3];
-			}
-		}
-	nextDueMile(f);
-	}
-</script>
-<script>
-	var schedMaint = {{ !maint}};
-	var numRecs = {{ numOfRecords }};
-	var i;
-	var items = document.getElementById("itemOptions");
-	var actions = document.getElementById("actionOptions");
-	var month = document.getElementById("monthInt");
-	var option = document.createElement("option");
-	option.text = "Select Item";
-	items.add(option);
-	var maint = [];
-	for (var x = 0; x < numRecs; x++){
-		if (maint.indexOf(schedMaint[x][0])== -1){
-			maint.push(schedMaint[x][0]);
-		}
-	}
-    for (i = 0; i < maint.length; i++){
-		var option = document.createElement("option");
-		option.text = maint[i];
-		items.add(option);
-	}
-// Set Mileage
-currMile = {{curMile}};
-document.getElementById("currentMile").value = currMile;
-nextDueMile(document.getElementById("logMaint"));
-</script>
+
 <script>
 	function nextDueDate(f) {
 	var newDate = new Date(f.compDate.value);

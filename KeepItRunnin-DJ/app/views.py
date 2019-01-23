@@ -25,8 +25,6 @@ def home(request):
     )
 
 def vehicleProfile(request):
-    """Renders the home page."""
-    vehicle = Vehicle.objects.get(active=1)
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -34,12 +32,11 @@ def vehicleProfile(request):
         {
             'title':'Choose Vehicle',
             'year':datetime.now().year,
-            'vehicle': vehicle
         }
     )
 
 def maintenanceHome(request):
-    vehicle = Vehicle.objects.get(active=1)
+    vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -53,7 +50,7 @@ def maintenanceHome(request):
 
 def changeVehicle(request):
     allVehicle = Vehicle.objects.all()
-    vehicle = Vehicle.objects.get(active=1)
+    vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -67,7 +64,7 @@ def changeVehicle(request):
     )
 
 def partsHome(request):
-    vehicle = Vehicle.objects.get(active=1)
+    vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -80,7 +77,7 @@ def partsHome(request):
     )
 
 def checkIn(request):
-    vehicle = Vehicle.objects.get(active=1)
+    vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -94,21 +91,19 @@ def checkIn(request):
 
 # NEED UPDATE
 def addVehicle(request):
-    vehicle = Vehicle.objects.get(active=1)
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/checkIn.html',
+        'app/addVehicle.html',
         {
             'title':'Add Vehicle',
             'year':datetime.now().year,
-            'vehicle': vehicle
         }
     )
 
 # NEED UPDATE
 def addMaint(request):
-    vehicle = Vehicle.objects.get(active=1)
+    vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -122,7 +117,7 @@ def addMaint(request):
 
 #NEED UPDATE
 def viewMaint(request):
-    vehicle = Vehicle.objects.get(active=1)
+    vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -136,11 +131,11 @@ def viewMaint(request):
 
 #NEED UPDATE
 def histMaint(request):
-    vehicle = Vehicle.objects.get(active=1)
+    vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/viewMaint.html',
+        'app/histMaint.html',
         {
             'title':'Add Vehicle',
             'year':datetime.now().year,
@@ -150,25 +145,11 @@ def histMaint(request):
 
 #NEED UPDATE
 def logMaint(request):
-    vehicle = Vehicle.objects.get(active=1)
+    vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/viewMaint.html',
-        {
-            'title':'Add Vehicle',
-            'year':datetime.now().year,
-            'vehicle': vehicle
-        }
-    )
-
-#NEED UPDATE
-def logMaint(request):
-    vehicle = Vehicle.objects.get(active=1)
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/viewMaint.html',
+        'app/logMaint.html',
         {
             'title':'Add Vehicle',
             'year':datetime.now().year,
@@ -178,11 +159,11 @@ def logMaint(request):
 
 #NEED UPDATE
 def viewVehicle(request):
-    vehicle = Vehicle.objects.get(active=1)
+    vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/viewMaint.html',
+        'app/viewVehicle.html',
         {
             'title':'Add Vehicle',
             'year':datetime.now().year,
@@ -192,25 +173,11 @@ def viewVehicle(request):
 
 #NEED UPDATE
 def editMaint(request):
-    vehicle = Vehicle.objects.get(active=1)
+    vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/viewMaint.html',
-        {
-            'title':'Add Vehicle',
-            'year':datetime.now().year,
-            'vehicle': vehicle
-        }
-    )
-
-#NEED UPDATE
-def editMaint(request):
-    vehicle = Vehicle.objects.get(active=1)
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/viewMaint.html',
+        'app/editMaint.html',
         {
             'title':'Add Vehicle',
             'year':datetime.now().year,
@@ -220,11 +187,11 @@ def editMaint(request):
 
 # NEED UPDATE
 def vehicleUpdate(request):
-    vehicle = Vehicle.objects.get(active=1)
+    vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/viewMaint.html',
+        'app/updateVehicle.html',
         {
             'title':'Add Vehicle',
             'year':datetime.now().year,
@@ -233,12 +200,12 @@ def vehicleUpdate(request):
     )
 
 #NEED UPDATE
-def requestPart(request):
-    vehicle = Vehicle.objects.get(active=1)
+def addParts(request):
+    vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/viewMaint.html',
+        'app/addParts.html',
         {
             'title':'Add Vehicle',
             'year':datetime.now().year,
@@ -248,39 +215,11 @@ def requestPart(request):
 
 #NEED UPDATE
 def viewPart(request):
-    vehicle = Vehicle.objects.get(active=1)
+    vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/viewMaint.html',
-        {
-            'title':'Add Vehicle',
-            'year':datetime.now().year,
-            'vehicle': vehicle
-        }
-    )
-
-#NEED UPDATE
-def showParts(request):
-    vehicle = Vehicle.objects.get(active=1)
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/viewMaint.html',
-        {
-            'title':'Add Vehicle',
-            'year':datetime.now().year,
-            'vehicle': vehicle
-        }
-    )
-
-#NEED UPDATE
-def vehicleUpdate(request):
-    vehicle = Vehicle.objects.get(active=1)
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/viewMaint.html',
+        'app/viewPart.html',
         {
             'title':'Add Vehicle',
             'year':datetime.now().year,

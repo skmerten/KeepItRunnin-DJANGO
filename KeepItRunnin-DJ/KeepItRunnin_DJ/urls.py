@@ -20,11 +20,19 @@ urlpatterns = [
 
     # /vehicleProfile
 
-    url(r'^vehicleProfile/', app.views.vehicleProfile, name='vehicleProfile'),
+    url(r'^addMaint/', app.views.addMaint, name='addMaint'),
+    url(r'^addParts/', app.views.addParts, name='addParts'),
+    url(r'^addVehicle/', app.views.addVehicle, name='addVehicle'),
     url(r'^changeVehicle/', app.views.changeVehicle, name='changeVehicle'),
+    url(r'^checkIn/', app.views.checkIn, name='checkIn'),
+    url(r'^editMaint/', app.views.editMaint, name='editMaint'),
+    url(r'^histMaint/', app.views.histMaint, name='histMaint'),
+    url(r'^logMaint/', app.views.logMaint, name='logMaint'),
     url(r'^maintenance/', app.views.maintenanceHome, name='maintenanceHome'),
     url(r'^parts/', app.views.partsHome, name='partsHome'),
-    url(r'^checkIn/', app.views.checkIn, name='checkIn'),
+    url(r'^vehicleProfile/', app.views.vehicleProfile, name='vehicleProfile'),
+    url(r'^viewMaint/', app.views.viewMaint, name='partsHome'),
+    url(r'^viewParts/', app.views.viewPart, name='viewPart'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

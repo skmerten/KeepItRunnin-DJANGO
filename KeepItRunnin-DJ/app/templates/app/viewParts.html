@@ -17,17 +17,4 @@
 	</table>
 <div>
 
-<script>
-	var parts = {{!parts}};
-	console.log(parts);
-	var table = document.getElementById("partsList");
-	for (var r = 0; r < parts.length; r++){
-	newRow = table.insertRow(table.rows.length);
-		for (var i = 0;i<5;i++){
-		cell = newRow.insertCell(0);
-		cell.innerHTML = parts[r][4-i];
-		}
-	}
-</script>
-
 {% endblock %}
