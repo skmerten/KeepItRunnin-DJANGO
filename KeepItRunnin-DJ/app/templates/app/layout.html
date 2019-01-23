@@ -21,10 +21,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="navbar-brand">Application name</a>
+                <a href="/" class="navbar-brand">Home</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li><a href="{% url 'vehicleProfile' %}">Vehicle Profile</a></li>
+                    <li><a href="{% url 'maintenanceHome' %}">Maintenance</a></li>
+                    <li><a href="{% url 'partsHome' %}">Parts</a></li>
+                    <li><a href="{% url 'checkIn' %}">Check In</a></li>
                 </ul>
             </div>
         </div>

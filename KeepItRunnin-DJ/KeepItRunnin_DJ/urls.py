@@ -21,6 +21,10 @@ urlpatterns = [
     # /vehicleProfile
 
     url(r'^vehicleProfile/', app.views.vehicleProfile, name='vehicleProfile'),
+    url(r'^changeVehicle/', app.views.changeVehicle, name='changeVehicle'),
+    url(r'^maintenance/', app.views.maintenanceHome, name='maintenanceHome'),
+    url(r'^parts/', app.views.partsHome, name='partsHome'),
+    url(r'^checkIn/', app.views.checkIn, name='checkIn'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
