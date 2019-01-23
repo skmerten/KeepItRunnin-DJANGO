@@ -7,10 +7,12 @@ from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
 import json, html 
+from django.db import models
 from app.models import Vehicle, Maintenance, Maintenance_History, Part
 
 def home(request):
     """Renders the home page."""
+    vehicle = Vehicle.objects.all(active=1)
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -18,14 +20,20 @@ def home(request):
         {
             'title':'Home Page',
             'year':datetime.now().year,
-            'title': 'Vehicle Information',
-            'vehicleYear': 'test',
-            'make':'test',
-            'model':'test',
-            'trim':'test',
-            'mileage':'test',
-            'maint':'test',
-            'driveable':'test',
-            'checkin':'test',
+            'vehicle': vehicle
+        }
+    )
+
+def vehicleProfile(request):
+    """Renders the home page."""
+    vehicle = Vehicle.objects.all(active=1)
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/vehicleProfile.html',
+        {
+            'title':'Choose Vehicle',
+            'year':datetime.now().year,
+            'vehicle': vehicle
         }
     )

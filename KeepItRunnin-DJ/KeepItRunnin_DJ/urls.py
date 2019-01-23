@@ -15,8 +15,12 @@ from django.conf.urls import include
 admin.autodiscover()
 
 urlpatterns = [
-    # Examples:
+    # /home
     url(r'^$', app.views.home, name='home'),
+
+    # /vehicleProfile
+
+    url(r'^vehicleProfile/', app.views.vehicleProfile, name='vehicleProfile'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

@@ -25,15 +25,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{% url 'vehicleProfile' %}">Vehicle Profile</a></li>
-                    <li><a href="{% url 'maintenanceHome' %}">Maintenance</a></li>
-                    <li><a href="{% url 'partsHome' %}">Parts</a></li>
-                    <li><a href="{% url 'checkIn' %}">Check In</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    <h2 class="h1" style="text-align:left;margin-left: 20px">{{ title }} <span style="float:right;font-size:20px; margin-right: 20px">{{ vehicleYear }} {{ make }} {{ model }}</span></h2>
+    <h2 class="h1" style="text-align:left;margin-left: 20px">{{ title }} <span style="float:right;font-size:20px; margin-right: 20px">{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}</span></h2>
 	<a href='/changeVehicle'><button class="button" type='button' style="float:right; margin-right: 20px" >Choose Vehicle</button></a> 
     <div class="container body-content">
 {% block content %}{% endblock %}
