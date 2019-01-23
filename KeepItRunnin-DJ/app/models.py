@@ -5,7 +5,6 @@ Definition of models.
 from django.db import models
 
 class Vehicle(models.Model):
-    active = models.IntegerField(max_length=None)
     year = models.IntegerField(max_length=None)
     make = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
@@ -35,8 +34,8 @@ class Maintenance(models.Model):
 class Maintenance_History(models.Model):
     maintenance = models.ForeignKey(Maintenance, on_delete=models.CASCADE)
     comments = models.CharField(max_length=250)
-    date_completed = models.CharField(max_length=100)
-    next_due_date = models.CharField(max_length=100)
+    date_completed = models.DateTimeField()
+    next_due_date = models.DateTimeField()
     next_due_mile = models.IntegerField(max_length=None)
     completed = models.IntegerField(max_length=None)
 
@@ -47,11 +46,11 @@ class Part(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     maintenance = models.ForeignKey(Maintenance)
     part_name = models.CharField(max_length=250)
-    date_requested = models.CharField(max_length=50)
-    need_by_date = models.CharField(max_length=50)
+    date_requested = models.DateTimeField(auto_now_add=True)
+    need_by_date = models.DateTimeField()
     purchase_location = models.CharField(max_length=250)
     purchase_price = models.CharField(max_length=50)
-    date_of_purchase = models.CharField(max_length=50)
+    date_of_purchase = models.DateTimeField()
     comments = models.CharField(max_length=250)
     status = models.IntegerField(max_length=None)
 

@@ -4,15 +4,14 @@ Definition of views.
 
 from django.shortcuts import render
 from django.http import HttpRequest
+from django.http import Http404
 from django.template import RequestContext
 from datetime import datetime
-import json, html 
 from app.models import Vehicle, Maintenance, Maintenance_History, Part
 
 def home(request):
-    vehicle = Vehicle.objects.get(active=1)
-    print(vehicle)
-    print(vehicle.year)
+    parts = Part.objects.all()
+    maintenance = Maintenance_History.objects.filter(next_due_date__lte=datetime.now())
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -20,7 +19,8 @@ def home(request):
         {
             'title':'Home Page',
             'year':datetime.now().year,
-            'vehicle': vehicle
+            'parts':parts,
+            'maint':maintenance
         }
     )
 
@@ -51,8 +51,8 @@ def maintenanceHome(request):
         }
     )
 
-# NEED UPDATE
 def changeVehicle(request):
+    allVehicle = Vehicle.objects.all()
     vehicle = Vehicle.objects.get(active=1)
     assert isinstance(request, HttpRequest)
     return render(
@@ -61,7 +61,8 @@ def changeVehicle(request):
         {
             'title':'Choose Vehicle',
             'year':datetime.now().year,
-            'vehicle': vehicle
+            'vehicle': vehicle,
+            'allVehicle':allVehicle
         }
     )
 
@@ -215,8 +216,9 @@ def editMaint(request):
             'year':datetime.now().year,
             'vehicle': vehicle
         }
+    )
 
-#NEED UPDATE
+# NEED UPDATE
 def vehicleUpdate(request):
     vehicle = Vehicle.objects.get(active=1)
     assert isinstance(request, HttpRequest)

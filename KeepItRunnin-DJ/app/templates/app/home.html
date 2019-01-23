@@ -19,7 +19,11 @@
 			<h4 style="text-align:center">Parts Needed</h4>
 		</div>
 		<div class="w3-container w3-light-grey w3-left-align w3-padding-16" id="parts_contents">
-			<!-- Parts needed will be added via Javascript -->
+			{% for part in parts %}
+                {% if not part.status %}
+                    <p>{{part.part_name}}</p>
+                {% endif %}
+            {% endfor %}
 		</div>
 	</div>
 
@@ -28,72 +32,10 @@
 			<h4 style="text-align:center">Maintenance Pending</h4>
 		</div>
 		<div class="w3-container w3-light-grey w3-left-align w3-padding-16" id="maint_contents">
-			<!-- Maintenance needed will be added via Javascript -->
+			{% for maint in maintenance %}
+                    <p>{{maint.item}} {{maint.action}}</p>
+            {% endfor %}
 		</div>
 	</div>
 
-	<div id="info" class="w3-container">
-		<table>
-			<tr>
-				<th bgcolor="#616161"><font color="#fff">Year</font></th>
-				<th bgcolor="#616161"><font color="#fff">Make</font></th>
-				<th bgcolor="#616161"><font color="#fff">Model</font></th>
-				<th bgcolor="#616161"><font color="#fff">Trim</font></th>
-				<th bgcolor="#616161"><font color="#fff">Mileage</font></th>
-				<th bgcolor="#616161"><font color="#fff">Checkin</font></th>
-				<th bgcolor="#616161"><font color="#fff">Driveable</font></th>
-			</tr>
-			<tr>
-				<td>{{vehicle.year}}</td>
-				<td>{{vehicle.make}}</td>
-				<td>{{vehicle.model}}</td>
-				<td>{{vehicle.trim}}</td>
-				<td>{{vehicle.mileage}}</td>
-				<td>{{vehicle.check_in}}</td>
-				<td>{{vehicle.driveable}}</td>
-			</tr>
-		</table>
-	</div>
-</div>
-<!--
-<script>
-function addElement(text, id){
-	var para = document.createElement("p");
-	var node = document.createTextNode(text);
-	para.appendChild(node);
-	var element = document.getElementById(id);
-	element.appendChild(para);
-}
-
-// Set contents of Maint 
-	var maint = {{maint}};
-	if (maint.length == 0){
-		addElement("No Maintenance Due", "maint_contents")
-	}else{
-		for(var i = 0; i<maint.length; i++){
-			addElement(maint[i], "maint_contents");
-		}
-	}
-
-// Set contents of parts
-	var parts = [];
-	if (parts.length == 0){
-		addElement("No Parts Requested", "parts_contents")
-	}else{
-		for(var i = 0; i<parts.length; i++){
-			addElement(parts[i], "parts_contents");
-		}
-	}
-function updateMileage(){
-	var miles = prompt("Enter current mileage", {{mileage}})
-	if(miles == null || miles == "") {
-		alert("Invalid Entry. Mileage not recorded")
-	}else if(miles < {{mileage}}){
-		alert("Mileage must be larger than last reported")
-	}else{
-		alert("Worked")
-	}
-}
-</script>
-    -->
 {% endblock %}
