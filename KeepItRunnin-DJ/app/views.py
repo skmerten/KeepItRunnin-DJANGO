@@ -52,6 +52,11 @@ def maintenanceHome(request):
 def changeVehicle(request):
     allVehicle = Vehicle.objects.all()
     vehicle = Vehicle.objects.get()
+    if request.method == 'POST':
+        form = ContactForm(request._load_post_and_files)
+        if form.is_valid():
+            print (form.cleaned_date['choice'])
+
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -92,6 +97,11 @@ def checkIn(request):
 
 # NEED UPDATE
 def addVehicle(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            print (form.cleaned_date['year'])
+
     assert isinstance(request, HttpRequest)
     return render(
         request,
