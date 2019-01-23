@@ -7,12 +7,12 @@ from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
 import json, html 
-from django.db import models
 from app.models import Vehicle, Maintenance, Maintenance_History, Part
 
 def home(request):
-    """Renders the home page."""
-    vehicle = Vehicle.objects.all(active=1)
+    vehicle = Vehicle.objects.get(active=1)
+    print(vehicle)
+    print(vehicle.year)
     assert isinstance(request, HttpRequest)
     return render(
         request,
