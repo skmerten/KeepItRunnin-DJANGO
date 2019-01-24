@@ -5,7 +5,7 @@ Definition of forms.
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import ugettext_lazy as _
-from app.models import Vehicle
+from app.models import Vehicle, Maintenance
 
 
 class BootstrapAuthenticationForm(AuthenticationForm):
@@ -31,3 +31,10 @@ class NewVehicle(forms.ModelForm):
     class Meta:
         model = Vehicle
         fields = ('year','make','model','trim','mileage','email','phone', )
+
+class NewMaintenance(forms.ModelForm):
+
+
+    class Meta:
+        model = Maintenance
+        fields = (,)
