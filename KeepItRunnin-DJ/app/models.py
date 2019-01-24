@@ -10,10 +10,8 @@ class Vehicle(models.Model):
     model = models.CharField(max_length=100)
     trim = models.CharField(max_length=100)
     mileage = models.IntegerField(max_length=None)
-    driveable = models.IntegerField(max_length=None)
     email = models.CharField(max_length=100)
     phone = models.CharField(max_length=15)
-    check_in = models.IntegerField(max_length=None)
     vehicle_creation = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

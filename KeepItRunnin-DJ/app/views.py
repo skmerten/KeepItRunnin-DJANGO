@@ -8,6 +8,7 @@ from django.http import Http404
 from django.template import RequestContext
 from datetime import datetime
 from app.models import Vehicle, Maintenance, Maintenance_History, Part
+from app.forms import NewVehicle
 
 def home(request):
     parts = Part.objects.all()
@@ -97,15 +98,36 @@ def checkIn(request):
 
 # NEED UPDATE
 def addVehicle(request):
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/addVehicle.html',
-        {
-            'title':'Add Vehicle',
-            'year':datetime.now().year,
-        }
-    )
+    if request.method == 'POST':
+        form = NewVehicle(request.POST)
+        if form.is_valid():
+            form.save()
+
+            # render Home Page
+            parts = Part.objects.all()
+            maintenance = Maintenance_History.objects.filter(next_due_date__lte=datetime.now())
+            assert isinstance(request, HttpRequest)
+            return render(
+                request,
+                'app/home.html',
+                {
+                    'title':'Home Page',
+                    'year':datetime.now().year,
+                    'parts':parts,
+                    'maint':maintenance
+                }
+            )
+    else:
+        assert isinstance(request, HttpRequest)
+        return render(
+            request,
+            'app/addVehicle.html',
+            {
+                'title':'Add Vehicle',
+                'year':datetime.now().year,
+                'newVehicle':NewVehicle()
+            }
+        )
 
 # NEED UPDATE
 def addMaint(request):
