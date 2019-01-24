@@ -18,12 +18,9 @@ urlpatterns = [
     # /home
     url(r'^$', app.views.home, name='home'),
 
-    # /vehicleProfile
-
     url(r'^addMaint/', app.views.addMaint, name='addMaint'),
     url(r'^addParts/', app.views.addParts, name='addParts'),
     url(r'^addVehicle/', app.views.addVehicle, name='addVehicle'),
-    url(r'^changeVehicle/', app.views.changeVehicle, name='changeVehicle'),
     url(r'^checkIn/', app.views.checkIn, name='checkIn'),
     url(r'^editMaint/', app.views.editMaint, name='editMaint'),
     url(r'^histMaint/', app.views.histMaint, name='histMaint'),

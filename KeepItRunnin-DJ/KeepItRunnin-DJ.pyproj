@@ -39,10 +39,10 @@
     <Compile Include="app\views.py" />
     <Compile Include="app\__init__.py" />
     <Compile Include="app\migrations\__init__.py" />
+    <Compile Include="KeepItRunnin_DJ\urls.py" />
     <Compile Include="manage.py" />
     <Compile Include="KeepItRunnin_DJ\__init__.py" />
     <Compile Include="KeepItRunnin_DJ\settings.py" />
-    <Compile Include="KeepItRunnin_DJ\urls.py" />
     <Compile Include="KeepItRunnin_DJ\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
@@ -69,7 +69,6 @@
     <Content Include="app\templates\app\addMaint.html" />
     <Content Include="app\templates\app\addParts.html" />
     <Content Include="app\templates\app\addVehicle.html" />
-    <Content Include="app\templates\app\changeVehicle.html" />
     <Content Include="app\templates\app\checkIn.html" />
     <Content Include="app\templates\app\editMaint.html" />
     <Content Include="app\templates\app\histMaint.html" />

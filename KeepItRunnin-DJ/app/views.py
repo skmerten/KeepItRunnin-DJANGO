@@ -97,11 +97,6 @@ def checkIn(request):
 
 # NEED UPDATE
 def addVehicle(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            print (form.cleaned_date['year'])
-
     assert isinstance(request, HttpRequest)
     return render(
         request,

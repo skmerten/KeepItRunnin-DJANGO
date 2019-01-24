@@ -3,9 +3,11 @@
 {% block content %}
 
 <div style="border-radius: 5px; background-color: #f2f2f2; padding: 20px;">
-	<form action ="/addVehicle" method = 'POST'>
+	<form action ="{% url 'addVehicle' %}" method = 'POST'>{% csrf_token %}
 		<h3>Vehicle Information</h3>
-
+        {% if error %}
+            <p>{{error}}</p>
+        {% endif %}
 		Year*:<br>
 		<input class="input" required="true" type="text" name="year"><br>
 
