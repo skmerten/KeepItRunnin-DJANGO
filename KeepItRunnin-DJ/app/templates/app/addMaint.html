@@ -3,38 +3,8 @@
 {% block content %}
 
 <div style="border-radius: 5px; background-color: #f2f2f2; padding: 20px;">
-	<form action ="/addMaint" id="formEdit" onsubmit="return checkDuplicates();" method = 'POST'>
-        Vehicle*:<br>
-		<input class="input" size="50" required="true" type="text" id="vehicle" name="vehicle"><br>
-
-		Item*:<br>
-		<input class="input" size="50" required="true" type="text" id="item" name="item"><br>
-
-		Action*:<br>
-		<input class="input" size="50" required="true" type="text" id="action" name="action"><br>
-		 
-		Monthly Interval:<br>
-		<input class="input" type="number" id="months" name="months"><br>
-
-		Mileage Interval:<br>
-		<input class="input" type="number" id="miles" name="miles"><br>
-
-		Materials Needed:<br>
-		<input class="input" size="255" type="text" id="materials" name="materials"><br>
-
-		Comments:<br>
-		<input class="input" size="255" type="text" id="comments" name="comments"><br>
-
-		Next Due Date*:<br>
-		<!-- Error when below is type=date (format issue) -->
-		<input class="input" size="50" required="true" type="date" asp-for="dueDate" asp-format="{0:yyyy/MM/dd}" id="dueDate" name="dueDate"><br>
-
-		</br>
-		Next Due Mileage*:<br>
-		<input class="input" size="50" required="true" type="number" id="dueMile" name="dueMile">
-
-		<br>
-		</br>
+	<form action ="{% url 'addMaint' %}" id="formEdit" onsubmit="return checkDuplicates();" method = 'POST'>{% csrf_token %}
+        {{newMaintenance.as_p}}
 		<input class="button" value="Submit" type="Submit" />
 	</form><br>
 </div>

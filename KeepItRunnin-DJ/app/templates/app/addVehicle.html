@@ -5,7 +5,7 @@
 <div style="border-radius: 5px; background-color: #f2f2f2; padding: 20px;">
 	<form action ="{% url 'addVehicle' %}" method = 'post'>{% csrf_token %}
 		<h3>Vehicle Information</h3>
-           {{ newVehicle }}
+           {{ newVehicle.as_p }}
 		<div class="alert" id="warning">
 		  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
 		  <strong>Notice:</strong> Due to TMobile spam security policies you may not receive text messages sent by this server.
