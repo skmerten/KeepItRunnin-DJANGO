@@ -44,7 +44,7 @@ class Maintenance_History(models.Model):
 
 class Part(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
-    maintenance = models.ForeignKey(Maintenance)
+    maintenance = models.ForeignKey(Maintenance, on_delete=None)
     part_name = models.CharField(max_length=250)
     date_requested = models.DateTimeField(auto_now_add=True)
     need_by_date = models.DateTimeField()
