@@ -2,11 +2,11 @@
 
 {% block content %}
 <br>
-<a href='/addMaint'><button class="button" type='button'>Add Maintenance Plan</button></a>
-<a href='/viewMaint'><button class="button" type='button'>View Maintenance Plan</button></a>
-<a href='/logMaint'><button class="button" type='button'>Log Maintenance</button></a>
-<a href='/histMaint'><button class="button" type='button'>Maintenance History</button></a>
-<a href='/editMaint'><button class="button" type='button'>Edit Maintenance Plan</button></a>
+<a href='{% url 'addMaint' %}'><button class="button" type='button'>Add Maintenance Plan</button></a>
+<a href='{% url 'viewMaint' %}'><button class="button" type='button'>View Maintenance Plan</button></a>
+<a href='{% url 'logMaint' %}'><button class="button" type='button'>Log Maintenance</button></a>
+<a href='{% url 'histMaint' %}'><button class="button" type='button'>Maintenance History</button></a>
+<a href='{% url 'editMaint' %}'><button class="button" type='button'>Edit Maintenance Plan</button></a>
 <!--
 <a href='/cancelMaint'><button type='button'>Cancel Maintenance</button></a>
 -->
