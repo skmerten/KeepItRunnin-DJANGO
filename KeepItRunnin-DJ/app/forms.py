@@ -37,12 +37,14 @@ class NewMaintenance(forms.ModelForm):
     item = forms.CharField(label='Item*', required=True, max_length=100, widget=forms.TextInput(attrs={'class' : 'input'}))
     action = forms.CharField(label='Action*', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'input'}))
     months = forms.IntegerField(label='Monthly Interval*', widget=forms.NumberInput(attrs={'class':'input'}))
-    mileage = forms.IntegerField(label='Mileage Interval*', widget=forms.NumberInput(attrs={'class':'input'}))
+    miles = forms.IntegerField(label='Mileage Interval*', widget=forms.NumberInput(attrs={'class':'input'}))
     material = forms.CharField(label='Materials Needed*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
     comments = forms.CharField(label='Comments*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
-    next_due_date = forms.DateField(label='Next Due Date', widget=forms.DateInput(attrs={'class':'input'}))
-    next_due_mile = forms.IntegerField(label='Next Due Mileage', widget=forms.NumberInput(attrs={'class':'input'}))
     
     class Meta:
         model = Maintenance
-        fields = ('vehicle', 'item', 'action', 'months', 'mileage', 'material', 'comments', 'next_due_date', 'next_due_mile',)
+        fields = ('vehicle', 'item', 'action', 'months', 'miles', 'material', 'comments',)
+
+#class NewMaintenanceHistory(forms.ModelForm):
+#    next_due_date = forms.DateField(label='Next Due Date', widget=forms.DateInput(attrs={'class':'input'}))
+#    next_due_mile = forms.IntegerField(label='Next Due Mileage', widget=forms.NumberInput(attrs={'class':'input'}))

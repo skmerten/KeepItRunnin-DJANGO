@@ -12,7 +12,7 @@ from app.forms import NewVehicle, NewMaintenance
 
 def home(request):
     parts = Part.objects.all()
-    maintenance = Maintenance_History.objects.filter(next_due_date__lte=datetime.now())
+    maintenance = Maintenance_History.objects.all()
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -33,7 +33,7 @@ def addVehicle(request):
 
             # render Home Page
             parts = Part.objects.all()
-            maintenance = Maintenance_History.objects.filter(next_due_date__lte=datetime.now())
+            maintenance = Maintenance_History.objects.all()
             assert isinstance(request, HttpRequest)
             return render(
                 request,
@@ -143,7 +143,7 @@ def checkIn(request):
 
 #NEED UPDATE
 def viewMaint(request):
-    vehicle = Vehicle.objects.get()
+    maintenance = Maintenance.objects.all()
     assert isinstance(request, HttpRequest)
     return render(
         request,

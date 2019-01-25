@@ -17,7 +17,9 @@
 		<th>Comments</th>
 	  </tr>
 	  <tr>
-	
+        {% for each in maintenance %}
+            <td>{{each}}</td>
+	    {% endfor %}
 	  </tr>
 	</table>
 </div>
