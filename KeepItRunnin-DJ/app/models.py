@@ -13,7 +13,6 @@ class Vehicle(models.Model):
     email = models.CharField(max_length=100)
     phone = models.CharField(max_length=15)
     vehicle_creation = models.DateTimeField(auto_now_add=True)
-
     def __str__(self):
         return str(self.year) + ' - ' + self.make + ' - ' + self.model
 

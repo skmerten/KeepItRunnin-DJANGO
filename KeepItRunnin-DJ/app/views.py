@@ -78,7 +78,7 @@ def addMaint(request):
                     'maint':maintenance
                 }
             )
-    vehicle = Vehicle.objects.get()
+    vehicle = Vehicle.objects.all()
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -86,7 +86,6 @@ def addMaint(request):
         {
             'title':'Add Vehicle',
             'year':datetime.now().year,
-            'vehicle': vehicle,
             'newMaintenance': NewMaintenance()
         }
     )
@@ -103,15 +102,13 @@ def vehicleProfile(request):
     )
 
 def maintenanceHome(request):
-    vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/maintenanceHome.html',
         {
             'title':'Maintenance',
-            'year':datetime.now().year,
-            'vehicle': vehicle
+            'year':datetime.now().year
         }
     )
 

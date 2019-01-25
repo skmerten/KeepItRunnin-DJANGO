@@ -33,9 +33,15 @@ class NewVehicle(forms.ModelForm):
         fields = ('year','make','model','trim','mileage','email','phone', )
 
 class NewMaintenance(forms.ModelForm):
-    vehicles = tuple(Vehicle.objects.values('id', 'model'))
+   # CHOICES = tuple(Vehicle.objects.values('id','model'))
+   # vehicle = forms.ChoiceField(label = 'vehicle', choices=CHOICES, widget=forms.TextInput(attrs={'class' : 'input'}))
 
-    vehicle = forms.ChoiceField(label='Vehicle*', choices = vehicles, required=True, widget=forms.TextInput(attrs={'class' : 'input'}))
+
+    vehicles = forms.ModelChoiceField(
+        queryset=Vehicle.objects.all(),
+        widget=forms.Select(attrs={'class':'input'}),
+
+    )
     item = forms.CharField(label='Item*', required=True, max_length=100, widget=forms.TextInput(attrs={'class' : 'input'}))
     action = forms.CharField(label='Action*', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'input'}))
     months = forms.IntegerField(label='Monthly Interval*', widget=forms.TextInput(attrs={'class':'input'}))
