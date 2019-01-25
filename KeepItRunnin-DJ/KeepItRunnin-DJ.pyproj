@@ -82,14 +82,6 @@
     <Content Include="app\templates\app\viewMaint.html" />
     <Content Include="app\templates\app\viewParts.html" />
     <Content Include="app\templates\app\viewVehicle.html" />
-    <Content Include="app\__pycache__\forms.cpython-36.pyc" />
-    <Content Include="app\__pycache__\models.cpython-36.pyc" />
-    <Content Include="app\__pycache__\views.cpython-36.pyc" />
-    <Content Include="app\__pycache__\__init__.cpython-36.pyc" />
-    <Content Include="KeepItRunnin_DJ\__pycache__\settings.cpython-36.pyc" />
-    <Content Include="KeepItRunnin_DJ\__pycache__\urls.cpython-36.pyc" />
-    <Content Include="KeepItRunnin_DJ\__pycache__\wsgi.cpython-36.pyc" />
-    <Content Include="KeepItRunnin_DJ\__pycache__\__init__.cpython-36.pyc" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />
