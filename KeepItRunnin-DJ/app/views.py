@@ -78,7 +78,6 @@ def addMaint(request):
                     'maint':maintenance
                 }
             )
-    vehicle = Vehicle.objects.all()
     assert isinstance(request, HttpRequest)
     return render(
         request,
