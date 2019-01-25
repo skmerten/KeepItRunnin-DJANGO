@@ -151,7 +151,7 @@ def viewMaint(request):
         {
             'title':'Add Vehicle',
             'year':datetime.now().year,
-            'vehicle': vehicle
+            'maintenance': maintenance
         }
     )
 

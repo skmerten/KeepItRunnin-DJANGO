@@ -16,11 +16,16 @@
 		<th>Materials Needed</th>
 		<th>Comments</th>
 	  </tr>
-	  <tr>
-        {% for each in maintenance %}
-            <td>{{each}}</td>
-	    {% endfor %}
-	  </tr>
+      {% for each in maintenance %}
+	      <tr>
+            <td>{{each.item}}</td>
+            <td>{{each.action}}</td>
+            <td>{{each.months}}</td>
+            <td>{{each.miles}}</td>
+            <td>{{each.materials}}</td>
+            <td>{{each.comments}}</td>
+	      </tr>
+      {% endfor %}
 	</table>
 </div>
 
