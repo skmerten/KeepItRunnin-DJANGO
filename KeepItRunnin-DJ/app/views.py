@@ -165,7 +165,6 @@ def partsHome(request):
     )
 
 def checkIn(request):
-    vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -173,7 +172,6 @@ def checkIn(request):
         {
             'title':'Check In',
             'year':datetime.now().year,
-            'vehicle': vehicle
         }
     )
 
