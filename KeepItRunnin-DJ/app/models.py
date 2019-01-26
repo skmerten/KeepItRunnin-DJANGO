@@ -18,15 +18,15 @@ class Vehicle(models.Model):
 
 class Maintenance(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
-    item = models.CharField(max_length=100)
-    action = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=100)
     months = models.IntegerField(max_length=None)
     miles = models.IntegerField(max_length=None)
     materials = models.CharField(max_length=250)
     comments = models.CharField(max_length=250)
 
     def __str__(self):
-        return str(self.pk) + ' ' + self.vehicle.make + ' ' + self.vehicle.model + ' ' +  self.item + ' ' + self.action
+        return str(self.pk) + ' ' + self.vehicle.make + ' ' + self.vehicle.model + ' ' +  self.name
 
 class Maintenance_History(models.Model):
     maintenance = models.ForeignKey(Maintenance, on_delete=models.CASCADE)
@@ -37,7 +37,7 @@ class Maintenance_History(models.Model):
     completed = models.IntegerField(max_length=None)
 
     def __str__(self):
-        return self.item + ' ' + self.action + ' ' + self.date_completed
+        return self.maintenance.name + ' ' + self.maintenance.description + ' ' + self.date_completed
 
 class Part(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)

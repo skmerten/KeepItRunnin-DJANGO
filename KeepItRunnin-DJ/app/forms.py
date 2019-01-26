@@ -34,8 +34,8 @@ class NewVehicle(forms.ModelForm):
 
 class NewMaintenance(forms.ModelForm):
     vehicle = forms.ModelChoiceField(label='Your Vehicles', queryset=Vehicle.objects.all(), widget=forms.Select(attrs={'class':'input'}))
-    item = forms.CharField(label='Item*', required=True, max_length=100, widget=forms.TextInput(attrs={'class' : 'input'}))
-    action = forms.CharField(label='Action*', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'input'}))
+    name = forms.CharField(label='Name*', required=True, max_length=100, widget=forms.TextInput(attrs={'class' : 'input'}))
+    description = forms.CharField(label='Description*', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'input'}))
     months = forms.IntegerField(label='Monthly Interval*', widget=forms.NumberInput(attrs={'class':'input'}))
     miles = forms.IntegerField(label='Mileage Interval*', widget=forms.NumberInput(attrs={'class':'input'}))
     materials = forms.CharField(label='Materials Needed*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
@@ -43,7 +43,7 @@ class NewMaintenance(forms.ModelForm):
     
     class Meta:
         model = Maintenance
-        fields = ('vehicle', 'item', 'action', 'months', 'miles', 'materials', 'comments',)
+        fields = ('vehicle', 'name', 'description', 'months', 'miles', 'materials', 'comments',)
 
 class ChooseMaintenance(forms.ModelForm):
     maintenance = forms.ModelChoiceField(label='Maintenance Plans', queryset=Maintenance.objects.all(), widget=forms.Select(attrs={'class':'input'}))

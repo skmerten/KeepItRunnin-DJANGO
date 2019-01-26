@@ -109,8 +109,8 @@ def editMaint(request):
     maintenance = Maintenance.objects.get(id = pk)
     form = NewMaintenance(initial={
             'vehicle':maintenance.vehicle,
-            'item': maintenance.item,
-            'action': maintenance.action,
+            'name': maintenance.name,
+            'description': maintenance.description,
             'months': maintenance.months, 
             'miles': maintenance.miles,
             'materials':maintenance.materials,

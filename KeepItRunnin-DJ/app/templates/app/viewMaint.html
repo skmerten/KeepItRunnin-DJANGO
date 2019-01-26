@@ -10,8 +10,8 @@
 	<table id="schedulMaint2">
 	  <tr>
         <th>Vehicle</th>
-		<th>Item</th>
-		<th>Action</th>
+		<th>name</th>
+		<th>description</th>
 		<th>Monthly Interval</th>
 		<th>Mileage Interval</th>
 		<th>Materials Needed</th>
@@ -20,8 +20,8 @@
       {% for each in maintenance %}
 	      <tr>
             <td>{{each.vehicle}}</td>
-            <td>{{each.item}}</td>
-            <td>{{each.action}}</td>
+            <td>{{each.name}}</td>
+            <td>{{each.description}}</td>
             <td>{{each.months}}</td>
             <td>{{each.miles}}</td>
             <td>{{each.materials}}</td>

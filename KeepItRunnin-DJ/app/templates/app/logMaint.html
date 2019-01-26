@@ -12,12 +12,12 @@
 <!-- Select data from DB -->
 <div style="border-radius: 5px; background-color: #f2f2f2; padding: 20px;">
 	<form id="logMaint" action ="/logMaint" method = 'POST'>
-		Item:</br>
-		<select class="input" id="itemOptions" onchange="actionSet(this.form)" name="item">
+		Name:</br>
+		<select class="input" id="itemOptions" onchange="descriptionSet(this.form)" name="name">
 		</select></br>
 
-		Action:</br>
-		<select class="input" id="actionOptions" onchange="monthSet(this.form)" name="action">
+		description:</br>
+		<select class="input" id="descriptionOptions" onchange="monthSet(this.form)" name="description">
 		</select></br>
 
 		Monthly Interval:</br>
