@@ -33,6 +33,7 @@ class NewVehicle(forms.ModelForm):
         fields = ('year','make','model','trim','mileage','email','phone', )
 
 class NewMaintenance(forms.ModelForm):
+    id = forms.IntegerField(required=False, widget=forms.HiddenInput())
     vehicle = forms.ModelChoiceField(label='Your Vehicles', queryset=Vehicle.objects.all(), widget=forms.Select(attrs={'class':'input'}))
     name = forms.CharField(label='Name*', required=True, max_length=100, widget=forms.TextInput(attrs={'class' : 'input'}))
     description = forms.CharField(label='Description*', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'input'}))

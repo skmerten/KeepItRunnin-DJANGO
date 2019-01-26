@@ -62,7 +62,19 @@ def addMaint(request):
     if request.method == 'POST':
         form = NewMaintenance(request.POST)
         if form.is_valid():
-            form.save()
+            id = request.POST['id']
+            if id:
+                record = Maintenance.objects.get(pk = id)
+                record.vehicle = Vehicle.objects.get(id = request.POST['vehicle'])
+                record.name = request.POST['name']
+                record.description = request.POST['description']
+                record.months = request.POST['months']
+                record.miles = request.POST['miles']
+                record.materials = request.POST['materials']
+                record.comments = request.POST['comments']
+                record.save()
+            else:
+                form.save()
 
             # render Home Page
             parts = Part.objects.all()
@@ -108,6 +120,7 @@ def editMaint(request):
     pk = request.POST['maintenance']
     maintenance = Maintenance.objects.get(id = pk)
     form = NewMaintenance(initial={
+            'id': pk,
             'vehicle':maintenance.vehicle,
             'name': maintenance.name,
             'description': maintenance.description,
