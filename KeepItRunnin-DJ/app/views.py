@@ -8,7 +8,7 @@ from django.http import Http404
 from django.template import RequestContext
 from datetime import datetime
 from app.models import Vehicle, Maintenance, Maintenance_History, Part
-from app.forms import NewVehicle, NewMaintenance
+from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance
 
 def home(request):
     parts = Part.objects.all()
@@ -83,31 +83,48 @@ def addMaint(request):
         request,
         'app/addMaint.html',
         {
-            'title':'Add Vehicle',
+            'title':'Add Maintenance',
             'year':datetime.now().year,
             'newMaintenance': NewMaintenance()
         }
     )
 
+def chooseMaint(request):
+    maintenance = Maintenance.objects.all()
+    form = ChooseMaintenance()
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/chooseMaint.html',
+        {
+            'title':'Choose Maintenance',
+            'year':datetime.now().year,
+            'selectMaint': form
+        }
+    )
+
 #NEED UPDATE
 def editMaint(request):
-    maintenance = Maintenance.objects.all()
-    form = NewMaintenance()
-    form.fields["vehicle"].queryset = Maintenance.objects.filter(selected)
-    form.fields["item"].queryset = Maintenance.objects.filter(selected)
-    form.fields["action"].queryset = Maintenance.objects.filter(selected)
-    form.fields["months"].queryset = Maintenance.objects.filter(selected)
-    form.fields["miles"].queryset = Maintenance.objects.filter(selected)
-    form.fields["material"].queryset = Maintenance.objects.filter(selected)
-    form.fields["comments"].queryset = Maintenance.objects.filter(selected)
+    pk = request.POST['maintenance']
+    maintenance = Maintenance.objects.get(id = pk)
+    form = NewMaintenance(initial={
+            'vehicle':maintenance.vehicle,
+            'item': maintenance.item,
+            'action': maintenance.action,
+            'months': maintenance.months, 
+            'miles': maintenance.miles,
+            'materials':maintenance.materials,
+            'comments':maintenance.comments
+        })
+    
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/addMaint.html',
         {
-            'title':'Edit Vehicle',
+            'title':'Edit Maintenance',
             'year':datetime.now().year,
-            'maintenance': form
+            'newMaintenance': form
         }
     )
 

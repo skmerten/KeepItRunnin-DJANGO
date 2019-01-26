@@ -70,7 +70,7 @@
     <Content Include="app\templates\app\addParts.html" />
     <Content Include="app\templates\app\addVehicle.html" />
     <Content Include="app\templates\app\checkIn.html" />
-    <Content Include="app\templates\app\editMaint.html" />
+    <Content Include="app\templates\app\chooseMaint.html" />
     <Content Include="app\templates\app\histMaint.html" />
     <Content Include="app\templates\app\home.html" />
     <Content Include="app\templates\app\layout.html" />

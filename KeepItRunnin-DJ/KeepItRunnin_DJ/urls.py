@@ -21,11 +21,13 @@ urlpatterns = [
     
     # /maintenance URLs
     path('maintenance/', app.views.maintenanceHome, name='maintenanceHome'),
-    path('maintenance/edit/', app.views.editMaint, name='editMaint'),
+    #path('maintenance/edit/', app.views.editMaint, name='editMaint'),
     path('maintenance/history/', app.views.histMaint, name='histMaint'),
     path('maintenance/log/', app.views.logMaint, name='logMaint'),
     path('maintenance/add/', app.views.addMaint, name='addMaint'),
     path('maintenance/view/', app.views.viewMaint, name='viewMaint'),
+    path('maintenance/select/', app.views.chooseMaint, name='chooseMaint'),
+    path('maintenance/select/edit', app.views.editMaint, name='editMaint'),
 
     # /parts URLs
     path('parts/', app.views.partsHome, name='partsHome'),

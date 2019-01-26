@@ -45,6 +45,12 @@ class NewMaintenance(forms.ModelForm):
         model = Maintenance
         fields = ('vehicle', 'item', 'action', 'months', 'miles', 'material', 'comments',)
 
+class ChooseMaintenance(forms.ModelForm):
+    maintenance = forms.ModelChoiceField(label='Maintenance Plans', queryset=Maintenance.objects.all(), widget=forms.Select(attrs={'class':'input'}))
+
+    class Meta:
+        model = Maintenance
+        fields = ('maintenance', )
 #class NewMaintenanceHistory(forms.ModelForm):
 #    next_due_date = forms.DateField(label='Next Due Date', widget=forms.DateInput(attrs={'class':'input'}))
 #    next_due_mile = forms.IntegerField(label='Next Due Mileage', widget=forms.NumberInput(attrs={'class':'input'}))

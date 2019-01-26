@@ -26,7 +26,7 @@ class Maintenance(models.Model):
     comments = models.CharField(max_length=250)
 
     def __str__(self):
-        return self.item + ' ' + self.action
+        return str(self.pk) + ' ' + self.vehicle.make + ' ' + self.vehicle.model + ' ' +  self.item + ' ' + self.action
 
 class Maintenance_History(models.Model):
     maintenance = models.ForeignKey(Maintenance, on_delete=models.CASCADE)

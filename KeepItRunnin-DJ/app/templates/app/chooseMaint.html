@@ -1,0 +1,12 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div style="border-radius: 5px; background-color: #f2f2f2; padding: 20px;">
+	<form action ="{% url 'editMaint' %}" id="editMaintenance" method = 'post'>{% csrf_token %}
+        {{selectMaint.as_p}}
+		<input class="button" value="Submit" type="Submit" />
+	</form><br>
+</div>
+
+{% endblock %}
