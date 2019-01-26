@@ -89,6 +89,29 @@ def addMaint(request):
         }
     )
 
+#NEED UPDATE
+def editMaint(request):
+    maintenance = Maintenance.objects.all()
+    form = NewMaintenance()
+    form.fields["vehicle"].queryset = Maintenance.objects.filter(selected)
+    form.fields["item"].queryset = Maintenance.objects.filter(selected)
+    form.fields["action"].queryset = Maintenance.objects.filter(selected)
+    form.fields["months"].queryset = Maintenance.objects.filter(selected)
+    form.fields["miles"].queryset = Maintenance.objects.filter(selected)
+    form.fields["material"].queryset = Maintenance.objects.filter(selected)
+    form.fields["comments"].queryset = Maintenance.objects.filter(selected)
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/addMaint.html',
+        {
+            'title':'Edit Vehicle',
+            'year':datetime.now().year,
+            'maintenance': form
+        }
+    )
+
+
 def vehicleProfile(request):
     assert isinstance(request, HttpRequest)
     return render(
@@ -190,20 +213,6 @@ def viewVehicle(request):
     return render(
         request,
         'app/viewVehicle.html',
-        {
-            'title':'Add Vehicle',
-            'year':datetime.now().year,
-            'vehicle': vehicle
-        }
-    )
-
-#NEED UPDATE
-def editMaint(request):
-    vehicle = Vehicle.objects.get()
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/editMaint.html',
         {
             'title':'Add Vehicle',
             'year':datetime.now().year,
