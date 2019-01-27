@@ -32,6 +32,7 @@ class Maintenance_History(models.Model):
     maintenance = models.ForeignKey(Maintenance, on_delete=models.CASCADE)
     comments = models.CharField(max_length=250)
     date_completed = models.DateTimeField()
+    current_mileage = models.IntegerField(max_length=None)
     next_due_date = models.DateTimeField()
     next_due_mile = models.IntegerField(max_length=None)
     completed = models.IntegerField(max_length=None)

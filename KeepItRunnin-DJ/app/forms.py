@@ -5,7 +5,7 @@ Definition of forms.
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import ugettext_lazy as _
-from app.models import Vehicle, Maintenance
+from app.models import Vehicle, Maintenance, Maintenance_History, Part
 
 
 class BootstrapAuthenticationForm(AuthenticationForm):
@@ -52,6 +52,24 @@ class ChooseMaintenance(forms.ModelForm):
     class Meta:
         model = Maintenance
         fields = ('maintenance', )
-#class NewMaintenanceHistory(forms.ModelForm):
-#    next_due_date = forms.DateField(label='Next Due Date', widget=forms.DateInput(attrs={'class':'input'}))
-#    next_due_mile = forms.IntegerField(label='Next Due Mileage', widget=forms.NumberInput(attrs={'class':'input'}))
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+class NewMaintenanceHistory(forms.ModelForm):
+
+    maintenance = forms.ModelChoiceField(label='Maintenance Plans', queryset=Maintenance.objects.all(), widget=forms.Select(attrs={'class':'input'}))
+    date_completed = forms.DateField(label='Date Completed', widget=forms.DateInput(attrs={'class':'input'}))
+    current_mileage = forms.IntegerField(label='Current Mileage', widget=forms.NumberInput(attrs={'class':'input'}))
+    next_due_date = forms.DateField(label='Next Due Date', widget=forms.DateInput(attrs={'class':'input'}))
+    next_due_mile = forms.IntegerField(label='Next Due Mileage', widget=forms.NumberInput(attrs={'class':'input'}))
+    comments = forms.CharField(label='Comments*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
+    completed = forms.IntegerField(required=False, widget=forms.HiddenInput())
+
+    class Meta:
+        model = Maintenance_History
+        fields = ('maintenance', 'date_completed', 'current_mileage', 'next_due_date', 'next_due_mile', 'comments', 'completed',  )
+        widgets = {
+            'next_due_date' : DateInput(),
+            'date_completed' : DateInput()
+        }

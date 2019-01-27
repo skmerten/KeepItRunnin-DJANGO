@@ -2,53 +2,15 @@
 
 {% block content %}
 
-<!-- Create table of all scheduled maintenances from database
-	Place Due date in last column
-	Place Log Now button at end of each row 
--->
-
-<!-- Method = POST the below table -->
-<!-- Make Drop downs or something to let person choose a meint to log too-->
-<!-- Select data from DB -->
 <div style="border-radius: 5px; background-color: #f2f2f2; padding: 20px;">
-	<form id="logMaint" action ="/logMaint" method = 'POST'>
-		Name:</br>
-		<select class="input" id="itemOptions" onchange="descriptionSet(this.form)" name="name">
-		</select></br>
-
-		description:</br>
-		<select class="input" id="descriptionOptions" onchange="monthSet(this.form)" name="description">
-		</select></br>
-
-		Monthly Interval:</br>
-		<input class="input" type="number" readonly = "true" id="monthInt" name="months"></br>
-
-		Mileage Interval:</br>
-		<input class="input" type="number" id="mileInt" readonly = "true" name="miles"></br>
-
-		Date Completed:</br>
-		<input class="input" type = "date" onchange="nextDueDate(this.form)" name="compDate"/></br>
-
-		Next Due Date:</br>
-		<input class="input" readonly = "true" name = "nextDue"/></br>
-
-		Current Mileage:</br>
-		<input class="input" type = "number" onchange = "nextDueMile(this.form)" id="currentMile" name="currentMile"/></br>
-
-		Next Mileage:</br>
-		<input class="input" readonly = "true" name = "nextMile"/></br>
-
-		</br>
-		Comments:</br>
-		<input class="input" type="text" name="comments"></br>
-
-		</br>
-		<input class="input" class="button" value="Submit" type="Submit" />
+	<form id="logMaint" action ="{% url 'logMaint' %}" method = 'post'>{% csrf_token %}
+        {{ form.as_p }}
+		<input class="button" value="Submit" type="Submit" />
 	</form><br>
 </div>
 
 
-
+<!--
 <script>
 	function nextDueDate(f) {
 	var newDate = new Date(f.compDate.value);
@@ -66,4 +28,5 @@
 	f.nextMile.value = parseInt(currentMile) + parseInt(mileInterval);
 	}
 </script>
+    -->
 {% endblock %}

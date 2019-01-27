@@ -8,7 +8,7 @@ from django.http import Http404
 from django.template import RequestContext
 from datetime import datetime
 from app.models import Vehicle, Maintenance, Maintenance_History, Part
-from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance
+from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory
 
 def home(request):
     parts = Part.objects.all()
@@ -142,6 +142,32 @@ def editMaint(request):
     )
 
 
+def logMaint(request):
+    if request.method == 'POST':
+        form = NewMaintenanceHistory(request.POST)
+        if form.is_valid():
+            form.save()
+            maintenance = Maintenance.objects.get(id = request.POST['maintenance'])
+            vehicle = Vehicle.objects.get(pk = maintenance.vehicle)
+            vehicle.mileage = request.POST['current_mileage']
+            vehicle.save()
+           
+    else:
+        form = NewMaintenanceHistory(initial={
+            'completed': 0
+        })
+        
+        assert isinstance(request, HttpRequest)
+        return render(
+            request,
+            'app/logMaint.html',
+            {
+                'title':'Add Vehicle',
+                'year':datetime.now().year,
+                'form': form
+            }
+        )
+
 def vehicleProfile(request):
     assert isinstance(request, HttpRequest)
     return render(
@@ -220,19 +246,6 @@ def histMaint(request):
         }
     )
 
-#NEED UPDATE
-def logMaint(request):
-    vehicle = Vehicle.objects.get()
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/logMaint.html',
-        {
-            'title':'Add Vehicle',
-            'year':datetime.now().year,
-            'vehicle': vehicle
-        }
-    )
 
 #NEED UPDATE
 def viewVehicle(request):
