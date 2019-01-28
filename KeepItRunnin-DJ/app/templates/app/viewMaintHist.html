@@ -24,21 +24,31 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 </style>
-
-<table id="schedulMaint2">
-  <tr>
-    <th>Name</th>
-    <th>description</th>
-    <th>Monthly Interval</th>
-	<th>Mileage Interval</th>
-	<th>Comments</th>
-	<th>Date Completed</th>
-	<th>Next Due Date</th>
-  </tr>
-  <tr>
-	
-  </tr>
-</table>
-
+<div>
+    <table id="schedulMaint2">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Monthly Interval</th>
+	    <th>Mileage Interval</th>
+	    <th>Comments</th>
+	    <th>Date Completed</th>
+	    <th>Next Due Date</th>
+	    <th>Next Due Mile</th>
+      </tr>
+        {% for each in maintenanceHistory %}
+	        <tr>
+            <td>{{each.maintenance.name}}</td>
+            <td>{{each.maintenance.description}}</td>
+            <td>{{each.maintenance.months}}</td>
+            <td>{{each.maintenance.miles}}</td>
+            <td>{{each.comments}}</td>
+            <td>{{each.date_completed}}</td>
+            <td>{{each.next_due_date}}</td>
+            <td>{{each.next_due_mile}}</td>
+	        </tr>
+        {% endfor %}
+    </table>
+</div>
 
 {% endblock %}

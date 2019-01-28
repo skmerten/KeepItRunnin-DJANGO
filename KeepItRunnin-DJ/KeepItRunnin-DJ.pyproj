@@ -71,7 +71,7 @@
     <Content Include="app\templates\app\addVehicle.html" />
     <Content Include="app\templates\app\checkIn.html" />
     <Content Include="app\templates\app\chooseMaint.html" />
-    <Content Include="app\templates\app\histMaint.html" />
+    <Content Include="app\templates\app\viewMaintHist.html" />
     <Content Include="app\templates\app\home.html" />
     <Content Include="app\templates\app\layout.html" />
     <Content Include="app\templates\app\logMaint.html" />

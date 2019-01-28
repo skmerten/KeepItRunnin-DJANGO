@@ -180,6 +180,31 @@ def logMaint(request):
         }
     )
 
+def viewMaint(request):
+    maintenance = Maintenance.objects.all()
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/viewMaint.html',
+        {
+            'title':'Add Vehicle',
+            'year':datetime.now().year,
+            'maintenance': maintenance
+        }
+    )
+
+def viewMaintHist(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/viewMaintHist.html',
+        {
+            'title':'Add Vehicle',
+            'year':datetime.now().year,
+            'maintenanceHistory': Maintenance_History.objects.all()
+        }
+    )
+
 def vehicleProfile(request):
     assert isinstance(request, HttpRequest)
     return render(
@@ -231,32 +256,10 @@ def checkIn(request):
 
 
 #NEED UPDATE
-def viewMaint(request):
-    maintenance = Maintenance.objects.all()
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/viewMaint.html',
-        {
-            'title':'Add Vehicle',
-            'year':datetime.now().year,
-            'maintenance': maintenance
-        }
-    )
+
 
 #NEED UPDATE
-def histMaint(request):
-    vehicle = Vehicle.objects.get()
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/histMaint.html',
-        {
-            'title':'Add Vehicle',
-            'year':datetime.now().year,
-            'vehicle': vehicle
-        }
-    )
+
 
 
 #NEED UPDATE
