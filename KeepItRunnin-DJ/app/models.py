@@ -41,8 +41,7 @@ class Maintenance_History(models.Model):
         return self.maintenance.name + ' ' + self.maintenance.description + ' ' + str(self.date_completed)
 
 class Part(models.Model):
-    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
-    maintenance = models.ForeignKey(Maintenance, on_delete=None)
+    maintenance = models.ForeignKey(Maintenance, on_delete=models.CASCADE)
     part_name = models.CharField(max_length=250)
     part_description = models.CharField(max_length=250)
     date_requested = models.DateTimeField(auto_now_add=True)

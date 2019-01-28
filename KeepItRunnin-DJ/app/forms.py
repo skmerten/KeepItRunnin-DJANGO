@@ -80,9 +80,7 @@ class NewMaintenanceHistory(forms.ModelForm):
 
 # Parts Class Forms
 class NewPart(forms.ModelForm):
-    
     id = forms.IntegerField(required=False, widget=forms.HiddenInput())
-    vehicle = forms.ModelChoiceField(label='Your Vehicles', queryset=Vehicle.objects.all(), widget=forms.Select(attrs={'class':'input'}))
     maintenance = forms.ModelChoiceField(label='Maintenance Plans', queryset=Maintenance.objects.all(), widget=forms.Select(attrs={'class':'input'}))
     part_name = forms.CharField(label='Name*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
     part_description = forms.CharField(label='Description*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
@@ -91,7 +89,7 @@ class NewPart(forms.ModelForm):
 
     class Meta:
         model = Part
-        fields = ('vehicle','maintenance','part_name','part_description','need_by_date','comments', )
+        fields = ('maintenance','part_name','part_description','need_by_date','comments', )
 
 
 class ChoosePart(forms.ModelForm):
@@ -112,6 +110,6 @@ class NewPartHistory(forms.ModelForm):
 
     class Meta:
         model = Part_History
-        fields = ('parT', 'purchase_location', 'purchase_price', 'date_of_purchase', 'comments', 'status', )
+        fields = ('part', 'purchase_location', 'purchase_price', 'date_of_purchase', 'comments', 'status', )
 
 

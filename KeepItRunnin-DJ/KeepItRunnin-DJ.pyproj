@@ -67,7 +67,7 @@
     <Content Include="app\static\app\content\forms.css" />
     <Content Include="app\static\app\content\w3.css" />
     <Content Include="app\templates\app\addMaint.html" />
-    <Content Include="app\templates\app\addParts.html" />
+    <Content Include="app\templates\app\addPart.html" />
     <Content Include="app\templates\app\addVehicle.html" />
     <Content Include="app\templates\app\checkIn.html" />
     <Content Include="app\templates\app\chooseMaint.html" />
@@ -80,7 +80,7 @@
     <Content Include="app\templates\app\updateVehicle.html" />
     <Content Include="app\templates\app\vehicleProfile.html" />
     <Content Include="app\templates\app\viewMaint.html" />
-    <Content Include="app\templates\app\viewParts.html" />
+    <Content Include="app\templates\app\viewPart.html" />
     <Content Include="app\templates\app\viewVehicle.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />

@@ -227,7 +227,7 @@ def maintenanceHome(request):
         }
     )
 
-def partsHome(request):
+def partHome(request):
     vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
@@ -279,14 +279,13 @@ def vehicleUpdate(request):
     )
 
 #NEED UPDATE
-def addParts(request):
+def addPart(request):
     if request.method == 'POST':
         form = NewPart(request.POST)
         if form.is_valid():
             id = request.POST['id']
             if id:
                 record = Part.objects.get(pk = id)
-                record.vehicle = Vehicle.objects.get(id = request.POST['vehicle'])
                 record.maintenance = Maintenance.objects.get(id = request.POST['maintenance'])
                 record.part_name = request.POST['part_name']
                 record.part_description = request.POST['part_description']
@@ -333,5 +332,93 @@ def viewPart(request):
             'title':'View All Parts',
             'year':datetime.now().year,
             'parts': part
+        }
+    )
+
+def viewPartHist(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/viewMaintHist.html',
+        {
+            'title':'Add Vehicle',
+            'year':datetime.now().year,
+            'maintenanceHistory': Maintenance_History.objects.all()
+        }
+    )
+
+def logPart(request):
+    if request.method == 'POST':
+        form = NewMaintenanceHistory(request.POST)
+        if form.is_valid():
+            form.save()
+            maintenance = Maintenance.objects.get(id = request.POST['maintenance'])
+            vehicle = Vehicle.objects.get(pk = maintenance.vehicle.id)
+            vehicle.mileage = request.POST['current_mileage']
+            vehicle.save()
+                      
+            parts = Part.objects.all()
+            maintenance = Maintenance_History.objects.filter(next_due_date__lte=datetime.now())
+            assert isinstance(request, HttpRequest)
+            return render(
+                request,
+                'app/viewMaintHist.html',
+                {
+                    'title':'Maintenance History',
+                    'year':datetime.now().year,
+                    'maint':maintenance
+                }
+            )
+
+    form = NewMaintenanceHistory(initial={
+        'completed': 0
+    })
+        
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/logMaint.html',
+        {
+            'title':'Add Vehicle',
+            'year':datetime.now().year,
+            'form': form
+        }
+    )
+
+def choosePart(request):
+    maintenance = Maintenance.objects.all()
+    form = ChooseMaintenance()
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/chooseMaint.html',
+        {
+            'title':'Choose Maintenance',
+            'year':datetime.now().year,
+            'selectMaint': form
+        }
+    )
+
+def editPart(request):
+    pk = request.POST['maintenance']
+    maintenance = Maintenance.objects.get(id = pk)
+    form = NewMaintenance(initial={
+            'id': pk,
+            'name': maintenance.name,
+            'description': maintenance.description,
+            'months': maintenance.months, 
+            'miles': maintenance.miles,
+            'materials':maintenance.materials,
+            'comments':maintenance.comments
+        })
+    
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/addMaint.html',
+        {
+            'title':'Edit Maintenance',
+            'year':datetime.now().year,
+            'newMaintenance': form
         }
     )
