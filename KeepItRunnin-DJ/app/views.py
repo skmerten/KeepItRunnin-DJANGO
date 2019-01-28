@@ -148,25 +148,37 @@ def logMaint(request):
         if form.is_valid():
             form.save()
             maintenance = Maintenance.objects.get(id = request.POST['maintenance'])
-            vehicle = Vehicle.objects.get(pk = maintenance.vehicle)
+            vehicle = Vehicle.objects.get(pk = maintenance.vehicle.id)
             vehicle.mileage = request.POST['current_mileage']
             vehicle.save()
-           
-    else:
-        form = NewMaintenanceHistory(initial={
-            'completed': 0
-        })
+                      
+            parts = Part.objects.all()
+            maintenance = Maintenance_History.objects.filter(next_due_date__lte=datetime.now())
+            assert isinstance(request, HttpRequest)
+            return render(
+                request,
+                'app/viewMaintHist.html',
+                {
+                    'title':'Maintenance History',
+                    'year':datetime.now().year,
+                    'maint':maintenance
+                }
+            )
+
+    form = NewMaintenanceHistory(initial={
+        'completed': 0
+    })
         
-        assert isinstance(request, HttpRequest)
-        return render(
-            request,
-            'app/logMaint.html',
-            {
-                'title':'Add Vehicle',
-                'year':datetime.now().year,
-                'form': form
-            }
-        )
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/logMaint.html',
+        {
+            'title':'Add Vehicle',
+            'year':datetime.now().year,
+            'form': form
+        }
+    )
 
 def vehicleProfile(request):
     assert isinstance(request, HttpRequest)
