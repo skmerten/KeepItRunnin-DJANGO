@@ -44,6 +44,7 @@ class Part(models.Model):
     maintenance = models.ForeignKey(Maintenance, on_delete=models.CASCADE)
     part_name = models.CharField(max_length=250)
     part_description = models.CharField(max_length=250)
+    quantity = models.IntegerField(max_length=None)
     date_requested = models.DateTimeField(auto_now_add=True)
     need_by_date = models.DateTimeField()
     comments = models.CharField(max_length=250)

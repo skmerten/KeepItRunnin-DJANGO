@@ -84,12 +84,13 @@ class NewPart(forms.ModelForm):
     maintenance = forms.ModelChoiceField(label='Maintenance Plans', queryset=Maintenance.objects.all(), widget=forms.Select(attrs={'class':'input'}))
     part_name = forms.CharField(label='Name*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
     part_description = forms.CharField(label='Description*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
+    quantity = forms.IntegerField(label='Quantity Needed', widget=forms.NumberInput(attrs={'class':'input'}))
     need_by_date = forms.DateField(label='Next Due Date', widget=forms.DateInput(attrs={'class':'input'}))
-    comments = forms.CharField(label='Name*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
+    comments = forms.CharField(label='Comments*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
 
     class Meta:
         model = Part
-        fields = ('maintenance','part_name','part_description','need_by_date','comments', )
+        fields = ('maintenance','part_name','part_description','quantity', 'need_by_date','comments', )
 
 
 class ChoosePart(forms.ModelForm):
