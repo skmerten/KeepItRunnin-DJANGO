@@ -29,9 +29,13 @@ urlpatterns = [
     path('maintenance/select/edit', app.views.editMaint, name='editMaint'),
 
     # /parts URLs
-    path('parts/', app.views.partsHome, name='partsHome'),
-    path('parts/add/', app.views.addParts, name='addParts'),
+    path('parts/', app.views.partHome, name='partHome'),
+    path('parts/history/', app.views.viewPartHist, name='viewPartHist'),
+    path('parts/log/', app.views.logPart, name='logPart'),
+    path('parts/add/', app.views.addPart, name='addPart'),
     path('parts/view/', app.views.viewPart, name='viewPart'),
+    path('parts/select/', app.views.choosePart, name='choosePart'),
+    path('parts/select/edit', app.views.editPart, name='editPart'),
 
     # /vehicleProfile URLs
     path('vehicle/', app.views.vehicleProfile, name='vehicleProfile'),
