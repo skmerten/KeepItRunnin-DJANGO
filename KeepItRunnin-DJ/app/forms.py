@@ -5,7 +5,7 @@ Definition of forms.
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import ugettext_lazy as _
-from app.models import Vehicle, Maintenance, Maintenance_History, Part
+from app.models import Vehicle, Maintenance, Maintenance_History, Part, Part_History
 
 
 class BootstrapAuthenticationForm(AuthenticationForm):
@@ -19,6 +19,7 @@ class BootstrapAuthenticationForm(AuthenticationForm):
                                    'class': 'form-control',
                                    'placeholder':'Password'}))
 
+# Vehicle Class Forms
 class NewVehicle(forms.ModelForm):
     year = forms.CharField(label='Year*', max_length=4, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
     make = forms.CharField(label='Make', max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
@@ -32,6 +33,7 @@ class NewVehicle(forms.ModelForm):
         model = Vehicle
         fields = ('year','make','model','trim','mileage','email','phone', )
 
+# Maintenance Class Forms
 class NewMaintenance(forms.ModelForm):
     id = forms.IntegerField(required=False, widget=forms.HiddenInput())
     vehicle = forms.ModelChoiceField(label='Your Vehicles', queryset=Vehicle.objects.all(), widget=forms.Select(attrs={'class':'input'}))
@@ -73,3 +75,41 @@ class NewMaintenanceHistory(forms.ModelForm):
             'next_due_date' : DateInput(),
             'date_completed' : DateInput()
         }
+
+
+
+# Parts Class Forms
+class NewPart(forms.ModelForm):
+    vehicle = forms.ModelChoiceField(label='Your Vehicles', queryset=Vehicle.objects.all(), widget=forms.Select(attrs={'class':'input'}))
+    maintenance = forms.ModelChoiceField(label='Maintenance Plans', queryset=Maintenance.objects.all(), widget=forms.Select(attrs={'class':'input'}))
+    part_name = forms.CharField(label='Name*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
+    part_description = forms.CharField(label='Description*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
+    need_by_date = forms.DateField(label='Next Due Date', widget=forms.DateInput(attrs={'class':'input'}))
+    comments = forms.CharField(label='Name*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
+
+    class Meta:
+        model = Part
+        fields = ('vehicle','maintenance','part_name','part_description','need_by_date','comments', )
+
+
+class ChoosePart(forms.ModelForm):
+    part = forms.ModelChoiceField(label='Parts', queryset=Part.objects.all(), widget=forms.Select(attrs={'class':'input'}))
+
+    class Meta:
+        model = Part
+        fields = ('part', )
+
+
+class NewPartHistory(forms.ModelForm):
+    part = forms.ModelChoiceField(label='Your Parts', queryset=Part.objects.all(), widget=forms.Select(attrs={'class':'input'}))
+    purchase_location = forms.CharField(label='Purchase Location*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
+    purchase_price = forms.CharField(label='Purchase Price*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
+    date_of_purchase = forms.DateField(label='Purchase Date', widget=forms.DateInput(attrs={'class':'input'}))
+    comments = forms.CharField(label='Comments*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
+    status = forms.IntegerField(required=False, widget=forms.HiddenInput())
+
+    class Meta:
+        model = Part_History
+        fields = ('parT', 'purchase_location', 'purchase_price', 'date_of_purchase', 'comments', 'status', )
+
+

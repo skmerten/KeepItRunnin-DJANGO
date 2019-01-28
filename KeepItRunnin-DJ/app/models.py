@@ -44,13 +44,22 @@ class Part(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     maintenance = models.ForeignKey(Maintenance, on_delete=None)
     part_name = models.CharField(max_length=250)
+    part_description = models.CharField(max_length=250)
     date_requested = models.DateTimeField(auto_now_add=True)
     need_by_date = models.DateTimeField()
+    comments = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.part_name
+
+
+class Part_History(models.Model):
+    part = models.ForeignKey(Part, on_delete=models.CASCADE)
     purchase_location = models.CharField(max_length=250)
     purchase_price = models.CharField(max_length=50)
     date_of_purchase = models.DateTimeField()
     comments = models.CharField(max_length=250)
     status = models.IntegerField(max_length=None)
-
+    
     def __str__(self):
-        return self.part_name
+        return self.part.name + ' ' + "request"
