@@ -3,26 +3,12 @@
 {% block content %}
 
 <div style="border-radius: 5px; background-color: #f2f2f2; padding: 20px;">
-	<form action ="/addParts" id="formEdit" method = 'POST'>
-		Part*:<br>
-		<input class="input" size="100" required="true" type="text" id="part" name="part" onclick="setRequestDate(this.form)"><br>
-
-		Reason:<br>
-		<input class="input" size="255" type="text" id="reason" name="reason"><br>
-		 
-		Need by Date:<br>
-		<input class="input" type="date" id="needDate" name="needDate"><br>
-
-		Comments:<br>
-		<input class="input" size="255" type="text" id="comments" name="comments" ><br>
-
-		Date Requested:<br>
-		<input class="input" type="date" id="requestDate" name="requestDate" disabled><br>
-		<br>
+	<form action ="{% url 'addPart' %}" id="newPart" method = 'post'>{% csrf_token %}
+        {{newPart.as_p}}
 		<input class="button" value="Submit" type="Submit" />
 	</form><br>
 </div>
-
+<!--
 <script>
 function setRequestDate(f){
 	var date = new Date();
@@ -35,4 +21,5 @@ function setRequestDate(f){
 	f.requestDate.value = year + '-' + month + '-' + day
 }
 </script>
+-->
 {% endblock %}

@@ -5,16 +5,26 @@
 <div>
 	<table id="partsList">
 	  <tr>
-		<th>Part</th>
-		<th>Reason</th>
+		<th>Vehicle</th>
+		<th>Maintenance</th>
+		<th>Name</th>
+		<th>Description</th>
 		<th>Date Requested</th>
-		<th>Need by Date</th>
+		<th>Need By Date</th>
 		<th>Comments</th>
 	  </tr>
-	  <tr>
-	
-	  </tr>
-	</table>
-<div>
+      {% for each in parts %}
+	      <tr>
+            <td>{{each.vehicle}}</td> 
+            <td>{{each.maintenance}}</td>
+            <td>{{each.part_name}}</td>
+            <td>{{each.part_description}}</td>
+            <td>{{each.date_requested}}</td>
+            <td>{{each.need_by_date}}</td>
+            <td>{{each.comments}}</td>
+	      </tr>
+      {% endfor %}
+	</table> 
+</div>
 
 {% endblock %}

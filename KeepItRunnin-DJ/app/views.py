@@ -8,7 +8,7 @@ from django.http import Http404
 from django.template import RequestContext
 from datetime import datetime
 from app.models import Vehicle, Maintenance, Maintenance_History, Part
-from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory
+from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart
 
 def home(request):
     parts = Part.objects.all()
@@ -251,18 +251,6 @@ def checkIn(request):
         }
     )
 
-
-
-
-
-#NEED UPDATE
-
-
-#NEED UPDATE
-
-
-
-#NEED UPDATE
 def viewVehicle(request):
     vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
@@ -292,28 +280,58 @@ def vehicleUpdate(request):
 
 #NEED UPDATE
 def addParts(request):
-    vehicle = Vehicle.objects.get()
+    if request.method == 'POST':
+        form = NewPart(request.POST)
+        if form.is_valid():
+            id = request.POST['id']
+            if id:
+                record = Part.objects.get(pk = id)
+                record.vehicle = Vehicle.objects.get(id = request.POST['vehicle'])
+                record.maintenance = Maintenance.objects.get(id = request.POST['maintenance'])
+                record.part_name = request.POST['part_name']
+                record.part_description = request.POST['part_description']
+                record.date_requested = request.POST['date_requested']
+                record.need_by_date = request.POST['need_by_date']
+                record.comments = request.POST['comments']
+                record.save()
+            else:
+                form.save()
+
+            # render Home Page
+            parts = Part.objects.all()
+            maintenance = Maintenance_History.objects.filter(next_due_date__lte=datetime.now())
+            assert isinstance(request, HttpRequest)
+            return render(
+                request,
+                'app/home.html',
+                {
+                    'title':'Home Page',
+                    'year':datetime.now().year,
+                    'parts':parts,
+                    'maint':maintenance
+                }
+            )
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/addParts.html',
+        'app/addPart.html',
         {
-            'title':'Add Vehicle',
+            'title':'Add Part',
             'year':datetime.now().year,
-            'vehicle': vehicle
+            'newPart': NewPart()
         }
     )
 
 #NEED UPDATE
 def viewPart(request):
-    vehicle = Vehicle.objects.get()
+    part = Part.objects.all()
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/viewPart.html',
         {
-            'title':'Add Vehicle',
+            'title':'View All Parts',
             'year':datetime.now().year,
-            'vehicle': vehicle
+            'parts': part
         }
     )

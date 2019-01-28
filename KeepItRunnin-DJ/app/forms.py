@@ -80,6 +80,8 @@ class NewMaintenanceHistory(forms.ModelForm):
 
 # Parts Class Forms
 class NewPart(forms.ModelForm):
+    
+    id = forms.IntegerField(required=False, widget=forms.HiddenInput())
     vehicle = forms.ModelChoiceField(label='Your Vehicles', queryset=Vehicle.objects.all(), widget=forms.Select(attrs={'class':'input'}))
     maintenance = forms.ModelChoiceField(label='Maintenance Plans', queryset=Maintenance.objects.all(), widget=forms.Select(attrs={'class':'input'}))
     part_name = forms.CharField(label='Name*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
