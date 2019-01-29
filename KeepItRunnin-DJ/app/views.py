@@ -57,7 +57,6 @@ def addVehicle(request):
             }
         )
 
-# NEED UPDATE
 def addMaint(request):
     if request.method == 'POST':
         form = NewMaintenance(request.POST)
