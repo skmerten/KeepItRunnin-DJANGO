@@ -25,6 +25,13 @@ def home(request):
         }
     )
 
+def home2(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/home2.html'
+    )
+
 def addVehicle(request):
     if request.method == 'POST':
         form = NewVehicle(request.POST)

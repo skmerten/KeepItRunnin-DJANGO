@@ -16,7 +16,9 @@ from django.conf.urls import include
 admin.autodiscover()
 
 urlpatterns = [
-    # /home
+    
+    # /home 
+    path('home2/', app.views.home2, name='home2'),
     path('', app.views.home, name='home'),
     
     # /maintenance URLs
