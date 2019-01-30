@@ -71,7 +71,6 @@
     <Content Include="app\templates\app\addVehicle.html" />
     <Content Include="app\templates\app\checkIn.html" />
     <Content Include="app\templates\app\chooseMaint.html" />
-    <Content Include="app\templates\app\home2.html" />
     <Content Include="app\templates\app\viewMaintHist.html" />
     <Content Include="app\templates\app\home.html" />
     <Content Include="app\templates\app\layout.html" />
@@ -83,7 +82,6 @@
     <Content Include="app\templates\app\viewMaint.html" />
     <Content Include="app\templates\app\viewPart.html" />
     <Content Include="app\templates\app\viewVehicle.html" />
-    <Content Include="app\templates\app\layout2.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />
