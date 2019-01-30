@@ -26,10 +26,18 @@ def home(request):
     )
 
 def home2(request):
+    parts = Part.objects.all()
+    maintenance = Maintenance_History.objects.all()
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/home2.html'
+        'app/home2.html',
+        {
+            'title':'Home Page',
+            'year':datetime.now().year,
+            'parts':parts,
+            'maint':maintenance
+        }
     )
 
 def addVehicle(request):
