@@ -82,6 +82,7 @@
     <Content Include="app\templates\app\viewMaint.html" />
     <Content Include="app\templates\app\viewPart.html" />
     <Content Include="app\templates\app\viewVehicle.html" />
+    <Content Include="db.sqlite3" />
     <Content Include="requirements.txt" />
     <Content Include="app\static\app\content\bootstrap.css" />
     <Content Include="app\static\app\content\bootstrap.min.css" />

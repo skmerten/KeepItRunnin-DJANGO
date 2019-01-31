@@ -43,15 +43,15 @@ class Maintenance_History(models.Model):
 class Part(models.Model):
     maintenance = models.ForeignKey(Maintenance, on_delete=models.CASCADE)
     part_name = models.CharField(max_length=250)
-    part_description = models.CharField(max_length=250)
+    part_description = models.CharField(max_length=250,null=True)
     quantity = models.IntegerField(max_length=None)
     date_requested = models.DateTimeField(auto_now_add=True)
-    need_by_date = models.DateTimeField()
-    comments = models.CharField(max_length=250)
-    purchase_location = models.CharField(max_length=250)
-    purchase_price = models.CharField(max_length=50)
-    date_of_purchase = models.DateTimeField()
-    after_comments = models.CharField(max_length=250)
+    need_by_date = models.DateTimeField(null=True)
+    comments = models.CharField(max_length=250,null=True)
+    purchase_location = models.CharField(max_length=250,null=True)
+    purchase_price = models.CharField(max_length=50,null=True)
+    date_of_purchase = models.DateTimeField(null=True)
+    after_comments = models.CharField(max_length=250,null=True)
     status = models.BooleanField()
 
     def __str__(self):
