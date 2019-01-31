@@ -81,16 +81,20 @@ class NewMaintenanceHistory(forms.ModelForm):
 # Parts Class Forms
 class NewPart(forms.ModelForm):
     id = forms.IntegerField(required=False, widget=forms.HiddenInput())
-    maintenance = forms.ModelChoiceField(label='Maintenance Plans', queryset=Maintenance.objects.all(), widget=forms.Select(attrs={'class':'input'}))
+    maintenance = forms.ModelChoiceField(label='Maintenance Plans*', required=True, queryset=Maintenance.objects.all(), widget=forms.Select(attrs={'class':'input'}))
     part_name = forms.CharField(label='Name*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
-    part_description = forms.CharField(label='Description*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
-    quantity = forms.IntegerField(label='Quantity Needed', widget=forms.NumberInput(attrs={'class':'input'}))
-    need_by_date = forms.DateField(label='Next Due Date', widget=forms.DateInput(attrs={'class':'input'}))
+    part_description = forms.CharField(label='Description', required=False, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
+    quantity = forms.IntegerField(label='Quantity Needed*', required=True, widget=forms.NumberInput(attrs={'class':'input'}))
+    need_by_date = forms.DateField(label='Need By Date', widget=forms.DateInput(attrs={'class':'input'}))
     comments = forms.CharField(label='Comments*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
-
+    purchase_location = forms.CharField(label='Purchase Location*', required=True, max_length=250, widget=forms.TextInput(attrs={'class':'input'}))
+    purchase_price = forms.FloatField(label = "Purchase Price", required=False, widget=forms.NumberInput(attrs={'class':'input'}))
+    date_of_purchase = forms.DateField(label='Date Of Purchase', widget=forms.DateInput(attrs={'class':'input'}))
+    after_comments = forms.CharField(label='Purchase Comments*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
+    status = forms.ChoiceField(choices=[('0', 'Already Purchased'),('1', 'Pending Purchase')], widget=forms.RadioSelect)
     class Meta:
         model = Part
-        fields = ('maintenance','part_name','part_description','quantity', 'need_by_date','comments', )
+        fields = ('maintenance','part_name','part_description','quantity', 'need_by_date','comments', 'purchase_location', 'purchase_price', 'date_of_purchase', 'after_comments', 'status', )
 
 
 class ChoosePart(forms.ModelForm):
@@ -101,16 +105,5 @@ class ChoosePart(forms.ModelForm):
         fields = ('part', )
 
 
-class NewPartHistory(forms.ModelForm):
-    part = forms.ModelChoiceField(label='Your Parts', queryset=Part.objects.all(), widget=forms.Select(attrs={'class':'input'}))
-    purchase_location = forms.CharField(label='Purchase Location*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
-    purchase_price = forms.CharField(label='Purchase Price*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
-    date_of_purchase = forms.DateField(label='Purchase Date', widget=forms.DateInput(attrs={'class':'input'}))
-    comments = forms.CharField(label='Comments*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
-    status = forms.IntegerField(required=False, widget=forms.HiddenInput())
-
-    class Meta:
-        model = Part_History
-        fields = ('part', 'purchase_location', 'purchase_price', 'date_of_purchase', 'comments', 'status', )
 
 

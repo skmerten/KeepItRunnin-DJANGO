@@ -7,7 +7,7 @@ from django.http import HttpRequest
 from django.http import Http404
 from django.template import RequestContext
 from datetime import datetime
-from app.models import Vehicle, Maintenance, Maintenance_History, Part
+from app.models import Vehicle, Maintenance, Maintenance_History, Part, Part_History
 from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart
 
 def home(request):
@@ -228,15 +228,13 @@ def maintenanceHome(request):
     )
 
 def partHome(request):
-    vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/partsHome.html',
         {
             'title':'Parts',
-            'year':datetime.now().year,
-            'vehicle': vehicle
+            'year':datetime.now().year
         }
     )
 
@@ -292,6 +290,11 @@ def addPart(request):
                 record.date_requested = request.POST['date_requested']
                 record.need_by_date = request.POST['need_by_date']
                 record.comments = request.POST['comments']
+                record.purchase_location = request.POST['comments']
+                record.purchase_price = request.POST['comments']
+                record.date_of_purchase = request.POST['comments']
+                record.after_comments = request.POST['comments']
+                record.status = request.POST['comments']
                 record.save()
             else:
                 form.save()
@@ -323,7 +326,7 @@ def addPart(request):
 
 #NEED UPDATE
 def viewPart(request):
-    part = Part.objects.all()
+    part = Part.objects.filter(completed=0)
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -349,7 +352,7 @@ def viewPartHist(request):
 
 def logPart(request):
     if request.method == 'POST':
-        form = NewMaintenanceHistory(request.POST)
+        form = NewPartHistory(request.POST)
         if form.is_valid():
             form.save()
             maintenance = Maintenance.objects.get(id = request.POST['maintenance'])
