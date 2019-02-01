@@ -87,15 +87,22 @@ class NewPart(forms.ModelForm):
     quantity = forms.IntegerField(label='Quantity Needed*', required=True, widget=forms.NumberInput(attrs={'class':'input'}))
     need_by_date = forms.DateField(label='Need By Date', required=False, widget=forms.DateInput(attrs={'class':'input'}))
     comments = forms.CharField(label='Comments', required=False, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
+    
+    status = forms.ChoiceField(choices=[('0', 'Already Purchased'),('1', 'Pending Purchase')], required=True, widget=forms.RadioSelect)
+    class Meta:
+        model = Part
+        fields = ('maintenance','part_name','part_description','quantity', 'need_by_date','comments', 'status', )
+
+class PartHistory(forms.ModelForm):
+    part = forms.ModelChoiceField(label='Parts*', required=True, queryset=Part.objects.all(), widget=forms.Select(attrs={'class':'input'}))
     purchase_location = forms.CharField(label='Purchase Location', required=False, max_length=250, widget=forms.TextInput(attrs={'class':'input'}))
     purchase_price = forms.FloatField(label = "Purchase Price", required=False, widget=forms.NumberInput(attrs={'class':'input'}))
     date_of_purchase = forms.DateField(label='Date Of Purchase', required=False, widget=forms.DateInput(attrs={'class':'input'}))
     after_comments = forms.CharField(label='Purchase Comments', required=False, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
-    status = forms.ChoiceField(choices=[('0', 'Already Purchased'),('1', 'Pending Purchase')], required=True, widget=forms.RadioSelect)
-    class Meta:
-        model = Part
-        fields = ('maintenance','part_name','part_description','quantity', 'need_by_date','comments', 'purchase_location', 'purchase_price', 'date_of_purchase', 'after_comments', 'status', )
 
+    class Meta:
+        model = Part_History
+        fields = ('part', 'purchase_location', 'purchase_price', 'date_of_purchase', 'after_comments', )
 
 class ChoosePart(forms.ModelForm):
     part = forms.ModelChoiceField(label='Parts', queryset=Part.objects.all(), widget=forms.Select(attrs={'class':'input'}))

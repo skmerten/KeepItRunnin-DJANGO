@@ -1,0 +1,32 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div>
+	<table id="partsList">
+	  <tr>
+		<th>Vehicle</th>
+		<th>Maintenance</th>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Date Requested</th>
+		<th>Need By Date</th>
+		<th>Comments</th>
+	  </tr>
+      {% for each in part %}
+	      <tr>
+            <td>{{each.part.maintenance.vehicle}}</td>
+            <td>{{each.part.part_name}}</td>
+            <td>{{each.part.part_description}}</td>
+            <td>{{each.date_requested}}</td>
+            <td>{{each.part.quantity}}</td>
+            <td>{{each.purchase_location}}</td>
+            <td>{{each.purchase_price}}</td>
+            <td>{{each.date_of_purchase}}</td>
+            <td>{{each.after_comments}}</td>
+	      </tr>
+      {% endfor %}
+	</table> 
+</div>
+
+{% endblock %}

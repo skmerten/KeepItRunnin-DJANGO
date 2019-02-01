@@ -8,7 +8,7 @@ from django.http import Http404
 from django.template import RequestContext
 from datetime import datetime
 from app.models import Vehicle, Maintenance, Maintenance_History, Part, Part_History
-from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart
+from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory
 
 def home(request):
     parts = Part.objects.all()
@@ -290,11 +290,7 @@ def addPart(request):
                 record.date_requested = request.POST['date_requested']
                 record.need_by_date = request.POST['need_by_date']
                 record.comments = request.POST['comments']
-                record.purchase_location = request.POST['comments']
-                record.purchase_price = request.POST['comments']
-                record.date_of_purchase = request.POST['comments']
-                record.after_comments = request.POST['comments']
-                record.status = request.POST['comments']
+                record.status = request.POST['status']
                 record.save()
             else:
                 form.save()
@@ -352,39 +348,46 @@ def viewPartHist(request):
 
 def logPart(request):
     if request.method == 'POST':
-        form = NewPartHistory(request.POST)
+        form = PartHistory(request.POST)
         if form.is_valid():
-            form.save()
-            maintenance = Maintenance.objects.get(id = request.POST['maintenance'])
-            vehicle = Vehicle.objects.get(pk = maintenance.vehicle.id)
-            vehicle.mileage = request.POST['current_mileage']
-            vehicle.save()
+            id = request.POST['id']
+            if id:
+                record = Part.objects.get(pk = id)
+                record.maintenance = Maintenance.objects.get(id = request.POST['maintenance'])
+                record.part_name = request.POST['part_name']
+                record.part_description = request.POST['part_description']
+                record.date_requested = request.POST['date_requested']
+                record.need_by_date = request.POST['need_by_date']
+                record.comments = request.POST['comments']
+                record.status = request.POST['status']
+                record.save()
+            else:
+                part = Part.objects.get(pk = request.POST['part'])
+                part.status = "True"
+                part.save()
+                form.save()
                       
             parts = Part.objects.all()
             maintenance = Maintenance_History.objects.filter(next_due_date__lte=datetime.now())
             assert isinstance(request, HttpRequest)
             return render(
                 request,
-                'app/viewMaintHist.html',
+                'app/viewPartHist.html',
                 {
-                    'title':'Maintenance History',
+                    'title':'Part History',
                     'year':datetime.now().year,
-                    'maint':maintenance
+                    'part':Part_History.objects.all()
                 }
             )
 
-    form = NewMaintenanceHistory(initial={
-        'completed': 0
-    })
-        
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/logMaint.html',
         {
-            'title':'Add Vehicle',
+            'title':'Log Part',
             'year':datetime.now().year,
-            'form': form
+            'form': PartHistory()
         }
     )
 

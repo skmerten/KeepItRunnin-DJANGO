@@ -48,10 +48,6 @@ class Part(models.Model):
     date_requested = models.DateTimeField(auto_now_add=True)
     need_by_date = models.DateTimeField(null=True)
     comments = models.CharField(max_length=250,null=True)
-    purchase_location = models.CharField(max_length=250,null=True)
-    purchase_price = models.CharField(max_length=50,null=True)
-    date_of_purchase = models.DateTimeField(null=True)
-    after_comments = models.CharField(max_length=250,null=True)
     status = models.BooleanField()
 
     def __str__(self):
@@ -59,7 +55,11 @@ class Part(models.Model):
 
 
 class Part_History(models.Model):
-
+    part = models.ForeignKey(Part, on_delete=models.CASCADE)
+    purchase_location = models.CharField(max_length=250,null=True)
+    purchase_price = models.CharField(max_length=50,null=True)
+    date_of_purchase = models.DateTimeField(null=True)
+    after_comments = models.CharField(max_length=250,null=True)
     
     def __str__(self):
-        return self.part.name + ' ' + "request"
+        return self.part.name + ' ' + "History"
