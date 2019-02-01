@@ -10,12 +10,16 @@
 		<th>Name</th>
 		<th>Description</th>
 		<th>Date Requested</th>
-		<th>Need By Date</th>
-		<th>Comments</th>
-	  </tr>
+		<th>Quantity</th>
+		<th>Purchase Location</th>
+	    <th>Purchase Price</th>
+        <th>Date Of Purchase</th>
+        <th>Comments</th>
+      </tr>
       {% for each in part %}
 	      <tr>
             <td>{{each.part.maintenance.vehicle}}</td>
+            <td>{{each.part.maintenance}}</td>
             <td>{{each.part.part_name}}</td>
             <td>{{each.part.part_description}}</td>
             <td>{{each.date_requested}}</td>
