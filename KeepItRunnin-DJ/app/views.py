@@ -10,6 +10,21 @@ from datetime import datetime
 from app.models import Vehicle, Maintenance, Maintenance_History, Part, Part_History
 from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory
 
+def newHome(request):
+    parts = Part.objects.all()
+    maintenance = Maintenance_History.objects.all()
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/newUser_home.html',
+        {
+            'title':'Home Page',
+            'year':datetime.now().year,
+            'parts':parts,
+            'maint':maintenance
+        }
+    )
+
 def home(request):
     parts = Part.objects.all()
     maintenance = Maintenance_History.objects.all()

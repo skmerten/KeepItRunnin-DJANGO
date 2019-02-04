@@ -18,7 +18,9 @@ admin.autodiscover()
 urlpatterns = [
     
     # /home 
-    path('', app.views.home, name='home'),
+    path('', app.views.newHome, name='newHome'),
+    path('home/', app.views.home, name='home'),
+
     
     # /maintenance URLs
     path('maintenance/', app.views.maintenanceHome, name='maintenanceHome'),
