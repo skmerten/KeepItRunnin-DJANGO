@@ -7,8 +7,9 @@ from django.http import HttpRequest
 from django.http import Http404
 from django.template import RequestContext
 from datetime import datetime
+from django.contrib.auth.models import User
 from app.models import Vehicle, Maintenance, Maintenance_History, Part, Part_History
-from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory
+from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory, NewUserForm
 
 def newHome(request):
     parts = Part.objects.all()
@@ -24,6 +25,39 @@ def newHome(request):
             'maint':maintenance
         }
     )
+
+
+def addUser(request):
+    if request.method == 'POST':
+        Users = User.objects.all()
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+            # render Home Page
+            parts = Part.objects.all()
+            maintenance = Maintenance_History.objects.all()
+            assert isinstance(request, HttpRequest)
+            return render(
+                request,
+                'app/home.html',
+                {
+                    'title':'Home Page',
+                    'year':datetime.now().year,
+                    'parts':parts,
+                    'maint':maintenance
+                }
+            )
+    else:
+        assert isinstance(request, HttpRequest)
+        return render(
+            request,
+            'app/newUser.html',
+            {
+                'title':'New User',
+                'year':datetime.now().year
+            }
+        )
 
 def home(request):
     parts = Part.objects.all()

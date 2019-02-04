@@ -45,6 +45,10 @@ urlpatterns = [
     path('vehicle/add/', app.views.addVehicle, name='addVehicle'),
     path('vehicle/checkIn/', app.views.checkIn, name='checkIn'),
 
+    # Users
+    path('newUser/', app.views.addUser, name='addUser'),
+
+
     # Login / Logout URLS
     url(r'^login/$',
         django.contrib.auth.views.login,
