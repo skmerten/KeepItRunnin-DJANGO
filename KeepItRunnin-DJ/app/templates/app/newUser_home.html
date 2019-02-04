@@ -1,47 +1,6 @@
 {% extends "app/newUser_layout.html" %}
 
 {% block content %}
-<style type="text/css">
-	#parts {display:inline-block; margin-right:10px; width:200px; margin-bottom:10px; vertical-align: top;} 
-	#maint {display:inline-block; margin-right:10px; width:200px; margin-bottom:10px; vertical-align: top;}
-	#info {display:inline-block; vertical-align:top;} 
-
-	td, th {
-    border: none;
-    text-align: left;
-    padding: 8px;
-	}
-</style>
-
-<div>
-	<div style="margin-left:auto;max-width:200px" id="parts">
-		<div class="w3-container w3-dark-grey" >
-			<h4 style="text-align:center">Parts Needed</h4>
-		</div>
-		<div class="w3-container w3-light-grey w3-left-align w3-padding-16" id="parts_contents">
-			{% for part in parts %}
-                {% if not part.status %}
-                    <p>{{part.part_name}}</p>
-                {% endif %}
-            {% endfor %}
-		</div>
-	</div>
-
-	<div style="margin-right:auto;max-width:200px" id="maint">
-		<div class="w3-container w3-dark-grey" >
-			<h4 style="text-align:center">Maintenance Pending</h4>
-		</div>
-		<div class="w3-container w3-light-grey w3-left-align w3-padding-16" id="maint_contents">
-			{% for maint in maintenance %}
-                    <p>{{maint.name}} {{maint.description}}</p>
-            {% endfor %}
-		</div>
-	</div>
-</div>
-
-
-<!-----------  HOME PAGE ADDITIONS------------->
-
 
 <!-- About Section -->
 <div class="w3-container" style="padding:128px 16px" id="about">

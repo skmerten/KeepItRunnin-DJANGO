@@ -71,6 +71,8 @@
     <Content Include="app\templates\app\addVehicle.html" />
     <Content Include="app\templates\app\checkIn.html" />
     <Content Include="app\templates\app\chooseMaint.html" />
+    <Content Include="app\templates\app\login.html" />
+    <Content Include="app\templates\app\loginpartial.html" />
     <Content Include="app\templates\app\newUser_home.html" />
     <Content Include="app\templates\app\newUser_layout.html" />
     <Content Include="app\templates\app\viewMaintHist.html" />
