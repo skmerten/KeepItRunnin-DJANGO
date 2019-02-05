@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/forms.css' %}" />
     <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
 </head>
-
+{% if user.is_authenticated %}
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -49,4 +49,7 @@
 {% block scripts %}{% endblock %}
 
 </body>
+{% else %}
+    {% include 'app/login.html' %} 
+{% endif %}
 </html>

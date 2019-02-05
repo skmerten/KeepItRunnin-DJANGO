@@ -9,7 +9,7 @@ from django.template import RequestContext
 from datetime import datetime
 from django.contrib.auth.models import User
 from app.models import Vehicle, Maintenance, Maintenance_History, Part, Part_History
-from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory, NewUserForm
+from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory, NewUserForm, BootstrapAuthenticationForm
 
 def newHome(request):
     parts = Part.objects.all()
@@ -74,7 +74,6 @@ def home(request):
         }
     )
 
-
 def addVehicle(request):
     if request.method == 'POST':
         form = NewVehicle(request.POST)
@@ -106,6 +105,7 @@ def addVehicle(request):
                 'newVehicle':NewVehicle()
             }
         )
+
 
 def addMaint(request):
     if request.method == 'POST':
@@ -286,6 +286,7 @@ def partHome(request):
             'year':datetime.now().year
         }
     )
+
 
 def checkIn(request):
     assert isinstance(request, HttpRequest)
