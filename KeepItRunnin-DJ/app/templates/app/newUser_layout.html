@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿{% if user.is_authenticated %}
+    {% include 'app/layout.html' %}
+{% else %}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -11,7 +14,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/forms.css' %}" />
     <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
 </head>
-
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -25,10 +27,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{% url 'addVehicle' %}">Vehicle</a></li>
-                    <li><a href="{% url 'maintenanceHome' %}">Maintenance</a></li>
-                    <li><a href="{% url 'partHome' %}">Parts</a></li>
-                    <li><a href="{% url 'checkIn' %}">Check In</a></li>
+                    <li><a href="{% url 'addVehicle' %}">About</a></li>
+                    <li><a href="{% url 'maintenanceHome' %}">Contact Us</a></li>
                 </ul>
                 {% include 'app/loginpartial.html' %}
             </div>
@@ -37,6 +37,7 @@
     <h2 class="h1" style="text-align:left;margin-left: 20px">{{ title }}<span style="float:right;font-size:20px; margin-right: 20px"></span></h2>
     <div class="container body-content">
 {% block content %}{% endblock %}
+
         <hr/>
         <footer>
             <p>&copy; {{ year }} - KeepItRunnin Maintenance Planner</p>
@@ -50,3 +51,5 @@
 
 </body>
 </html>
+
+{% endif %}
