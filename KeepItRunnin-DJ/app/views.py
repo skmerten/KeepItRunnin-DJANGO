@@ -151,7 +151,7 @@ def addMaint(request):
         {
             'title':'Add Maintenance',
             'year':datetime.now().year,
-            'newMaintenance': NewMaintenance()
+            'newMaintenance': NewMaintenance(user = request.user)
         }
     )
 @login_required(login_url='/login')

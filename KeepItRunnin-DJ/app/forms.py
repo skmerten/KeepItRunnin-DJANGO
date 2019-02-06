@@ -54,7 +54,12 @@ class NewMaintenance(forms.ModelForm):
     miles = forms.IntegerField(label='Mileage Interval*', widget=forms.NumberInput(attrs={'class':'input'}))
     materials = forms.CharField(label='Materials Needed*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
     comments = forms.CharField(label='Comments*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
-    
+        
+    def __init__(self, user, *args, **kwargs):
+        super(NewMaintenance, self).__init__(*args, **kwargs)
+        qs = Vehicle.objects.filter(user=user)
+        self.fields['vehicle'].queryset = qs
+
     class Meta:
         model = Maintenance
         fields = ('vehicle', 'name', 'description', 'months', 'miles', 'materials', 'comments',)
