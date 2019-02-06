@@ -81,10 +81,9 @@ def addVehicle(request):
     if request.method == 'POST':
         form = NewVehicle(request.POST)
         if form.is_valid():
-            form.user = request.user
-            print(form.user)
-            print(request.user)
-            form.save()
+            vehicle = form.save(commit=False)
+            vehicle.user = request.user
+            vehicle.save()
 
             # render Home Page
             parts = Part.objects.all()

@@ -38,7 +38,7 @@ class NewVehicle(forms.ModelForm):
     model = forms.CharField(label='Model', max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
     trim = forms.CharField(label='Trim', max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
     mileage = forms.IntegerField(label='Current Mileage', widget=forms.NumberInput(attrs={'class' : 'input'}))
-    
+
     class Meta:
         model = Vehicle
         fields = ('user', 'year','make','model','trim','mileage', )
