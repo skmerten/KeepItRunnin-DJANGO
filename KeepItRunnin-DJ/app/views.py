@@ -107,14 +107,14 @@ def addVehicle(request):
             {
                 'title':'Add Vehicle',
                 'year':datetime.now().year,
-                'newVehicle':NewVehicle()
+                'newVehicle':NewVehicle(request.user)
             }
         )
 
 @login_required(login_url='/login')
 def addMaint(request):
     if request.method == 'POST':
-        form = NewMaintenance(request.POST, user=request.user)
+        form = NewMaintenance(request.user, request.POST)
         if form.is_valid():
             id = request.POST['id']
             if id:
@@ -236,7 +236,7 @@ def logMaint(request):
 
 @login_required(login_url='/login')
 def viewMaint(request):
-    maintenance = Maintenance.objects.all()
+    maintenance = Maintenance.objects.filter(vehicle__user=request.user)
     assert isinstance(request, HttpRequest)
     return render(
         request,
