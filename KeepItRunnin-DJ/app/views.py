@@ -114,7 +114,7 @@ def addVehicle(request):
 @login_required(login_url='/login')
 def addMaint(request):
     if request.method == 'POST':
-        form = NewMaintenance(request.POST)
+        form = NewMaintenance(request.POST, user=request.user)
         if form.is_valid():
             id = request.POST['id']
             if id:
