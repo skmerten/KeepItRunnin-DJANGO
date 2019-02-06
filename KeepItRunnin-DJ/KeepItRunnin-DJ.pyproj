@@ -53,6 +53,7 @@
     <Folder Include="app\static\app\" />
     <Folder Include="app\static\app\content\" />
     <Folder Include="app\static\app\fonts\" />
+    <Folder Include="app\static\app\imgs\" />
     <Folder Include="app\static\app\scripts\" />
     <Folder Include="app\templates\" />
     <Folder Include="app\templates\app\" />
@@ -66,6 +67,7 @@
     <Content Include="app\migrations\__pycache__\__init__.cpython-36.pyc" />
     <Content Include="app\static\app\content\forms.css" />
     <Content Include="app\static\app\content\w3.css" />
+    <Content Include="app\static\app\imgs\NA-Miata.jpg" />
     <Content Include="app\templates\app\about.html" />
     <Content Include="app\templates\app\addMaint.html" />
     <Content Include="app\templates\app\addPart.html" />
