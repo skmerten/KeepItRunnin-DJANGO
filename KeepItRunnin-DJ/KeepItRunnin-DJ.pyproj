@@ -66,6 +66,7 @@
     <Content Include="app\migrations\__pycache__\__init__.cpython-36.pyc" />
     <Content Include="app\static\app\content\forms.css" />
     <Content Include="app\static\app\content\w3.css" />
+    <Content Include="app\templates\app\about.html" />
     <Content Include="app\templates\app\addMaint.html" />
     <Content Include="app\templates\app\addPart.html" />
     <Content Include="app\templates\app\addVehicle.html" />
@@ -73,8 +74,8 @@
     <Content Include="app\templates\app\chooseMaint.html" />
     <Content Include="app\templates\app\login.html" />
     <Content Include="app\templates\app\loginpartial.html" />
-    <Content Include="app\templates\app\newUser_home.html" />
-    <Content Include="app\templates\app\newUser_layout.html" />
+    <Content Include="app\templates\app\overview_home.html" />
+    <Content Include="app\templates\app\overview_layout.html" />
     <Content Include="app\templates\app\viewMaintHist.html" />
     <Content Include="app\templates\app\home.html" />
     <Content Include="app\templates\app\layout.html" />

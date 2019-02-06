@@ -18,7 +18,7 @@ def newHome(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/newUser_home.html',
+        'app/overview_home.html',
         {
             'title':'Home Page',
             'year':datetime.now().year,
@@ -81,6 +81,9 @@ def addVehicle(request):
     if request.method == 'POST':
         form = NewVehicle(request.POST)
         if form.is_valid():
+            form.user = request.user
+            print(form.user)
+            print(request.user)
             form.save()
 
             # render Home Page

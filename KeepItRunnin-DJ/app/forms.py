@@ -32,17 +32,17 @@ class NewUserForm(forms.ModelForm):
 
 # Vehicle Class Forms
 class NewVehicle(forms.ModelForm):
+    user = forms.CharField(required=False, widget=forms.HiddenInput())
     year = forms.CharField(label='Year*', max_length=4, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
     make = forms.CharField(label='Make', max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
     model = forms.CharField(label='Model', max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
     trim = forms.CharField(label='Trim', max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
     mileage = forms.IntegerField(label='Current Mileage', widget=forms.NumberInput(attrs={'class' : 'input'}))
-    email = forms.EmailField(label='Notification Email Address', required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
-    phone = forms.CharField(label='Notification Phone Number', max_length=20, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
-
+    
     class Meta:
         model = Vehicle
-        fields = ('year','make','model','trim','mileage','email','phone', )
+        fields = ('user', 'year','make','model','trim','mileage', )
+        exclude = ["user"]
 
 # Maintenance Class Forms
 class NewMaintenance(forms.ModelForm):
