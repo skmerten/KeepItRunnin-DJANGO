@@ -107,7 +107,7 @@ def addVehicle(request):
             {
                 'title':'Add Vehicle',
                 'year':datetime.now().year,
-                'newVehicle':NewVehicle(request.user)
+                'newVehicle':NewVehicle()
             }
         )
 
