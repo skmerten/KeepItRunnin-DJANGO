@@ -52,6 +52,7 @@ MIDDLEWARE = [
     #'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'app.views.AuthRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'KeepItRunnin_DJ.urls'

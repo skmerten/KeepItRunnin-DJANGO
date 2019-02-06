@@ -8,6 +8,7 @@ from django.http import Http404
 from django.template import RequestContext
 from datetime import datetime
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from app.models import Vehicle, Maintenance, Maintenance_History, Part, Part_History
 from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory, NewUserForm, BootstrapAuthenticationForm
 
@@ -59,6 +60,7 @@ def addUser(request):
             }
         )
 
+@login_required(login_url='/login')
 def home(request):
     parts = Part.objects.all()
     maintenance = Maintenance_History.objects.all()
@@ -74,6 +76,7 @@ def home(request):
         }
     )
 
+@login_required(login_url='/login')
 def addVehicle(request):
     if request.method == 'POST':
         form = NewVehicle(request.POST)
@@ -106,7 +109,7 @@ def addVehicle(request):
             }
         )
 
-
+@login_required(login_url='/login')
 def addMaint(request):
     if request.method == 'POST':
         form = NewMaintenance(request.POST)
@@ -149,7 +152,7 @@ def addMaint(request):
             'newMaintenance': NewMaintenance()
         }
     )
-
+@login_required(login_url='/login')
 def chooseMaint(request):
     maintenance = Maintenance.objects.all()
     form = ChooseMaintenance()
@@ -164,7 +167,7 @@ def chooseMaint(request):
         }
     )
 
-#NEED UPDATE
+@login_required(login_url='/login')
 def editMaint(request):
     pk = request.POST['maintenance']
     maintenance = Maintenance.objects.get(id = pk)
@@ -190,7 +193,7 @@ def editMaint(request):
         }
     )
 
-
+@login_required(login_url='/login')
 def logMaint(request):
     if request.method == 'POST':
         form = NewMaintenanceHistory(request.POST)
@@ -229,6 +232,7 @@ def logMaint(request):
         }
     )
 
+@login_required(login_url='/login')
 def viewMaint(request):
     maintenance = Maintenance.objects.all()
     assert isinstance(request, HttpRequest)
@@ -242,6 +246,7 @@ def viewMaint(request):
         }
     )
 
+@login_required(login_url='/login')
 def viewMaintHist(request):
     assert isinstance(request, HttpRequest)
     return render(
@@ -254,6 +259,7 @@ def viewMaintHist(request):
         }
     )
 
+@login_required(login_url='/login')
 def vehicleProfile(request):
     assert isinstance(request, HttpRequest)
     return render(
@@ -265,6 +271,7 @@ def vehicleProfile(request):
         }
     )
 
+@login_required(login_url='/login')
 def maintenanceHome(request):
     assert isinstance(request, HttpRequest)
     return render(
@@ -276,6 +283,7 @@ def maintenanceHome(request):
         }
     )
 
+@login_required(login_url='/login')
 def partHome(request):
     assert isinstance(request, HttpRequest)
     return render(
@@ -287,7 +295,7 @@ def partHome(request):
         }
     )
 
-
+@login_required(login_url='/login')
 def checkIn(request):
     assert isinstance(request, HttpRequest)
     return render(
@@ -299,6 +307,7 @@ def checkIn(request):
         }
     )
 
+@login_required(login_url='/login')
 def viewVehicle(request):
     vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
@@ -312,7 +321,7 @@ def viewVehicle(request):
         }
     )
 
-# NEED UPDATE
+@login_required(login_url='/login')
 def vehicleUpdate(request):
     vehicle = Vehicle.objects.get()
     assert isinstance(request, HttpRequest)
@@ -326,7 +335,7 @@ def vehicleUpdate(request):
         }
     )
 
-#NEED UPDATE
+@login_required(login_url='/login')
 def addPart(request):
     if request.method == 'POST':
         form = NewPart(request.POST)
@@ -370,7 +379,7 @@ def addPart(request):
         }
     )
 
-#NEED UPDATE
+@login_required(login_url='/login')
 def viewPart(request):
     part = Part.objects.filter(completed=0)
     assert isinstance(request, HttpRequest)
@@ -384,6 +393,7 @@ def viewPart(request):
         }
     )
 
+@login_required(login_url='/login')
 def viewPartHist(request):
     assert isinstance(request, HttpRequest)
     return render(
@@ -396,6 +406,7 @@ def viewPartHist(request):
         }
     )
 
+@login_required(login_url='/login')
 def logPart(request):
     if request.method == 'POST':
         form = PartHistory(request.POST)
@@ -441,6 +452,7 @@ def logPart(request):
         }
     )
 
+@login_required(login_url='/login')
 def choosePart(request):
     maintenance = Maintenance.objects.all()
     form = ChooseMaintenance()
@@ -455,6 +467,7 @@ def choosePart(request):
         }
     )
 
+@login_required(login_url='/login')
 def editPart(request):
     pk = request.POST['maintenance']
     maintenance = Maintenance.objects.get(id = pk)
