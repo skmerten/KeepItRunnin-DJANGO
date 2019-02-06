@@ -257,7 +257,7 @@ def viewMaintHist(request):
         {
             'title':'Add Vehicle',
             'year':datetime.now().year,
-            'maintenanceHistory': Maintenance_History.objects.all()
+            'maintenanceHistory': Maintenance_History.objects.filter(maintenance__vehicle__user=request.user)
         }
     )
 
