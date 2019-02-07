@@ -14,8 +14,8 @@ from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintena
 
 def newHome(request):
     if request.user.is_authenticated:
-        parts = Part.objects.all()
-        maintenance = Maintenance_History.objects.all()
+        parts = Part.objects.filter(status = 0)
+        maintenance = Maintenance_History.objects.filter(maintenance__vehicle__user=request.user)
         vehicles = Vehicle.objects.filter(user = request.user)
         assert isinstance(request, HttpRequest)
         return render(
@@ -25,7 +25,7 @@ def newHome(request):
                 'title':'Home Page',
                 'year':datetime.now().year,
                 'parts':parts,
-                'maint':maintenance,
+                'maintenance':maintenance,
                 'vehicles':vehicles
             }
         )
@@ -75,7 +75,7 @@ def addUser(request):
 
 @login_required(login_url='/login')
 def home(request):
-    parts = Part.objects.all()
+    parts = Part.objects.filter(status = 0)
     maintenance = Maintenance_History.objects.all()
     vehicles = Vehicle.objects.filter(user = request.user)
     assert isinstance(request, HttpRequest)

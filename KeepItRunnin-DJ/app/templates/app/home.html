@@ -1,30 +1,19 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-<style type="text/css">
-	#parts {display:inline-block; margin-right:10px; width:200px; margin-bottom:10px; vertical-align: top;} 
-	#maint {display:inline-block; margin-right:10px; width:200px; margin-bottom:10px; vertical-align: top;}
-	#info {display:inline-block; vertical-align:top;} 
-
-	td, th {
-    border: none;
-    text-align: left;
-    padding: 8px;
-	}
-</style>
 
 <div class="w3-col l8 s12">
     <div class="w3-card w3-margin w3-margin-top">
     <img src="/static/app/imgs/NA-Miata.jpg" style="max-height:100%; max-width:100%">
         <div class="w3-container w3-white">
             <h4><b>My Vehicles</b></h4>
-            <p>Just me, myself and I, exploring the universe of uknownment. I have a heart of love and a interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
+            <p>My Project car. Soon to drop a turbo up in it.</p>
         </div>
     </div><hr>
 </div>
 <div class="w3-col l4">
     <div class="w3-card w3-margin w3-margin-top">
-    <img src="/static/app/imgs/NA-Miata.jpg" style="max-height:100%; max-width:100%">
+    <!--<img src="/static/app/imgs/NA-Miata.jpg" style="max-height:100%; max-width:100%">-->
         <div class="w3-container w3-white">
             <h4><b>My Vehicles</b></h4>
             {% if vehicles %}
@@ -37,7 +26,6 @@
         </div>
     </div><hr>
 </div>
-
 
 <div>
     <div class="w3-col l4">

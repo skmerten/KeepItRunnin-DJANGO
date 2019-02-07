@@ -38,7 +38,7 @@ class Maintenance_History(models.Model):
     completed = models.IntegerField(max_length=None)
 
     def __str__(self):
-        return self.maintenance.name + ' ' + self.maintenance.description + ' ' + str(self.date_completed)
+        return self.maintenance.name + ' ' + self.maintenance.description + ' ' + 'due'
 
 class Part(models.Model):
     maintenance = models.ForeignKey(Maintenance, on_delete=models.CASCADE)
