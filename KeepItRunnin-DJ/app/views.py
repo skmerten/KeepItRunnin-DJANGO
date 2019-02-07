@@ -13,20 +13,32 @@ from app.models import Vehicle, Maintenance, Maintenance_History, Part, Part_His
 from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory, NewUserForm, BootstrapAuthenticationForm
 
 def newHome(request):
-    parts = Part.objects.all()
-    maintenance = Maintenance_History.objects.all()
-
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/overview_home.html',
-        {
-            'title':'Home Page',
-            'year':datetime.now().year,
-            'parts':parts,
-            'maint':maintenance
-        }
-    )
+    if request.user.is_authenticated:
+        parts = Part.objects.all()
+        maintenance = Maintenance_History.objects.all()
+        vehicles = Vehicle.objects.filter(user = request.user)
+        assert isinstance(request, HttpRequest)
+        return render(
+            request,
+            'app/home.html',
+            {
+                'title':'Home Page',
+                'year':datetime.now().year,
+                'parts':parts,
+                'maint':maintenance,
+                'vehicles':vehicles
+            }
+        )
+    else:
+        assert isinstance(request, HttpRequest)
+        return render(
+            request,
+            'app/overview_home.html',
+            {
+                'title':'Home Page',
+                'year':datetime.now().year
+            }
+        )
 
 
 def addUser(request):
