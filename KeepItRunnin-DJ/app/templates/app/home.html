@@ -13,40 +13,61 @@
 	}
 </style>
 
-
-  <div class="w3-card w3-margin w3-margin-top">
-  <img src="/static/app/imgs/NA-Miata.jpg" style="max-height:100%; max-width:100%">
-    <div class="w3-container w3-white">
-      <h4><b>My Vehicles</b></h4>
-      <p>Just me, myself and I, exploring the universe of uknownment. I have a heart of love and a interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
-    </div>
-  </div><hr>
+<div class="w3-col l8 s12">
+    <div class="w3-card w3-margin w3-margin-top">
+    <img src="/static/app/imgs/NA-Miata.jpg" style="max-height:100%; max-width:100%">
+        <div class="w3-container w3-white">
+            <h4><b>My Vehicles</b></h4>
+            <p>Just me, myself and I, exploring the universe of uknownment. I have a heart of love and a interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
+        </div>
+    </div><hr>
+</div>
+<div class="w3-col l4">
+    <div class="w3-card w3-margin w3-margin-top">
+    <img src="/static/app/imgs/NA-Miata.jpg" style="max-height:100%; max-width:100%">
+        <div class="w3-container w3-white">
+            <h4><b>My Vehicles</b></h4>
+            {% if vehicles %}
+                {% for vehicle in vehicles %}
+                    <p>{{vehicle.year}} - {{vehicle.make}} - {{vehicle.model}}</p>
+                {% endfor %}
+            {% else %}
+                <p>You don't have any vehicles yet. Add one in the vehicle menu!</p>
+            {% endif %}
+        </div>
+    </div><hr>
+</div>
 
 
 <div>
-	<div style="margin-left:auto;max-width:200px" id="parts">
-		<div class="w3-container w3-dark-grey" >
-			<h4 style="text-align:center">Parts Needed</h4>
-		</div>
-		<div class="w3-container w3-light-grey w3-left-align w3-padding-16" id="parts_contents">
-			{% for part in parts %}
-                {% if not part.status %}
-                    <p>{{part.part_name}}</p>
+    <div class="w3-col l4">
+        <div class="w3-card w3-margin w3-margin-top">
+        <header class="w3-container"><h4>Parts Needed</h4></header>
+            <div class="w3-container w3-white">
+                {% if parts %}
+            	    {% for part in parts %}
+                        <p>{{part.part_name}}</p>
+                    {% endfor %}
+                {% else %}
+                    <p>No Parts Needed</p>
                 {% endif %}
-            {% endfor %}
-		</div>
-	</div>
-
-	<div style="margin-right:auto;max-width:200px" id="maint">
-		<div class="w3-container w3-dark-grey" >
-			<h4 style="text-align:center">Maintenance Pending</h4>
-		</div>
-		<div class="w3-container w3-light-grey w3-left-align w3-padding-16" id="maint_contents">
-			{% for maint in maintenance %}
-                    <p>{{maint.name}} {{maint.description}}</p>
-            {% endfor %}
-		</div>
-	</div>
+            </div>
+        </div><hr>
+    </div>
+    <div class="w3-col l4">
+        <div class="w3-card w3-margin w3-margin-top">
+        <header class="w3-container"><h4>Maintenance Needed</h4></header>
+            <div class="w3-container w3-white">
+                {% if maintenance %}
+			        {% for maint in maintenance %}
+                            <p>{{maint.name}} {{maint.description}}</p>
+                    {% endfor %}
+                {% else %}
+                    <p>No Maintenance Due</p>
+                {% endif %}
+            </div>
+        </div><hr>
+    </div>
 </div>
 
 {% endblock %}

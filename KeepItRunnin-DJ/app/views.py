@@ -15,6 +15,7 @@ from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintena
 def newHome(request):
     parts = Part.objects.all()
     maintenance = Maintenance_History.objects.all()
+
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -64,6 +65,7 @@ def addUser(request):
 def home(request):
     parts = Part.objects.all()
     maintenance = Maintenance_History.objects.all()
+    vehicles = Vehicle.objects.filter(user = request.user)
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -72,7 +74,8 @@ def home(request):
             'title':'Home Page',
             'year':datetime.now().year,
             'parts':parts,
-            'maint':maintenance
+            'maint':maintenance,
+            'vehicles':vehicles
         }
     )
 
