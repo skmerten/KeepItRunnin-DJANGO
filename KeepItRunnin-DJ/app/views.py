@@ -101,17 +101,15 @@ def addVehicle(request):
             vehicle.save()
 
             # render Home Page
-            parts = Part.objects.all()
-            maintenance = Maintenance_History.objects.all()
+            vehicles = Vehicle.objects.filter(user = request.user)
             assert isinstance(request, HttpRequest)
             return render(
                 request,
-                'app/home.html',
+                'app/vehicleHome.html',
                 {
-                    'title':'Home Page',
+                    'title':'Vehicle',
                     'year':datetime.now().year,
-                    'parts':parts,
-                    'maint':maintenance
+                    'vehicles': vehicles
                 }
             )
     else:
@@ -146,17 +144,15 @@ def addMaint(request):
                 form.save()
 
             # render Home Page
-            parts = Part.objects.all()
-            maintenance = Maintenance_History.objects.filter(next_due_date__lte=datetime.now())
+            maintenance = Maintenance.objects.filter(vehicle__user=request.user)
             assert isinstance(request, HttpRequest)
             return render(
                 request,
-                'app/home.html',
+                'app/viewMaint.html',
                 {
-                    'title':'Home Page',
+                    'title':'Maintenance',
                     'year':datetime.now().year,
-                    'parts':parts,
-                    'maint':maintenance
+                    'maintenance': maintenance
                 }
             )
     assert isinstance(request, HttpRequest)
