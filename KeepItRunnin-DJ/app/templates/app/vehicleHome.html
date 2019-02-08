@@ -1,0 +1,48 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<style>
+.button {
+    background-color: #6671de;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+}
+</style>
+{% if vehicles %}
+    {% for vehicle in vehicles %}
+        <div class="w3-container" >
+            <div class="w3-col l9">
+                <div class="w3-card w3-margin w3-margin-top">
+                    <div class="w3-container w3-white">
+                        <h4><b>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</b></h4>
+                        <p>Mileage: {{vehicle.mileage}}</p>
+                        <p>Date Added: {{vehicle.vehicle_creation}}</p>
+                    </div>
+                </div><hr>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="w3-col l3">
+    <div class="w3-card w3-margin w3-margin-top">
+        <div class="w3-container w3-white">
+            <h4><b>Options</b></h4>
+            <a href='{% url 'addMaint' %}'><button class="button" type='button'>Add Vehicle Plan</button></a>
+            <a href='{% url 'viewMaint' %}'><button class="button" type='button'>View Vehicles Plan</button></a>
+            <a href='{% url 'logMaint' %}'><button class="button" type='button'>Update Maintenance</button></a>
+            <a href='{% url 'viewMaintHist' %}'><button class="button" type='button'>Delete Vehicle</button></a>
+        </div>
+    </div><hr>
+</div>
+
+{% endblock %}

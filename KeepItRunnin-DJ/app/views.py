@@ -301,6 +301,21 @@ def maintenanceHome(request):
     )
 
 @login_required(login_url='/login')
+def vehicleHome(request):
+    vehicles = Vehicle.objects.filter(user = request.user)
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/vehicleHome.html',
+        {
+            'title':'Vehicle',
+            'year':datetime.now().year,
+            'vehicles': vehicles
+        }
+    )
+
+
+@login_required(login_url='/login')
 def partHome(request):
     assert isinstance(request, HttpRequest)
     return render(
