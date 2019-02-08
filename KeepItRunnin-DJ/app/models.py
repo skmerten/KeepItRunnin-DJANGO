@@ -20,11 +20,11 @@ class Vehicle(models.Model):
 class Maintenance(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    description = models.CharField(max_length=100)
+    description = models.CharField(max_length=100,null=True)
     months = models.IntegerField(max_length=None)
     miles = models.IntegerField(max_length=None)
-    materials = models.CharField(max_length=250)
-    comments = models.CharField(max_length=250)
+    materials = models.CharField(max_length=250,null=True)
+    comments = models.CharField(max_length=250,null=True)
 
     def __str__(self):
         return str(self.pk) + ' ' + self.vehicle.make + ' ' + self.vehicle.model + ' ' +  self.name

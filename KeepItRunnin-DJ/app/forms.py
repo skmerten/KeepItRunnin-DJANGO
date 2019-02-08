@@ -50,11 +50,11 @@ class NewMaintenance(forms.ModelForm):
     vehicle = forms.ModelChoiceField(label='Your Vehicles', queryset=Vehicle.objects.all(), widget=forms.Select(attrs={'class':'input'}))
     #vehicle = forms.ModelChoiceField(label='Your Vehicles', widget=forms.Select(attrs={'class':'input'}))
     name = forms.CharField(label='Name*', required=True, max_length=100, widget=forms.TextInput(attrs={'class' : 'input'}))
-    description = forms.CharField(label='Description*', required=True, max_length=100, widget=forms.TextInput(attrs={'class':'input'}))
+    description = forms.CharField(label='Description*', required=False, max_length=100, widget=forms.TextInput(attrs={'class':'input'}))
     months = forms.IntegerField(label='Monthly Interval*', widget=forms.NumberInput(attrs={'class':'input'}))
     miles = forms.IntegerField(label='Mileage Interval*', widget=forms.NumberInput(attrs={'class':'input'}))
-    materials = forms.CharField(label='Materials Needed*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
-    comments = forms.CharField(label='Comments*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
+    materials = forms.CharField(label='Materials Needed*', required=False, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
+    comments = forms.CharField(label='Comments*', required=False, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
         
     def __init__(self, user, *args, **kwargs):
         super(NewMaintenance, self).__init__(*args, **kwargs)
@@ -106,6 +106,12 @@ class NewPart(forms.ModelForm):
     comments = forms.CharField(label='Comments', required=False, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
     
     status = forms.ChoiceField(choices=[('0', 'Already Purchased'),('1', 'Pending Purchase')], required=True, widget=forms.RadioSelect)
+
+    def __init__(self, user, *args, **kwargs):
+        super(NewPart, self).__init__(*args, **kwargs)
+        qs = Maintenance.objects.filter(vehicle__user=user)
+        self.fields['maintenance'].queryset = qs
+
     class Meta:
         model = Part
         fields = ('maintenance','part_name','part_description','quantity', 'need_by_date','comments', 'status', )

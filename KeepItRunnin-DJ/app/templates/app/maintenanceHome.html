@@ -1,13 +1,56 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-<br>
-<a href='{% url 'addMaint' %}'><button class="button" type='button'>Add Maintenance Plan</button></a>
-<a href='{% url 'viewMaint' %}'><button class="button" type='button'>View Maintenance Plan</button></a>
-<a href='{% url 'logMaint' %}'><button class="button" type='button'>Log Maintenance</button></a>
-<a href='{% url 'viewMaintHist' %}'><button class="button" type='button'>Maintenance History</button></a>
-<a href='{% url 'chooseMaint' %}'><button class="button" type='button'>Edit Maintenance Plan</button></a>
-<!--
-<a href='/cancelMaint'><button type='button'>Cancel Maintenance</button></a>
--->
+
+<style>
+.button {
+    background-color: #6671de;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+}
+</style>
+
+<div class="w3-col l9">
+{% if maintenance %}
+    {% for maint in maintenance %}
+        <div class="w3-container" >
+            <div class="w3-card w3-margin w3-margin-top">
+                <!--<img src="/static/app/imgs/NA-Miata.jpg" style="max-height:100%; max-width:100%">-->
+                <div class="w3-container w3-white">
+                    <h4><b>{{maint.name}}</b></h4>
+                    <p>Description: {{maint.description}}</p>
+                    <p>Intervals: {{maint.miles}} Miles or {{maint.months}} Months</p>
+                    <p>Comments: {{maint.comments}}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+</div><hr>
+<div class="w3-col l3">
+    <div class="w3-card w3-margin w3-margin-top">
+        <div class="w3-container w3-white">
+            <h4><b>Options</b></h4>
+            <a href='{% url 'addMaint' %}'><button class="button" type='button'>Add Maintenance Plan</button></a>
+            <a href='{% url 'viewMaint' %}'><button class="button" type='button'>View Maintenance Plan</button></a>
+            <a href='{% url 'logMaint' %}'><button class="button" type='button'>Log Maintenance</button></a>
+            <a href='{% url 'viewMaintHist' %}'><button class="button" type='button'>Maintenance History</button></a>
+            <a href='{% url 'chooseMaint' %}'><button class="button" type='button'>Edit Maintenance Plan</button></a>
+        </div>
+    </div><hr>
+</div>
+
+
+
 {% endblock %}
+
+

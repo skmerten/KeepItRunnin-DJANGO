@@ -69,7 +69,8 @@ def addUser(request):
             'app/newUser.html',
             {
                 'title':'New User',
-                'year':datetime.now().year
+                'year':datetime.now().year,
+                'user':User()
             }
         )
 
@@ -140,6 +141,11 @@ def addMaint(request):
                 record.materials = request.POST['materials']
                 record.comments = request.POST['comments']
                 record.save()
+
+                parts = request.POST['materials'].split(",")
+                #part = Part()
+                print(parts)
+                
             else:
                 form.save()
 
@@ -286,13 +292,17 @@ def vehicleProfile(request):
 
 @login_required(login_url='/login')
 def maintenanceHome(request):
+    maintenance = Maintenance.objects.filter(vehicle__user = request.user)
+    maint_hist = Maintenance_History.objects.filter(maintenance__vehicle__user = request.user)
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/maintenanceHome.html',
         {
             'title':'Maintenance',
-            'year':datetime.now().year
+            'year':datetime.now().year,
+            'maintenance':maintenance,
+            'maint_hist':maint_hist,
         }
     )
 
@@ -366,7 +376,7 @@ def vehicleUpdate(request):
 @login_required(login_url='/login')
 def addPart(request):
     if request.method == 'POST':
-        form = NewPart(request.POST)
+        form = NewPart(request.user, request.POST)
         if form.is_valid():
             id = request.POST['id']
             if id:
@@ -403,7 +413,7 @@ def addPart(request):
         {
             'title':'Add Part',
             'year':datetime.now().year,
-            'newPart': NewPart()
+            'newPart': NewPart(user = request.user)
         }
     )
 
