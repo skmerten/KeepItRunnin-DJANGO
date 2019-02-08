@@ -67,6 +67,7 @@
     <Content Include="app\migrations\__pycache__\__init__.cpython-36.pyc" />
     <Content Include="app\static\app\content\forms.css" />
     <Content Include="app\static\app\content\w3.css" />
+    <Content Include="app\static\app\imgs\2019_mini_cooper-pic-5038995412468575912-1600x1200.png" />
     <Content Include="app\static\app\imgs\NA-Miata.jpg" />
     <Content Include="app\templates\app\about.html" />
     <Content Include="app\templates\app\addMaint.html" />
