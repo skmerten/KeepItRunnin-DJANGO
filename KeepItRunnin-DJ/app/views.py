@@ -77,7 +77,7 @@ def addUser(request):
 @login_required(login_url='/login')
 def home(request):
     parts = Part.objects.filter(status = 0)
-    maintenance = Maintenance_History.objects.all()
+    maintenance = Maintenance_History.objects.filter(completed=0, maintenance__vehicle__user=request.user)
     vehicles = Vehicle.objects.filter(user = request.user)
     assert isinstance(request, HttpRequest)
     return render(
@@ -87,7 +87,7 @@ def home(request):
             'title':'Home Page',
             'year':datetime.now().year,
             'parts':parts,
-            'maint':maintenance,
+            'maintenance':maintenance,
             'vehicles':vehicles
         }
     )

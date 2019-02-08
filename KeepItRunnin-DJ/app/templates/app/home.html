@@ -48,7 +48,7 @@
             <div class="w3-container w3-white">
                 {% if maintenance %}
 			        {% for maint in maintenance %}
-                            <p>{{maint.name}} {{maint.description}}</p>
+                            <p>{{maint.maintenance.name}} {{maint.maintenance.description}}: Due {{maint.next_due_date}}</p>
                     {% endfor %}
                 {% else %}
                     <p>No Maintenance Due</p>
