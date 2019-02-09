@@ -39,8 +39,7 @@ def newHome(request):
                 'year':datetime.now().year
             }
         )
-
-
+# Needs Updates
 def addUser(request):
     if request.method == 'POST':
         Users = User.objects.all()
@@ -171,6 +170,8 @@ def addMaint(request):
             'newMaintenance': NewMaintenance(user = request.user)
         }
     )
+
+# Needs Updates
 @login_required(login_url='/login')
 def chooseMaint(request):
     maintenance = Maintenance.objects.all()
@@ -186,6 +187,7 @@ def chooseMaint(request):
         }
     )
 
+# Needs Updates
 @login_required(login_url='/login')
 def editMaint(request):
     pk = request.POST['maintenance']
@@ -212,6 +214,7 @@ def editMaint(request):
         }
     )
 
+# Needs Updates
 @login_required(login_url='/login')
 def logMaint(request):
     if request.method == 'POST':
@@ -236,8 +239,6 @@ def logMaint(request):
                 }
             )
 
-
-        
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -263,6 +264,7 @@ def viewMaint(request):
         }
     )
 
+# Needs Updates
 @login_required(login_url='/login')
 def viewMaintHist(request):
     assert isinstance(request, HttpRequest)
@@ -276,6 +278,7 @@ def viewMaintHist(request):
         }
     )
 
+# Needs Updates
 @login_required(login_url='/login')
 def vehicleProfile(request):
     assert isinstance(request, HttpRequest)
@@ -318,7 +321,7 @@ def vehicleHome(request):
         }
     )
 
-
+# Needs Updates
 @login_required(login_url='/login')
 def partHome(request):
     assert isinstance(request, HttpRequest)
@@ -331,6 +334,7 @@ def partHome(request):
         }
     )
 
+# Needs Updates
 @login_required(login_url='/login')
 def checkIn(request):
     assert isinstance(request, HttpRequest)
@@ -343,6 +347,7 @@ def checkIn(request):
         }
     )
 
+# Needs Updates
 @login_required(login_url='/login')
 def viewVehicle(request):
     vehicle = Vehicle.objects.get()
@@ -357,6 +362,7 @@ def viewVehicle(request):
         }
     )
 
+# Needs Updates
 @login_required(login_url='/login')
 def vehicleUpdate(request):
     vehicle = Vehicle.objects.get()
@@ -371,6 +377,7 @@ def vehicleUpdate(request):
         }
     )
 
+# Needs Updates
 @login_required(login_url='/login')
 def addPart(request):
     if request.method == 'POST':
@@ -415,6 +422,7 @@ def addPart(request):
         }
     )
 
+# Needs Updates
 @login_required(login_url='/login')
 def viewPart(request):
     part = Part.objects.filter(completed=0)
@@ -429,6 +437,7 @@ def viewPart(request):
         }
     )
 
+# Needs Updates
 @login_required(login_url='/login')
 def viewPartHist(request):
     assert isinstance(request, HttpRequest)
@@ -442,6 +451,7 @@ def viewPartHist(request):
         }
     )
 
+# Needs Updates
 @login_required(login_url='/login')
 def logPart(request):
     if request.method == 'POST':
@@ -488,6 +498,7 @@ def logPart(request):
         }
     )
 
+# Needs Updates
 @login_required(login_url='/login')
 def choosePart(request):
     maintenance = Maintenance.objects.all()
@@ -503,6 +514,7 @@ def choosePart(request):
         }
     )
 
+# Needs Updates
 @login_required(login_url='/login')
 def editPart(request):
     pk = request.POST['maintenance']
