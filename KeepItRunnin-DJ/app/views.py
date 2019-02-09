@@ -215,7 +215,7 @@ def editMaint(request):
 @login_required(login_url='/login')
 def logMaint(request):
     if request.method == 'POST':
-        form = NewMaintenanceHistory(request.POST)
+        form = NewMaintenanceHistory(request.user, request.POST)
         if form.is_valid():
             form.save()
             maintenance = Maintenance.objects.get(id = request.POST['maintenance'])
@@ -224,7 +224,7 @@ def logMaint(request):
             vehicle.save()
                       
             parts = Part.objects.all()
-            maintenance = Maintenance_History.objects.filter(next_due_date__lte=datetime.now())
+            maintenance = Maintenance_History.objects.filter(maintenace__vehicle__user=request.user)
             assert isinstance(request, HttpRequest)
             return render(
                 request,
@@ -236,9 +236,7 @@ def logMaint(request):
                 }
             )
 
-    form = NewMaintenanceHistory(initial={
-        'completed': 0
-    })
+
         
     assert isinstance(request, HttpRequest)
     return render(
@@ -247,7 +245,7 @@ def logMaint(request):
         {
             'title':'Add Vehicle',
             'year':datetime.now().year,
-            'form': form
+            'form':NewMaintenanceHistory(user=request.user, initial={'completed': 0})
         }
     )
 

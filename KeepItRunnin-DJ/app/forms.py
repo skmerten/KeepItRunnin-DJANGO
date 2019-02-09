@@ -85,6 +85,11 @@ class NewMaintenanceHistory(forms.ModelForm):
     comments = forms.CharField(label='Comments*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
     completed = forms.IntegerField(required=False, widget=forms.HiddenInput())
 
+    def __init__(self, user, *args, **kwargs):
+        super(NewMaintenanceHistory, self).__init__(*args, **kwargs)
+        qs = Maintenance.objects.filter(user=user)
+        self.fields['maintenance'].queryset = qs
+
     class Meta:
         model = Maintenance_History
         fields = ('maintenance', 'date_completed', 'current_mileage', 'next_due_date', 'next_due_mile', 'comments', 'completed',  )
