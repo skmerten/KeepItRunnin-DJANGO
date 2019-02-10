@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.http import HttpRequest
 from django.http import Http404
 from django.template import RequestContext
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from app.models import Vehicle, Maintenance, Maintenance_History, Part, Part_History
@@ -15,8 +15,11 @@ from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintena
 def newHome(request):
     if request.user.is_authenticated:
         parts = Part.objects.filter(status = 0)
-        maintenance = Maintenance_History.objects.filter(maintenance__vehicle__user=request.user)
-        vehicles = Vehicle.objects.filter(user = request.user)
+        maintenance = Maintenance_History.objects.filter(completed=0, maintenance__vehicle__user=request.user)
+        vehicles = Vehicle.objects.filter(user = request.user, 
+                                          vehicle_creation__year = datetime.now().year,
+                                          vehicle_creation__month = datetime.now().month,
+                                          vehicle_creation__day = datetime.now().day)
         assert isinstance(request, HttpRequest)
         return render(
             request,
@@ -77,7 +80,10 @@ def addUser(request):
 def home(request):
     parts = Part.objects.filter(status = 0)
     maintenance = Maintenance_History.objects.filter(completed=0, maintenance__vehicle__user=request.user)
-    vehicles = Vehicle.objects.filter(user = request.user)
+    vehicles = Vehicle.objects.filter(user = request.user, 
+                                      vehicle_creation__year = datetime.now().year,
+                                      vehicle_creation__month = datetime.now().month,
+                                      vehicle_creation__day = datetime.now().day)
     assert isinstance(request, HttpRequest)
     return render(
         request,
