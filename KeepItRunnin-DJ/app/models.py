@@ -12,6 +12,7 @@ class Vehicle(models.Model):
     model = models.CharField(max_length=100)
     trim = models.CharField(max_length=100)
     mileage = models.IntegerField(max_length=None)
+    image = models.ImageField(blank=True, null=True)
     #picture = models.ImageField(upload_to='static/app/imgs/')
     vehicle_creation = models.DateTimeField(auto_now_add=True)
     def __str__(self):

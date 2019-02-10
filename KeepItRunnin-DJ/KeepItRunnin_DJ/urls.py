@@ -6,10 +6,10 @@ from datetime import datetime
 from django.urls import path
 from django.conf.urls import url
 import django.contrib.auth.views
-
+from django.conf.urls.static import static
 import app.forms
 import app.views
-
+from KeepItRunnin_DJ import settings
 # Uncomment the next lines to enable the admin:
 from django.contrib import admin
 from django.conf.urls import include
@@ -74,4 +74,4 @@ urlpatterns = [
 
     # Uncomment the next line to enable the admin:
      path('admin/', admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
