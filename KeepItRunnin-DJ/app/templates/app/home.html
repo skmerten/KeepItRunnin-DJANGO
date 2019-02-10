@@ -1,22 +1,16 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-
-<div class="w3-col l8 s12">
-    <div class="w3-card w3-margin w3-margin-top">
-    <!--<img src="/static/app/imgs/NA-Miata.jpg" style="max-height:100%; max-width:100%">-->
-        <div class="w3-container w3-white">
-            <h4><b>This Is My Feed</b></h4>
-            <p>Your Updates and Your Friends Updates Will Appear Here</p>
-        </div>
-    </div><hr>
-</div>
+<!--
 <div class="w3-col l4">
     <div class="w3-card w3-margin w3-margin-top">
         <div class="w3-container w3-white">
             <h4><b>My Vehicles</b></h4>
             {% if vehicles %}
                 {% for vehicle in vehicles %}
+                    {% if vehicle.image != None %}
+                        <img src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%">
+                    {% endif %}
                     <p>{{vehicle.year}} - {{vehicle.make}} - {{vehicle.model}}</p>
                 {% endfor %}
             {% else %}
@@ -25,9 +19,25 @@
         </div>
     </div><hr>
 </div>
-
+-->
+<div class="w3-col l8 s12">
+    <div class="w3-card w3-margin w3-margin-top">
+        {% if vehicles %}
+            {% for vehicle in vehicles %}
+                {% if vehicle.vehicle_creation %}
+                <img src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%">
+                    <div class="w3-container w3-white">
+                        <h4><b>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</b></h4>
+                        <p>{{vehicle.user.username}} Just Added A Vehicle!</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div><hr>
+</div>
+<!--
 <div>
-    <div class="w3-col l4">
+    <div class="w3-col l8 s12">
         <div class="w3-card w3-margin w3-margin-top">
         <header class="w3-container"><h4>Parts Needed</h4></header>
             <div class="w3-container w3-white">
@@ -41,7 +51,7 @@
             </div>
         </div><hr>
     </div>
-    <div class="w3-col l4">
+    <div class="w3-col l8 s12">
         <div class="w3-card w3-margin w3-margin-top">
         <header class="w3-container"><h4>Maintenance Needed</h4></header>
             <div class="w3-container w3-white">
@@ -56,5 +66,5 @@
         </div><hr>
     </div>
 </div>
-
+-->
 {% endblock %}
