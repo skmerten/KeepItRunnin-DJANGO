@@ -1,13 +1,60 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-<br>
-<a href='{% url 'addPart' %}'><button class="button" type='button'>Need New Part</button></a>
-<a href='{% url 'viewPart' %}'><button class="button" type='button'>View Current Parts Needed</button></a>
-<a href='{% url 'logPart' %}'><button class="button" type='button'>Log Part Purchase</button></a>
-<a href='{% url 'viewMaintHist' %}'><button class="button" type='button'>Part Purchase History</button></a>
-<a href='{% url 'editPart' %}'><button class="button" type='button'>Edit Parts Needed</button></a>
-<!--
-<a href='/cancelParts'><button type='button'>Cancel Part</button></a>
--->
+
+<style>
+.button {
+    background-color: #6671de;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+}
+</style>
+
+<div class="w3-col l9">
+{% if parts %}
+    {% for part in parts %}
+        <div class="w3-container" >
+            <div class="w3-card w3-margin w3-margin-top">
+                <!--<img src="/static/app/imgs/NA-Miata.jpg" style="max-height:100%; max-width:100%">-->
+                <div class="w3-container w3-white">
+                    <h4><b>{{part.name}}</b></h4>
+                    <p>Description: {{part.description}}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <div class="w3-container" >
+        <div class="w3-card w3-margin w3-margin-top">
+            <!--<img src="/static/app/imgs/NA-Miata.jpg" style="max-height:100%; max-width:100%">-->
+            <div class="w3-container w3-white">
+                <h4><b>No Parts Yet</b></h4>
+                <p>When A Part Is Needed....</p>
+            </div>
+        </div>
+    </div>
+{% endif %}
+</div><hr>
+<div class="w3-col l3">
+    <div class="w3-card w3-margin w3-margin-top">
+        <div class="w3-container w3-white">
+            <h4><b>Options</b></h4>
+            <a href='{% url 'addPart' %}'><button class="button" type='button'>Need New Part</button></a>
+            <a href='{% url 'viewPart' %}'><button class="button" type='button'>View Current Parts Needed</button></a>
+            <a href='{% url 'logPart' %}'><button class="button" type='button'>Log Part Purchase</button></a>
+            <a href='{% url 'viewMaintHist' %}'><button class="button" type='button'>Part Purchase History</button></a>
+            <a href='{% url 'editPart' %}'><button class="button" type='button'>Edit Parts Needed</button></a>
+        </div>
+    </div><hr>
+</div>
+
 {% endblock %}
