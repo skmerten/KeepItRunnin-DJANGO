@@ -75,6 +75,7 @@
     <Content Include="app\templates\app\chooseMaint.html" />
     <Content Include="app\templates\app\login.html" />
     <Content Include="app\templates\app\loginpartial.html" />
+    <Content Include="app\templates\app\logPart.html" />
     <Content Include="app\templates\app\vehicleHome.html" />
     <Content Include="app\templates\app\overview_home.html" />
     <Content Include="app\templates\app\overview_layout.html" />

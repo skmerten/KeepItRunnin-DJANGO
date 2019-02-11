@@ -432,7 +432,7 @@ def addPart(request):
 # Needs Updates
 @login_required(login_url='/login')
 def viewPart(request):
-    part = Part.objects.filter(completed=0)
+    part = Part.objects.filter(status=0)
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -462,27 +462,14 @@ def viewPartHist(request):
 @login_required(login_url='/login')
 def logPart(request):
     if request.method == 'POST':
-        form = PartHistory(request.POST)
+        form = PartHistory(request.user, request.POST)
         if form.is_valid():
-            id = request.POST['id']
-            if id:
-                record = Part.objects.get(pk = id)
-                record.maintenance = Maintenance.objects.get(id = request.POST['maintenance'])
-                record.part_name = request.POST['part_name']
-                record.part_description = request.POST['part_description']
-                record.date_requested = request.POST['date_requested']
-                record.need_by_date = request.POST['need_by_date']
-                record.comments = request.POST['comments']
-                record.status = request.POST['status']
-                record.save()
-            else:
-                part = Part.objects.get(pk = request.POST['part'])
-                part.status = "True"
-                part.save()
-                form.save()
+            form.save()
+            part = Part.objects.get(id = request.POST['part'])
+            part.status = True
+            part.save()
                       
-            parts = Part.objects.all()
-            maintenance = Maintenance_History.objects.filter(next_due_date__lte=datetime.now())
+            part_hist = Part_History.objects.filter(part__maintenance__vehicle__user = request.user)
             assert isinstance(request, HttpRequest)
             return render(
                 request,
@@ -490,18 +477,18 @@ def logPart(request):
                 {
                     'title':'Part History',
                     'year':datetime.now().year,
-                    'part':Part_History.objects.all()
+                    'part':part_hist
                 }
             )
 
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/logMaint.html',
+        'app/logPart.html',
         {
-            'title':'Log Part',
+            'title':'Add Part',
             'year':datetime.now().year,
-            'form': PartHistory()
+            'form': PartHistory(user = request.user)
         }
     )
 
@@ -544,5 +531,19 @@ def editPart(request):
             'title':'Edit Maintenance',
             'year':datetime.now().year,
             'newMaintenance': form
+        }
+    )
+
+@login_required(login_url='/login')
+def viewPartHist(request):
+    part_hist = Part_History.objects.filter(part__maintenance__vehicle__user = request.user)
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/viewPartHist.html',
+        {
+            'title':'Part History',
+            'year':datetime.now().year,
+            'part':part_hist
         }
     )

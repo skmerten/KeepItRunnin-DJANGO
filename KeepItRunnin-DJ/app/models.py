@@ -64,4 +64,4 @@ class Part_History(models.Model):
     after_comments = models.CharField(max_length=250,null=True)
     
     def __str__(self):
-        return self.part.name + ' ' + "History"
+        return self.part.part_name + ' ' + "History"

@@ -15,8 +15,8 @@
 	  </tr>
       {% for each in parts %}
 	      <tr>
-            <td>{{each.vehicle}}</td> 
-            <td>{{each.maintenance}}</td>
+            <td>{{each.maintenance.vehicle}}</td> 
+            <td>{{each.maintenance.name}}</td>
             <td>{{each.part_name}}</td>
             <td>{{each.part_description}}</td>
             <td>{{each.date_requested}}</td>

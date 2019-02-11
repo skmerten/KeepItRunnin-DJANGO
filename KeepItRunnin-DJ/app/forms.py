@@ -110,8 +110,7 @@ class NewPart(forms.ModelForm):
     quantity = forms.IntegerField(label='Quantity Needed*', required=True, widget=forms.NumberInput(attrs={'class':'input'}))
     need_by_date = forms.DateField(label='Need By Date', required=False, widget=forms.DateInput(attrs={'class':'input'}))
     comments = forms.CharField(label='Comments', required=False, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
-    
-    status = forms.ChoiceField(choices=[('0', 'Already Purchased'),('1', 'Pending Purchase')], required=True, widget=forms.RadioSelect)
+    status = forms.ChoiceField(choices=[('1', 'Already Purchased')], required=False, widget=forms.RadioSelect)
 
     def __init__(self, user, *args, **kwargs):
         super(NewPart, self).__init__(*args, **kwargs)
@@ -128,6 +127,11 @@ class PartHistory(forms.ModelForm):
     purchase_price = forms.FloatField(label = "Purchase Price", required=False, widget=forms.NumberInput(attrs={'class':'input'}))
     date_of_purchase = forms.DateField(label='Date Of Purchase', required=False, widget=forms.DateInput(attrs={'class':'input'}))
     after_comments = forms.CharField(label='Purchase Comments', required=False, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
+
+    def __init__(self, user, *args, **kwargs):
+        super(PartHistory, self).__init__(*args, **kwargs)
+        qs = Part.objects.filter(maintenance__vehicle__user=user, status = 0)
+        self.fields['part'].queryset = qs
 
     class Meta:
         model = Part_History
