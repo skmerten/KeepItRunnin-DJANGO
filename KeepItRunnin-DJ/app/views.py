@@ -100,7 +100,7 @@ def home(request):
 @login_required(login_url='/login')
 def addVehicle(request):
     if request.method == 'POST':
-        form = NewVehicle(request.POST)
+        form = NewVehicle(request.POST, request.FILES)
         if form.is_valid():
             vehicle = form.save(commit=False)
             vehicle.user = request.user

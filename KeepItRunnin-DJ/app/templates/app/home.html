@@ -8,7 +8,7 @@
             <h4><b>My Vehicles</b></h4>
             {% if vehicles %}
                 {% for vehicle in vehicles %}
-                    {% if vehicle.image != None %}
+                    {% if vehicle.image %}
                         <img src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%">
                     {% endif %}
                     <p>{{vehicle.year}} - {{vehicle.make}} - {{vehicle.model}}</p>
@@ -25,7 +25,9 @@
         {% if vehicles %}
             {% for vehicle in vehicles %}
                 {% if vehicle.vehicle_creation %}
-                <img src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%">
+                    {% if vehicle.image %}
+                        <img src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%">
+                    {% endif %}
                     <div class="w3-container w3-white">
                         <h4><b>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</b></h4>
                         <p>{{vehicle.user.username}} Just Added A Vehicle Today!</p>

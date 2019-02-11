@@ -3,7 +3,7 @@
 {% block content %}
 
 <div style="border-radius: 5px; background-color: #f2f2f2; padding: 20px;">
-	<form action ="{% url 'addVehicle' %}" method = 'post'>{% csrf_token %}
+	<form action ="{% url 'addVehicle' %}" enctype="multipart/form-data" method='post'>{% csrf_token %}
 		<h3>Vehicle Information</h3>
            {{ newVehicle.as_p }}
 		<div class="alert" id="warning">
