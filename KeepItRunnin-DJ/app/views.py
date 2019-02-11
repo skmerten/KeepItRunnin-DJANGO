@@ -198,7 +198,7 @@ def chooseMaint(request):
 def editMaint(request):
     pk = request.POST['maintenance']
     maintenance = Maintenance.objects.get(id = pk)
-    form = NewMaintenance(initial={
+    form = NewMaintenance(user = request.user, initial={
             'id': pk,
             'vehicle':maintenance.vehicle,
             'name': maintenance.name,
@@ -206,7 +206,8 @@ def editMaint(request):
             'months': maintenance.months, 
             'miles': maintenance.miles,
             'materials':maintenance.materials,
-            'comments':maintenance.comments
+            'comments':maintenance.comments,
+
         })
     
     assert isinstance(request, HttpRequest)
@@ -233,7 +234,7 @@ def logMaint(request):
             vehicle.save()
                       
             parts = Part.objects.all()
-            maintenance = Maintenance_History.objects.filter(maintenace__vehicle__user=request.user)
+            maintenance = Maintenance_History.objects.filter(maintenance__vehicle__user=request.user)
             assert isinstance(request, HttpRequest)
             return render(
                 request,
@@ -241,7 +242,7 @@ def logMaint(request):
                 {
                     'title':'Maintenance History',
                     'year':datetime.now().year,
-                    'maint':maintenance
+                    'maintenanceHistory':maintenance
                 }
             )
 

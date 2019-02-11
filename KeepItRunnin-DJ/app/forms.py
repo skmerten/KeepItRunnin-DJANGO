@@ -88,12 +88,12 @@ class NewMaintenanceHistory(forms.ModelForm):
 
     def __init__(self, user, *args, **kwargs):
         super(NewMaintenanceHistory, self).__init__(*args, **kwargs)
-        qs = Maintenance.objects.filter(user=user)
+        qs = Maintenance.objects.filter(vehicle__user=user)
         self.fields['maintenance'].queryset = qs
 
     class Meta:
         model = Maintenance_History
-        fields = ('maintenance', 'date_completed', 'current_mileage', 'next_due_date', 'next_due_mile', 'comments', 'completed',  )
+        fields = ('maintenance', 'date_completed', 'current_mileage', 'next_due_date', 'next_due_mile', 'comments', 'completed', )
         widgets = {
             'next_due_date' : DateInput(),
             'date_completed' : DateInput()
