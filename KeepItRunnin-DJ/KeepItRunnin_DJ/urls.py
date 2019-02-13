@@ -9,6 +9,7 @@ import django.contrib.auth.views
 from django.conf.urls.static import static
 import app.forms
 import app.views
+import maintenance.views
 from KeepItRunnin_DJ import settings
 # Uncomment the next lines to enable the admin:
 from django.contrib import admin
@@ -23,7 +24,7 @@ urlpatterns = [
 
     
     # /maintenance URLs
-    path('maintenance/', app.views.maintenanceHome, name='maintenanceHome'),
+    path('maintenance/', maintenance.views.maintenanceHome, name='maintenanceHome'),
     path('maintenance/history/', app.views.viewMaintHist, name='viewMaintHist'),
     path('maintenance/log/', app.views.logMaint, name='logMaint'),
     path('maintenance/add/', app.views.addMaint, name='addMaint'),
