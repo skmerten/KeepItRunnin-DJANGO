@@ -10,6 +10,7 @@ from django.conf.urls.static import static
 import app.forms
 import app.views
 import maintenance.views
+import parts.views
 from KeepItRunnin_DJ import settings
 # Uncomment the next lines to enable the admin:
 from django.contrib import admin
@@ -25,21 +26,21 @@ urlpatterns = [
     
     # /maintenance URLs
     path('maintenance/', maintenance.views.maintenanceHome, name='maintenanceHome'),
-    path('maintenance/history/', app.views.viewMaintHist, name='viewMaintHist'),
-    path('maintenance/log/', app.views.logMaint, name='logMaint'),
-    path('maintenance/add/', app.views.addMaint, name='addMaint'),
-    path('maintenance/view/', app.views.viewMaint, name='viewMaint'),
-    path('maintenance/select/', app.views.chooseMaint, name='chooseMaint'),
-    path('maintenance/select/edit', app.views.editMaint, name='editMaint'),
+    path('maintenance/history/', maintenance.views.viewMaintHist, name='viewMaintHist'),
+    path('maintenance/log/', maintenance.views.logMaint, name='logMaint'),
+    path('maintenance/add/', maintenance.views.addMaint, name='addMaint'),
+    path('maintenance/view/', maintenance.views.viewMaint, name='viewMaint'),
+    path('maintenance/select/', maintenance.views.chooseMaint, name='chooseMaint'),
+    path('maintenance/select/edit', maintenance.views.editMaint, name='editMaint'),
 
     # /parts URLs
-    path('parts/', app.views.partHome, name='partHome'),
-    path('parts/history/', app.views.viewPartHist, name='viewPartHist'),
-    path('parts/log/', app.views.logPart, name='logPart'),
-    path('parts/add/', app.views.addPart, name='addPart'),
-    path('parts/view/', app.views.viewPart, name='viewPart'),
-    path('parts/select/', app.views.choosePart, name='choosePart'),
-    path('parts/select/edit', app.views.editPart, name='editPart'),
+    path('parts/', parts.views.partHome, name='partHome'),
+    path('parts/history/', parts.views.viewPartHist, name='viewPartHist'),
+    path('parts/log/', parts.views.logPart, name='logPart'),
+    path('parts/add/', parts.views.addPart, name='addPart'),
+    path('parts/view/', parts.views.viewPart, name='viewPart'),
+    path('parts/select/', parts.views.choosePart, name='choosePart'),
+    path('parts/select/edit', parts.views.editPart, name='editPart'),
 
     # /vehicleProfile URLs
     path('vehicle/', app.views.vehicleHome, name='vehicleHome'),

@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Vehicle, Maintenance, Maintenance_History, Part, Part_History
+from .models import Vehicle
+from maintenance.models import Maintenance, Maintenance_History
+from parts.models import Part, Part_History
 
 admin.site.register(Vehicle)
 admin.site.register(Maintenance)

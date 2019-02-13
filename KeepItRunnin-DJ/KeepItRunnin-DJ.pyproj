@@ -91,6 +91,7 @@
     <Folder Include="KeepItRunnin_DJ\__pycache__\" />
     <Folder Include="maintenance\" />
     <Folder Include="maintenance\migrations\" />
+    <Folder Include="maintenance\__pycache__\" />
     <Folder Include="media\" />
     <Folder Include="obj\" />
     <Folder Include="obj\Debug\" />
@@ -147,6 +148,8 @@
     <Content Include="app\templates\app\viewPart.html" />
     <Content Include="app\templates\app\viewVehicle.html" />
     <Content Include="db.sqlite3" />
+    <Content Include="maintenance\__pycache__\views.cpython-36.pyc" />
+    <Content Include="maintenance\__pycache__\__init__.cpython-36.pyc" />
     <Content Include="requirements.txt" />
     <Content Include="app\static\app\content\bootstrap.css" />
     <Content Include="app\static\app\content\bootstrap.min.css" />

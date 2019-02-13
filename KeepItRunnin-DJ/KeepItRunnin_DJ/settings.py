@@ -34,6 +34,9 @@ ALLOWED_HOSTS = ['localhost', '192.168.0.19']
 INSTALLED_APPS = [
     'app',
     'KeepItRunnin_DJ',
+    'feed',
+    'maintenance',
+    'parts',
     # Add your apps here to enable them
     'django.contrib.admin',
     'django.contrib.auth',
