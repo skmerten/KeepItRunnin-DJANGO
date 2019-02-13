@@ -39,6 +39,13 @@
     <Compile Include="app\views.py" />
     <Compile Include="app\__init__.py" />
     <Compile Include="app\migrations\__init__.py" />
+    <Compile Include="feed\admin.py" />
+    <Compile Include="feed\apps.py" />
+    <Compile Include="feed\migrations\__init__.py" />
+    <Compile Include="feed\models.py" />
+    <Compile Include="feed\tests.py" />
+    <Compile Include="feed\views.py" />
+    <Compile Include="feed\__init__.py" />
     <Compile Include="KeepItRunnin_DJ\urls.py" />
     <Compile Include="manage.py" />
     <Compile Include="KeepItRunnin_DJ\__init__.py" />
@@ -57,6 +64,8 @@
     <Folder Include="app\templates\" />
     <Folder Include="app\templates\app\" />
     <Folder Include="app\__pycache__\" />
+    <Folder Include="feed\" />
+    <Folder Include="feed\migrations\" />
     <Folder Include="KeepItRunnin_DJ\" />
     <Folder Include="KeepItRunnin_DJ\__pycache__\" />
     <Folder Include="media\" />
