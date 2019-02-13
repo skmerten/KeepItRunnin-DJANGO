@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Vehicle
+from vehicles.models import Vehicle
 from maintenance.models import Maintenance, Maintenance_History
 from parts.models import Part, Part_History
 

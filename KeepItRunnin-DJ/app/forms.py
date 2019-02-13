@@ -6,7 +6,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from app.models import Vehicle
+from vehicles.models import Vehicle
 from parts.models import Part, Part_History
 from maintenance.models import Maintenance, Maintenance_History
 

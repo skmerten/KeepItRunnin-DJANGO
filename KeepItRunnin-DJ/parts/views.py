@@ -5,7 +5,7 @@ from django.template import RequestContext
 from datetime import datetime, timedelta
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from app.models import Vehicle
+from vehicles.models import Vehicle
 from parts.models import Part, Part_History
 from maintenance.models import Maintenance, Maintenance_History
 from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory, NewUserForm, BootstrapAuthenticationForm

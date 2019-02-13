@@ -8,9 +8,7 @@ from django.conf.urls import url
 import django.contrib.auth.views
 from django.conf.urls.static import static
 import app.forms
-import app.views
-import maintenance.views
-import parts.views
+import app.views, maintenance.views, parts.views, vehicles.views
 from KeepItRunnin_DJ import settings
 # Uncomment the next lines to enable the admin:
 from django.contrib import admin
@@ -43,9 +41,9 @@ urlpatterns = [
     path('parts/select/edit', parts.views.editPart, name='editPart'),
 
     # /vehicleProfile URLs
-    path('vehicle/', app.views.vehicleHome, name='vehicleHome'),
-    path('vehicle/add/', app.views.addVehicle, name='addVehicle'),
-    path('vehicle/checkIn/', app.views.checkIn, name='checkIn'),
+    path('vehicle/', vehicles.views.vehicleHome, name='vehicleHome'),
+    path('vehicle/add/', vehicles.views.addVehicle, name='addVehicle'),
+    path('vehicle/checkIn/', vehicles.views.checkIn, name='checkIn'),
 
     # Users
     path('newUser/', app.views.addUser, name='addUser'),

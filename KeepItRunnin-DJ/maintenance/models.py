@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from app.models import Vehicle
+from vehicles.models import Vehicle
 
 
 class Maintenance(models.Model):
