@@ -41,6 +41,9 @@
     <Compile Include="app\migrations\__init__.py" />
     <Compile Include="feed\admin.py" />
     <Compile Include="feed\apps.py" />
+    <Compile Include="feed\feed.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="feed\migrations\__init__.py" />
     <Compile Include="feed\models.py" />
     <Compile Include="feed\tests.py" />

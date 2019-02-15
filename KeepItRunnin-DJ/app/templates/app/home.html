@@ -1,25 +1,20 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-<!--
 <div class="w3-col l4">
     <div class="w3-card w3-margin w3-margin-top">
         <div class="w3-container w3-white">
-            <h4><b>My Vehicles</b></h4>
-            {% if vehicles %}
-                {% for vehicle in vehicles %}
-                    {% if vehicle.image %}
-                        <img src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%">
-                    {% endif %}
-                    <p>{{vehicle.year}} - {{vehicle.make}} - {{vehicle.model}}</p>
+            <h4><b>Feed</b></h4>
+            {% if feed %}
+                {% for each in feed %}
+                    <p>{{each.items}}</p>
                 {% endfor %}
             {% else %}
-                <p>You don't have any vehicles yet. Add one in the vehicle menu!</p>
+                <p>You don't have any Feeds yet!</p>
             {% endif %}
         </div>
     </div><hr>
 </div>
--->
 <div class="w3-col l8 s12">
     <div class="w3-card w3-margin w3-margin-top">
         {% if vehicles %}

@@ -95,7 +95,7 @@ def home(request):
             'year':datetime.now().year,
             'parts':parts,
             'maintenance':maintenance,
-            'vehicles':vehicles
+            'vehicles':vehicles,
         }
     )
 
