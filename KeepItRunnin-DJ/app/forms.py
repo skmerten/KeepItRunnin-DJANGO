@@ -9,6 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from vehicles.models import Vehicle
 from parts.models import Part, Part_History
 from maintenance.models import Maintenance, Maintenance_History
+from feed.models import Post
 
 
 class BootstrapAuthenticationForm(AuthenticationForm):
@@ -146,6 +147,10 @@ class ChoosePart(forms.ModelForm):
         model = Part
         fields = ('part', )
 
+class NewPost(forms.ModelForm):
+    user = forms.CharField(required=False, widget=forms.HiddenInput())
+    content = forms.CharField(required=True, widget=forms.TextInput(attrs={'class':'input'}))
 
-
-
+    class Meta:
+        model = Post
+        fields = ('user', 'content',)
