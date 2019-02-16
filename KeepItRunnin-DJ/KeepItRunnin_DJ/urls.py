@@ -44,6 +44,9 @@ urlpatterns = [
     path('vehicle/', vehicles.views.vehicleHome, name='vehicleHome'),
     path('vehicle/add/', vehicles.views.addVehicle, name='addVehicle'),
     path('vehicle/checkIn/', vehicles.views.checkIn, name='checkIn'),
+    path('vehicle/delete/', vehicles.views.deleteVehicle, name='deleteVehicle'),
+    path('vehicle/select/', vehicles.views.chooseVehicle, name='chooseVehicle'),
+    path('vehicle/select/edit', vehicles.views.editVehicle, name='editVehicle'),
 
     # Users
     path('newUser/', app.views.addUser, name='addUser'),

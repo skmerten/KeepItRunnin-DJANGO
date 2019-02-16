@@ -131,6 +131,8 @@
     <Content Include="app\templates\app\addPart.html" />
     <Content Include="app\templates\app\addVehicle.html" />
     <Content Include="app\templates\app\checkIn.html" />
+    <Content Include="app\templates\app\chooseVehicle.html" />
+    <Content Include="app\templates\app\deleteVehicle.html" />
     <Content Include="app\templates\app\chooseMaint.html" />
     <Content Include="app\templates\app\login.html" />
     <Content Include="app\templates\app\loginpartial.html" />

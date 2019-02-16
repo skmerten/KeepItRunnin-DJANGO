@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Vehicle
 from maintenance.models import Maintenance, Maintenance_History
 from parts.models import Part, Part_History
-from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory, NewUserForm, BootstrapAuthenticationForm
+from app.forms import ChooseVehicle, DeleteVehicle, NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory, NewUserForm, BootstrapAuthenticationForm
 
 
 @login_required(login_url='/login')
@@ -16,9 +16,19 @@ def addVehicle(request):
     if request.method == 'POST':
         form = NewVehicle(request.POST, request.FILES)
         if form.is_valid():
-            vehicle = form.save(commit=False)
-            vehicle.user = request.user
-            vehicle.save()
+            id = request.POST['id']
+            if id:
+                vehicle = Vehicle.objects.get(pk = id)
+                vehicle.year = request.POST['year']
+                vehicle.make = request.POST['make']
+                vehicle.model = request.POST['model']
+                vehicle.trim = request.POST['trim']
+                vehicle.model = request.POST['model']
+                vehicle.mileage = request.POST['mileage']
+                vehicle.image = request.POST['image']
+                vehicle.save()
+            else:
+                form.save()
 
             # render Home Page
             vehicles = Vehicle.objects.filter(user = request.user)
@@ -44,6 +54,37 @@ def addVehicle(request):
             }
         )
 
+@login_required(login_url='/login')
+def deleteVehicle(request):
+    if request.method == 'POST':
+        form = DeleteVehicle(request.user, request.POST)
+        if form.is_valid():
+            vehicle = Vehicle.objects.filter(pk = request.POST['vehicles'])
+            vehicle.delete()
+
+            # render Home Page
+            vehicles = Vehicle.objects.filter(user = request.user)
+            assert isinstance(request, HttpRequest)
+            return render(
+                request,
+                'app/vehicleHome.html',
+                {
+                    'title':'Vehicle',
+                    'year':datetime.now().year,
+                    'vehicles': vehicles
+                }
+            )
+    else:
+        assert isinstance(request, HttpRequest)
+        return render(
+            request,
+            'app/deleteVehicle.html',
+            {
+                'title':'Delete Vehicle',
+                'year':datetime.now().year,
+                'vehicles':DeleteVehicle(user = request.user)
+            }
+        )
 
 # Needs Updates
 @login_required(login_url='/login')
@@ -115,5 +156,48 @@ def vehicleUpdate(request):
             'title':'Add Vehicle',
             'year':datetime.now().year,
             'vehicle': vehicle
+        }
+    )
+
+
+# Needs Updates
+@login_required(login_url='/login')
+def editVehicle(request):
+    pk = request.POST['vehicle']
+    vehicle = Vehicle.objects.filter(id = pk)
+    form = NewVehicle(user = request.user, initial={
+            'id': pk,
+            'user':vehicle.user,
+            'year': vehicle.year,
+            'make': vehicle.make,
+            'model': vehicle.model, 
+            'trim': vehicle.trim,
+            'mileage':vehicle.mileage,
+            'image':vehicle.image.url,
+
+        })
+
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/addMaint.html',
+        {
+            'title':'Edit Vehicle',
+            'year':datetime.now().year,
+            'newVehicle': form
+        }
+    )
+
+# Needs Updates
+@login_required(login_url='/login')
+def chooseVehicle(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/chooseVehicle.html',
+        {
+            'title':'Choose Vehicle',
+            'year':datetime.now().year,
+            'vehicle': ChooseVehicle(user = request.user)
         }
     )

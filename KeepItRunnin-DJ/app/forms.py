@@ -143,6 +143,11 @@ class PartHistory(forms.ModelForm):
 class ChoosePart(forms.ModelForm):
     part = forms.ModelChoiceField(label='Parts', queryset=Part.objects.all(), widget=forms.Select(attrs={'class':'input'}))
 
+    def __init__(self, user, *args, **kwargs):
+        super(ChoosePart, self).__init__(*args, **kwargs)
+        qs = Part.objects.filter(maintenance__vehicle__user=user)
+        self.fields['part'].queryset = qs
+
     class Meta:
         model = Part
         fields = ('part', )
@@ -154,3 +159,26 @@ class NewPost(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('user', 'content',)
+
+class DeleteVehicle(forms.Form):
+    vehicles = forms.ModelChoiceField(label='Vehicles', queryset=Vehicle.objects.all(), widget=forms.Select(attrs={'class':'input'}))
+
+    def __init__(self, user, *args, **kwargs):
+        super(DeleteVehicle, self).__init__(*args, **kwargs)
+        qs = Vehicle.objects.filter(user=user)
+        self.fields['vehicles'].queryset = qs
+
+    class Meta:
+        fields = ('vehicles', )
+
+class ChooseVehicle(forms.ModelForm):
+    vehicle = forms.ModelChoiceField(label='Available Vehicle', queryset=Vehicle.objects.all(), widget=forms.Select(attrs={'class':'input'}))
+
+    def __init__(self, user, *args, **kwargs):
+        super(ChooseVehicle, self).__init__(*args, **kwargs)
+        qs = Vehicle.objects.filter(user=user)
+        self.fields['vehicle'].queryset = qs
+
+    class Meta:
+        model = Vehicle
+        fields = ('vehicle', )

@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from vehicles.models import Vehicle
 from parts.models import Part, Part_History
 from maintenance.models import Maintenance, Maintenance_History
-from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory, NewUserForm, BootstrapAuthenticationForm
+from app.forms import NewMaintenance, ChooseMaintenance, NewMaintenanceHistory
 
 @login_required(login_url='/login')
 def maintenanceHome(request):
