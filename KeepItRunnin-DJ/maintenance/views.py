@@ -26,7 +26,6 @@ def maintenanceHome(request):
         }
     )
 
-
 @login_required(login_url='/login')
 def addMaint(request):
     if request.method == 'POST':
@@ -43,10 +42,6 @@ def addMaint(request):
                 record.materials = request.POST['materials']
                 record.comments = request.POST['comments']
                 record.save()
-
-                parts = request.POST['materials'].split(",")
-                #part = Part()
-                print(parts)
                 
             else:
                 form.save()
@@ -74,10 +69,9 @@ def addMaint(request):
         }
     )
 
-# Needs Updates
 @login_required(login_url='/login')
 def chooseMaint(request):
-    maintenance = Maintenance.objects.all()
+    maintenance = Maintenance.objects.filter(user = request.user)
     form = ChooseMaintenance()
     assert isinstance(request, HttpRequest)
     return render(
@@ -90,7 +84,6 @@ def chooseMaint(request):
         }
     )
 
-# Needs Updates
 @login_required(login_url='/login')
 def editMaint(request):
     pk = request.POST['maintenance']

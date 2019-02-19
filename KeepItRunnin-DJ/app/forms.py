@@ -35,18 +35,22 @@ class NewUserForm(forms.ModelForm):
 
 # Vehicle Class Forms
 class NewVehicle(forms.ModelForm):
-    user = forms.CharField(required=False, widget=forms.HiddenInput())
+    id = forms.IntegerField(required=False, widget=forms.HiddenInput())
+    #user = forms.CharField(required=False, widget=forms.HiddenInput())
     year = forms.CharField(label='Year*', max_length=4, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
     make = forms.CharField(label='Make', max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
     model = forms.CharField(label='Model', max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
     trim = forms.CharField(label='Trim', max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
-    mileage = forms.IntegerField(label='Current Mileage', widget=forms.NumberInput(attrs={'class' : 'input'}))
+    mileage = forms.IntegerField(label='Current Mileage', required=False, widget=forms.NumberInput(attrs={'class' : 'input'}))
     image = forms.ImageField(label='Photo Of Vehicle', required=False, widget=forms.ClearableFileInput(attrs={'class' : 'input'}))
-
+    
+#    def __init__(self, user, *args, **kwargs):
+#        super(NewVehicle, self).__init__(*args, **kwargs)
+#        self.fields['user'].queryset = user.id
+        
     class Meta:
         model = Vehicle
-        fields = ('user', 'year','make','model','trim','mileage','image', )
-        exclude = ["user"]
+        fields = ('year','make','model','trim','mileage','image', )
 
 # Maintenance Class Forms
 class NewMaintenance(forms.ModelForm):

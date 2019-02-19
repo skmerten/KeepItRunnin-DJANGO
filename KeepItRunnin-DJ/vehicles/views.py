@@ -10,11 +10,11 @@ from maintenance.models import Maintenance, Maintenance_History
 from parts.models import Part, Part_History
 from app.forms import ChooseVehicle, DeleteVehicle, NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory, NewUserForm, BootstrapAuthenticationForm
 
-
 @login_required(login_url='/login')
 def addVehicle(request):
     if request.method == 'POST':
         form = NewVehicle(request.POST, request.FILES)
+        
         if form.is_valid():
             id = request.POST['id']
             if id:
@@ -23,12 +23,13 @@ def addVehicle(request):
                 vehicle.make = request.POST['make']
                 vehicle.model = request.POST['model']
                 vehicle.trim = request.POST['trim']
-                vehicle.model = request.POST['model']
                 vehicle.mileage = request.POST['mileage']
                 vehicle.image = request.POST['image']
                 vehicle.save()
             else:
-                form.save()
+                vehicle = form.save(commit=False)
+                vehicle.user = request.user
+                vehicle.save()
 
             # render Home Page
             vehicles = Vehicle.objects.filter(user = request.user)
@@ -42,7 +43,19 @@ def addVehicle(request):
                     'vehicles': vehicles
                 }
             )
+        else:
+            assert isinstance(request, HttpRequest)
+            return render(
+                request,
+                'app/addVehicle.html',
+                {
+                    'title':'Add Vehicle',
+                    'year':datetime.now().year,
+                    'newVehicle':NewVehicle(user = request.user)
+                }
+            )
     else:
+        user = User.objects.get(id=request.user.id)
         assert isinstance(request, HttpRequest)
         return render(
             request,
@@ -50,7 +63,7 @@ def addVehicle(request):
             {
                 'title':'Add Vehicle',
                 'year':datetime.now().year,
-                'newVehicle':NewVehicle()
+                'newVehicle':NewVehicle(initial={'user':user})
             }
         )
 
@@ -114,8 +127,6 @@ def vehicleHome(request):
         }
     )
 
-
-
 # Needs Updates
 @login_required(login_url='/login')
 def checkIn(request):
@@ -146,41 +157,24 @@ def viewVehicle(request):
 
 # Needs Updates
 @login_required(login_url='/login')
-def vehicleUpdate(request):
-    vehicle = Vehicle.objects.get()
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/updateVehicle.html',
-        {
-            'title':'Add Vehicle',
-            'year':datetime.now().year,
-            'vehicle': vehicle
-        }
-    )
-
-
-# Needs Updates
-@login_required(login_url='/login')
 def editVehicle(request):
     pk = request.POST['vehicle']
-    vehicle = Vehicle.objects.filter(id = pk)
+    vehicle = Vehicle.objects.get(id = pk)
     form = NewVehicle(user = request.user, initial={
             'id': pk,
-            'user':vehicle.user,
+            'user': request.user,
             'year': vehicle.year,
             'make': vehicle.make,
-            'model': vehicle.model, 
+            'model': vehicle.model,
             'trim': vehicle.trim,
             'mileage':vehicle.mileage,
             'image':vehicle.image.url,
-
         })
 
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/addMaint.html',
+        'app/addVehicle.html',
         {
             'title':'Edit Vehicle',
             'year':datetime.now().year,

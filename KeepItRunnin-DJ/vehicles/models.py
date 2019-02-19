@@ -10,5 +10,6 @@ class Vehicle(models.Model):
     mileage = models.IntegerField(max_length=None)
     image = models.ImageField(blank=True, null=True)
     vehicle_creation = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return str(self.year) + ' - ' + self.make + ' - ' + self.model
