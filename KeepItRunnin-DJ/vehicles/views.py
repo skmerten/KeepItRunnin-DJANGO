@@ -24,11 +24,7 @@ def addVehicle(request):
                 vehicle.model = request.POST['model']
                 vehicle.trim = request.POST['trim']
                 vehicle.mileage = request.POST['mileage']
-                #vehicle.image.delete()
                 vehicle.image = request.FILES['image']
-                #= request.POST.get('image')
-                #if request.POST.get('image'):
-                #    vehicle.image = request.POST.get('image')
                 vehicle.save()
             else:
                 vehicle = form.save(commit=False)
