@@ -24,7 +24,11 @@ def addVehicle(request):
                 vehicle.model = request.POST['model']
                 vehicle.trim = request.POST['trim']
                 vehicle.mileage = request.POST['mileage']
-                vehicle.image = request.POST['image']
+                #vehicle.image.delete()
+                vehicle.image = request.FILES['image']
+                #= request.POST.get('image')
+                #if request.POST.get('image'):
+                #    vehicle.image = request.POST.get('image')
                 vehicle.save()
             else:
                 vehicle = form.save(commit=False)
@@ -51,7 +55,7 @@ def addVehicle(request):
                 {
                     'title':'Add Vehicle',
                     'year':datetime.now().year,
-                    'newVehicle':NewVehicle(user = request.user)
+                    'newVehicle':form
                 }
             )
     else:
@@ -160,15 +164,14 @@ def viewVehicle(request):
 def editVehicle(request):
     pk = request.POST['vehicle']
     vehicle = Vehicle.objects.get(id = pk)
-    form = NewVehicle(user = request.user, initial={
+    form = NewVehicle(initial={
             'id': pk,
-            'user': request.user,
             'year': vehicle.year,
             'make': vehicle.make,
             'model': vehicle.model,
             'trim': vehicle.trim,
             'mileage':vehicle.mileage,
-            'image':vehicle.image.url,
+            'image':vehicle.image,
         })
 
     assert isinstance(request, HttpRequest)

@@ -43,10 +43,6 @@ class NewVehicle(forms.ModelForm):
     trim = forms.CharField(label='Trim', max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
     mileage = forms.IntegerField(label='Current Mileage', required=False, widget=forms.NumberInput(attrs={'class' : 'input'}))
     image = forms.ImageField(label='Photo Of Vehicle', required=False, widget=forms.ClearableFileInput(attrs={'class' : 'input'}))
-    
-#    def __init__(self, user, *args, **kwargs):
-#        super(NewVehicle, self).__init__(*args, **kwargs)
-#        self.fields['user'].queryset = user.id
         
     class Meta:
         model = Vehicle
@@ -176,7 +172,7 @@ class DeleteVehicle(forms.Form):
         fields = ('vehicles', )
 
 class ChooseVehicle(forms.ModelForm):
-    vehicle = forms.ModelChoiceField(label='Available Vehicle', queryset=Vehicle.objects.all(), widget=forms.Select(attrs={'class':'input'}))
+    vehicle = forms.ModelChoiceField(label='Available Vehicles', queryset=Vehicle.objects.all(), widget=forms.Select(attrs={'class':'input'}))
 
     def __init__(self, user, *args, **kwargs):
         super(ChooseVehicle, self).__init__(*args, **kwargs)

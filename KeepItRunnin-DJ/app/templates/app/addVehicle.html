@@ -6,24 +6,14 @@
 	<form action ="{% url 'addVehicle' %}" enctype="multipart/form-data" method='post'>{% csrf_token %}
 		<h3>Vehicle Information</h3>
            {{ newVehicle.as_p }}
-		<div class="alert" id="warning">
-		  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-		  <strong>Notice:</strong> Due to TMobile spam security policies you may not receive text messages sent by this server.
-		</div>
-
 		<input value="Submit" class="button" type="Submit" />
 	</form><br>
 </div>
-
-<script>
-function tMobileErr(f){
-var warn = document.getElementById("warning");
-	if(f.carrier.value == "@tmomail.net"){
-		warn.style.display='block';
-	}else{
-		warn.style.display='none';
-	}
-}
-</script>
+{% if newVehicle.errors %}
+    <p><strong>Error:</strong>The following fields have an error. Please fix and submit again.</p>
+    {% for error in newVehicle.errors %}
+        <p> {{error}} </p>
+    {% endfor %}
+{% endif %}
 
 {% endblock %}
