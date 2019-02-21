@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from vehicles.models import Vehicle
 from parts.models import Part, Part_History
-from maintenance.models import Maintenance, Maintenance_History, ExamplePlans
+from maintenance.models import Maintenance, Maintenance_History
 from feed.models import Post
 
 
@@ -53,7 +53,6 @@ class NewVehicle(forms.ModelForm):
 class NewMaintenance(forms.ModelForm):
     id = forms.IntegerField(required=False, widget=forms.HiddenInput())
     vehicle = forms.ModelChoiceField(label='Your Vehicles', queryset=Vehicle.objects.all(), widget=forms.Select(attrs={'class':'input'}))
-    example = forms.ModelChoiceField(label='Templates', queryset=ExamplePlans.objects.all(), widget=forms.Select(attrs={'class':'input'}))
     #vehicle = forms.ModelChoiceField(label='Your Vehicles', widget=forms.Select(attrs={'class':'input'}))
     name = forms.CharField(label='Name*', required=True, max_length=100, widget=forms.TextInput(attrs={'class' : 'input'}))
     description = forms.CharField(label='Description*', required=False, max_length=100, widget=forms.TextInput(attrs={'class':'input'}))
