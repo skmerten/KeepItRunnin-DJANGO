@@ -52,6 +52,7 @@
     <Compile Include="KeepItRunnin_DJ\urls.py" />
     <Compile Include="maintenance\admin.py" />
     <Compile Include="maintenance\apps.py" />
+    <Compile Include="maintenance\forms.py" />
     <Compile Include="maintenance\migrations\__init__.py" />
     <Compile Include="maintenance\models.py" />
     <Compile Include="maintenance\tests.py" />

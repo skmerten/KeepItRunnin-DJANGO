@@ -9,6 +9,7 @@ from vehicles.models import Vehicle
 from parts.models import Part, Part_History
 from maintenance.models import Maintenance, Maintenance_History, ExamplePlans
 from app.forms import NewMaintenance, ChooseMaintenance, NewMaintenanceHistory
+from maintenance.forms import NewOilChange
 
 @login_required(login_url='/login')
 def maintenanceHome(request):
@@ -66,7 +67,6 @@ def addMaint(request):
             'title':'Add Maintenance',
             'year':datetime.now().year,
             'newMaintenance': NewMaintenance(user = request.user),
-            'examples': ExamplePlans.objects.all(),
         }
     )
 

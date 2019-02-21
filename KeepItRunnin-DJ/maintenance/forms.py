@@ -73,16 +73,16 @@ class NewOilChange(forms.ModelForm):
     oilType = forms.CharField(label='Oil Type', required=False, max_length=200, widget=forms.TextInput(attrs={'class':'input'}))
     oilBrand = forms.CharField(label='Oil Brand', required=False, max_length=200, widget=forms.TextInput(attrs={'class':'input'}))
     oilUnit = forms.CharField(label='Oil Unit', required=False, max_length=100, widget=forms.TextInput(attrs={'class' : 'input'}))
-    oilQuantity = forms.IntegerField(label='Quantity of Oil', widget=forms.NumberInput(attrs={'class':'input'}))
+    oilQuantity = forms.DecimalField(label='Quantity of Oil', max_digits = 5, decimal_places=2, widget=forms.NumberInput(attrs={'class':'input'}))
     filterSize = forms.CharField(label='Oil Filter Size', required=False, max_length=100, widget=forms.TextInput(attrs={'class':'input'}))
     filterBrand = forms.IntegerField(label='Oil Filter Brand', widget=forms.NumberInput(attrs={'class':'input'}))
     drnBltSize = forms.IntegerField(label='Drain Bolt Socket Size', widget=forms.NumberInput(attrs={'class':'input'}))
     drnBltWasherType = forms.CharField(label='Drain Bolt Washer Type', required=False, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
     drnBltWasherSize = forms.CharField(label='Drain Bolt Washer Size', required=False, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
-    gloves = forms.BooleanField(label='Do you wear gloves?', required=False, max_length=255, widget=forms.CheckboxInput(attrs={'class':'input'}))
+    gloves = forms.BooleanField(label='Do you wear gloves?', required=False, widget=forms.CheckboxInput(attrs={'class':'input'}))
 
     def __init__(self, user, *args, **kwargs):
-        super(NewMaintenance, self).__init__(*args, **kwargs)
+        super(NewOilChange, self).__init__(*args, **kwargs)
         qs = Vehicle.objects.filter(user=user)
         self.fields['vehicle'].queryset = qs
 

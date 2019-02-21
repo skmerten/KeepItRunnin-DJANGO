@@ -4,7 +4,7 @@ from vehicles.models import Vehicle
 
 class Maintenance(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
-    type = models.CharField(max_length=200,null=False)
+    name = models.CharField(max_length=200,null=False)
     description = models.CharField(max_length=100,null=True)
     months = models.IntegerField(max_length=None)
     miles = models.IntegerField(max_length=None)
@@ -39,14 +39,13 @@ class OilChange(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     oilType = models.CharField(max_length=200,null=False)
     oilBrand = models.CharField(max_length=200,null=False)
-    oilQuantity = models.DecimalField(null=False)
+    oilQuantity = models.DecimalField(max_digits = 5, decimal_places=2, null=False)
     oilUnit = models.CharField(max_length=200,null=False)
     filterSize = models.CharField(max_length=200,null=False)
     filterBrand = models.CharField(max_length=200,null=False)
     drnBltSize = models.CharField(max_length=200,null=False)
     drnBltWasherType = models.CharField(max_length=200,null=False)
-    drnBltWasherSize = models.DecimalField(null=False)
-    gloves = models.BooleanField(UnboundLocalError=False)
-
+    drnBltWasherSize = models.CharField(max_length=200,null=False)
+    gloves = models.BooleanField(null=False)
     def __str__(self):
         return self.vehicle + ' Oil Change'
