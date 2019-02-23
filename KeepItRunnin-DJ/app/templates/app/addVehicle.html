@@ -1,9 +1,18 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-
+<!--
+<style>
+    input{
+        float:right;
+    }
+    text {
+        text-align:right;
+    }
+</style>
+-->
 <div style="border-radius: 5px; background-color: #f2f2f2; padding: 20px;">
-	<form action ="{% url 'addVehicle' %}" enctype="multipart/form-data" method='post'>{% csrf_token %}
+	<form style="width: 500px; padding: 20px; align-self:auto"action ="{% url 'addVehicle' %}" enctype="multipart/form-data" method='post'>{% csrf_token %}
 		<h3>Vehicle Information</h3>
            {{ newVehicle.as_p }}
 		<input value="Submit" class="button" type="Submit" />
