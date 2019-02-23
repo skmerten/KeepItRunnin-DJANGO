@@ -89,7 +89,7 @@ table {
     <div class="column">
         <div class="w3-card w3-margin w3-margin-top">
             {% if vehicle.image %}
-                <img src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%">
+                <a href="#"><img src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%"></button></a>
             {% endif %}
             <div class="w3-container w3-white">
                 <h4><b>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</b></h4>
