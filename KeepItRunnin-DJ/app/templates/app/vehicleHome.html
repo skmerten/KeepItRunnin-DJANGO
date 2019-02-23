@@ -16,45 +16,90 @@
     border-radius: 4px;
     width: 100%;
 }
+
+table {
+    border:none;
+}
+
+.column {
+  float: left;
+  width: 33%;
+  padding: 0 10px;
+}
+
+.row {margin: 0 -5px;}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  float: right;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
 </style>
-<div class="w3-col l9">
+<div class="dropdown">
+    <button class="button">Options</button>
+    <div class="dropdown-content">
+        <a href='{% url 'addVehicle' %}'><button class="button" type='button'>Add Vehicle </button></a>
+        <a href='{% url 'viewMaint' %}'><button disabled="true" class="button" type='button'>View Vehicles</button></a>
+        <a href='{% url 'chooseVehicle' %}'><button class="button" type='button'>Update Vehicle</button></a>
+        <a href='{% url 'deleteVehicle' %}'><button class="button" type='button'>Delete Vehicle</button></a>
+    </div>
+</div>
+
 {% if vehicles %}
+<div class="row" style="clear:right;">
     {% for vehicle in vehicles %}
-        <div class="w3-container" >
-            <div class="w3-card w3-margin w3-margin-top">
-                {% if vehicle.image %}
-                    <img src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%">
-                {% endif %}
-                <div class="w3-container w3-white">
-                    <h4><b>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</b></h4>
-                    <p>Mileage: {{vehicle.mileage}}</p>
-                    <p>Date Added: {{vehicle.vehicle_creation}}</p>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-{% else %}
-    <div class="w3-container" >
+    <div class="column">
         <div class="w3-card w3-margin w3-margin-top">
-            <!--<img src="/static/app/imgs/NA-Miata.jpg" style="max-height:100%; max-width:100%">-->
+            {% if vehicle.image %}
+                <img src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%">
+            {% endif %}
             <div class="w3-container w3-white">
-                <h4><b>No Vehicles Yet</b></h4>
-                <p>Add A Vehicle In The Options Menu To See It Pop Up Here</p>
+                <h4><b>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</b></h4>
+                <p>Mileage: {{vehicle.mileage}}</p>
+                <p>Date Added: {{vehicle.vehicle_creation}}</p>
             </div>
         </div>
     </div>
-{% endif %}
-</div><hr>
-<div class="w3-col l3">
-    <div class="w3-card w3-margin w3-margin-top">
-        <div class="w3-container w3-white">
-            <h4><b>Options</b></h4>
-            <a href='{% url 'addVehicle' %}'><button class="button" type='button'>Add Vehicle </button></a>
-            <a href='{% url 'viewMaint' %}'><button disabled="true" class="button" type='button'>View Vehicles</button></a>
-            <a href='{% url 'chooseVehicle' %}'><button class="button" type='button'>Update Vehicle</button></a>
-            <a href='{% url 'deleteVehicle' %}'><button class="button" type='button'>Delete Vehicle</button></a>
-        </div>
-    </div><hr>
+    {% endfor %}
 </div>
+{% endif %}
 
 {% endblock %}
