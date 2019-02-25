@@ -5,7 +5,7 @@
 <div style="border-radius: 5px; background-color: #f2f2f2; padding: 20px;">
 	<form action ="{% url 'editVehicle' %}" id="editMaintenance" method = 'post'>{% csrf_token %}
         {{vehicle.as_p}}
-		<input class="button" value="Submit" type="Submit" />
+		<input class="btn btn-primary" value="Submit" type="Submit" />
 	</form><br>
 </div>
 

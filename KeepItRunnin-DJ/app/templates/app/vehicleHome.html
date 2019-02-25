@@ -2,92 +2,30 @@
 
 {% block content %}
 <style>
-.button {
-    background-color: #6671de;
-    border: none;
-    color: white;
-    padding: 8px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-    width: 100%;
-}
-
-table {
-    border:none;
-}
-
-.column {
-  float: left;
-  width: 33%;
-  padding: 0 10px;
-}
-
-.row {margin: 0 -5px;}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 16px;
-  text-align: center;
-  background-color: #f1f1f1;
-}
-
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
-  }
-}
-
 
 .dropdown {
   position: relative;
   display: inline-block;
   float: right;
 }
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
-  z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-
 </style>
 <div class="dropdown">
-    <button class="button">Options</button>
-    <div class="dropdown-content">
-        <a href='{% url 'addVehicle' %}'><button class="button" type='button'>Add Vehicle </button></a>
-        <a href='{% url 'viewMaint' %}'><button disabled="true" class="button" type='button'>View Vehicles</button></a>
-        <a href='{% url 'chooseVehicle' %}'><button class="button" type='button'>Update Vehicle</button></a>
-        <a href='{% url 'deleteVehicle' %}'><button class="button" type='button'>Delete Vehicle</button></a>
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        Options
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href='{% url 'addVehicle' %}'>Add Vehicle</a>
+        <a class="dropdown-item" href='{% url 'viewMaint' %}'>View Vehicles</a>
+        <a class="dropdown-item" href='{% url 'chooseVehicle' %}'>Update Vehicle</a>
+        <a class="dropdown-item" href='{% url 'deleteVehicle' %}'>Delete Vehicle</a>
     </div>
 </div>
 
 {% if vehicles %}
 <div class="row" style="clear:right;">
     {% for vehicle in vehicles %}
-    <div class="column">
-        <div class="w3-card w3-margin w3-margin-top">
+    <div class="col-lg-4">
+        <div class="card">
             {% if vehicle.image %}
                 <a href="#"><img src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%"></button></a>
             {% endif %}
@@ -101,5 +39,4 @@ table {
     {% endfor %}
 </div>
 {% endif %}
-
 {% endblock %}

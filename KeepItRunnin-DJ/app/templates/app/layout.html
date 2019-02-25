@@ -7,32 +7,36 @@
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'app/content/w3.css' %}" />
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'app/content/w3.css' %}" />-->
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/forms.css' %}" />
     <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="{% url 'home' %}" class="navbar-brand">Home</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'vehicleHome' %}">Vehicle</a></li>
-                    <li><a href="{% url 'maintenanceHome' %}">Maintenance</a></li>
-                    <li><a href="{% url 'partHome' %}">Parts</a></li>
-                    <li><a href="{% url 'checkIn' %}">Check In</a></li>
-                </ul>
-                {% include 'app/loginpartial.html' %}
-            </div>
+    <nav class="navbar navbar-expand-sm fixed-top bg-dark navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">KeepItRunnin'</a>
+            </li>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'vehicleHome' %}">Vehicle</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'maintenanceHome' %}">Maintenance</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'partHome' %}">Parts</a>
+            </li>
+            {% include 'app/loginpartial.html' %}
+        </ul>
         </div>
-    </div>
+    </nav>
     <h2 class="h1" style="text-align:left;margin-left: 20px">{{ title }}<span style="float:right;font-size:20px; margin-right: 20px"></span></h2>
     <div class="container body-content">
 {% block content %}{% endblock %}

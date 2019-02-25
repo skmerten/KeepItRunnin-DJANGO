@@ -5,13 +5,12 @@
 <div style="border-radius: 5px; background-color: #f2f2f2; padding: 20px;">
 	<form action ="{% url 'deleteVehicle' %}" id="deleteVehicle" method = 'post'>{% csrf_token %}
         {{vehicles}} 
-		<input class="button" value="Submit" type="Submit" />
+		<input class="btn btn-primary" value="Submit" type="Submit" />
 	</form><br>
 </div>
 
-<div class="w3-panel w3-red">
-    <h3>Warning!</h3>
-    <p>Deleting a vehicle will delete all associated maintenance and part records. This cannot be undone!</p>
+<div class="alert alert-danger">
+    <strong>Warning!</strong><p> Deleting a vehicle will delete all associated maintenance and part records. This cannot be undone!</p>
 </div>
 
 {% endblock %}

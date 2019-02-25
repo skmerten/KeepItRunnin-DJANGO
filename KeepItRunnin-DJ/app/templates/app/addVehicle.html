@@ -15,7 +15,7 @@
 	<form style="width: 500px; padding: 20px; align-self:auto"action ="{% url 'addVehicle' %}" enctype="multipart/form-data" method='post'>{% csrf_token %}
 		<h3>Vehicle Information</h3>
            {{ newVehicle.as_p }}
-		<input value="Submit" class="button" type="Submit" />
+		<input value="Submit" class="btn btn-primary" type="Submit" />
 	</form><br>
 </div>
 {% if newVehicle.errors %}

@@ -125,8 +125,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\migrations\__pycache__\__init__.cpython-36.pyc" />
+    <Content Include="app\static\app\content\bootstrap-grid.css" />
+    <Content Include="app\static\app\content\bootstrap-grid.css.map" />
+    <Content Include="app\static\app\content\bootstrap-grid.min.css" />
+    <Content Include="app\static\app\content\bootstrap-grid.min.css.map" />
+    <Content Include="app\static\app\content\bootstrap-reboot.css" />
+    <Content Include="app\static\app\content\bootstrap-reboot.css.map" />
+    <Content Include="app\static\app\content\bootstrap-reboot.min.css" />
+    <Content Include="app\static\app\content\bootstrap-reboot.min.css.map" />
+    <Content Include="app\static\app\content\bootstrap.css.map" />
+    <Content Include="app\static\app\content\bootstrap.min.css.map" />
     <Content Include="app\static\app\content\forms.css" />
     <Content Include="app\static\app\content\w3.css" />
+    <Content Include="app\static\app\scripts\bootstrap.bundle.js" />
+    <Content Include="app\static\app\scripts\bootstrap.bundle.js.map" />
+    <Content Include="app\static\app\scripts\bootstrap.bundle.min.js" />
+    <Content Include="app\static\app\scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="app\static\app\scripts\bootstrap.js.map" />
+    <Content Include="app\static\app\scripts\bootstrap.min.js.map" />
     <Content Include="app\templates\app\about.html" />
     <Content Include="app\templates\app\addMaint.html" />
     <Content Include="app\templates\app\addPart.html" />
