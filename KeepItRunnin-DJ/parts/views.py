@@ -51,7 +51,7 @@ def addPart(request):
                 request,
                 'app/home.html',
                 {
-                    'title':'Home Page',
+                    'title':'KeepItRunnin''',
                     'year':datetime.now().year,
                     'parts':parts,
                     'maint':maintenance
@@ -91,7 +91,7 @@ def viewPartHist(request):
         request,
         'app/viewMaintHist.html',
         {
-            'title':'Add Vehicle',
+            'title':'Part Purchase History''',
             'year':datetime.now().year,
             'maintenanceHistory': Maintenance_History.objects.all()
         }
@@ -114,7 +114,7 @@ def logPart(request):
                 request,
                 'app/viewPartHist.html',
                 {
-                    'title':'Part History',
+                    'title':'Part Purchase History',
                     'year':datetime.now().year,
                     'part':part_hist
                 }
@@ -125,7 +125,7 @@ def logPart(request):
         request,
         'app/logPart.html',
         {
-            'title':'Add Part',
+            'title':'Purchased Part',
             'year':datetime.now().year,
             'form': PartHistory(user = request.user)
         }
@@ -141,7 +141,7 @@ def choosePart(request):
         request,
         'app/chooseMaint.html',
         {
-            'title':'Choose Maintenance',
+            'title':'Select Part',
             'year':datetime.now().year,
             'selectMaint': form
         }
@@ -167,7 +167,7 @@ def editPart(request):
         request,
         'app/addMaint.html',
         {
-            'title':'Edit Maintenance',
+            'title':'Edit Part',
             'year':datetime.now().year,
             'newMaintenance': form
         }
@@ -181,7 +181,7 @@ def viewPartHist(request):
         request,
         'app/viewPartHist.html',
         {
-            'title':'Part History',
+            'title':'Part Purchase History',
             'year':datetime.now().year,
             'part':part_hist
         }

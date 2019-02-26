@@ -23,11 +23,8 @@ def newHome(request):
             request,
             'app/home.html',
             {
-                'title':'Home Page',
+                'title':'KeepItRunnin''',
                 'year':datetime.now().year,
-                'parts':parts,
-                'maintenance':maintenance,
-                'vehicles':vehicles
             }
         )
     else:
@@ -36,7 +33,7 @@ def newHome(request):
             request,
             'app/overview_home.html',
             {
-                'title':'Home Page',
+                'title':'KeepItRunnin''',
                 'year':datetime.now().year
             }
         )
@@ -49,8 +46,6 @@ def addUser(request):
             form.save()
 
             # render Home Page
-            parts = Part.objects.all()
-            maintenance = Maintenance_History.objects.all()
             assert isinstance(request, HttpRequest)
             return render(
                 request,
@@ -58,8 +53,6 @@ def addUser(request):
                 {
                     'title':'Home Page',
                     'year':datetime.now().year,
-                    'parts':parts,
-                    'maint':maintenance
                 }
             )
     else:
@@ -87,11 +80,8 @@ def home(request):
         request,
         'app/home.html',
         {
-            'title':'Home Page',
+            'title':'KeepItRunnin''',
             'year':datetime.now().year,
-            'parts':parts,
-            'maintenance':maintenance,
-            'vehicles':vehicles,
         }
     )
 

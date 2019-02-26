@@ -1,23 +1,15 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-<style>
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-  float: right;
-}
-</style>
 <div class="dropdown">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
         Options
     </button>
     <div class="dropdown-menu">
-        <a class="dropdown-item" href='{% url 'addVehicle' %}'>Add Vehicle</a>
-        <a class="dropdown-item" href='{% url 'viewMaint' %}'>View Vehicles</a>
-        <a class="dropdown-item" href='{% url 'chooseVehicle' %}'>Update Vehicle</a>
-        <a class="dropdown-item" href='{% url 'deleteVehicle' %}'>Delete Vehicle</a>
+        <a class="dropdown-item" href="{% url 'addVehicle' %}">Add Vehicle</a>
+        <a class="dropdown-item" href="{% url 'editVehicle' %}">Update Vehicle</a>
+        <a class="dropdown-item" href="{% url 'deleteVehicle' %}">Delete Vehicle</a>
     </div>
 </div>
 

@@ -108,7 +108,7 @@ def vehicleProfile(request):
         request,
         'app/vehicleProfile.html',
         {
-            'title':'Choose Vehicle',
+            'title':'Select Vehicle',
             'year':datetime.now().year,
         }
     )
@@ -150,7 +150,7 @@ def viewVehicle(request):
         request,
         'app/viewVehicle.html',
         {
-            'title':'Add Vehicle',
+            'title':'View Vehicles',
             'year':datetime.now().year,
             'vehicle': vehicle
         }
@@ -190,7 +190,7 @@ def chooseVehicle(request):
         request,
         'app/chooseVehicle.html',
         {
-            'title':'Choose Vehicle',
+            'title':'Select Vehicle',
             'year':datetime.now().year,
             'vehicle': ChooseVehicle(user = request.user)
         }

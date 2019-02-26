@@ -64,7 +64,7 @@ def addMaint(request):
         request,
         'app/addMaint.html',
         {
-            'title':'Add Maintenance',
+            'title':'Add Maintenance Plan',
             'year':datetime.now().year,
             'newMaintenance': NewMaintenance(user = request.user),
         }
@@ -79,7 +79,7 @@ def chooseMaint(request):
         request,
         'app/chooseMaint.html',
         {
-            'title':'Choose Maintenance',
+            'title':'Select Maintenance',
             'year':datetime.now().year,
             'selectMaint': form
         }
@@ -142,7 +142,7 @@ def logMaint(request):
         request,
         'app/logMaint.html',
         {
-            'title':'Add Vehicle',
+            'title':'Log Maintenance',
             'year':datetime.now().year,
             'form':NewMaintenanceHistory(user=request.user, initial={'completed': 0})
         }
@@ -156,7 +156,7 @@ def viewMaint(request):
         request,
         'app/viewMaint.html',
         {
-            'title':'Add Vehicle',
+            'title':'Maintenance',
             'year':datetime.now().year,
             'maintenance': maintenance
         }
@@ -170,7 +170,7 @@ def viewMaintHist(request):
         request,
         'app/viewMaintHist.html',
         {
-            'title':'Add Vehicle',
+            'title':'Maintenance History',
             'year':datetime.now().year,
             'maintenanceHistory': Maintenance_History.objects.filter(maintenance__vehicle__user=request.user)
         }
