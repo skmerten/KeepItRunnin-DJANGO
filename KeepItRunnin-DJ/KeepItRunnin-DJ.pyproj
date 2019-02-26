@@ -143,6 +143,7 @@
     <Content Include="app\static\app\scripts\bootstrap.bundle.min.js.map" />
     <Content Include="app\static\app\scripts\bootstrap.js.map" />
     <Content Include="app\static\app\scripts\bootstrap.min.js.map" />
+    <Content Include="app\static\app\scripts\popper.min.js" />
     <Content Include="app\templates\app\about.html" />
     <Content Include="app\templates\app\addMaint.html" />
     <Content Include="app\templates\app\addPart.html" />

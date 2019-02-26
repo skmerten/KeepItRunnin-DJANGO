@@ -2,17 +2,6 @@
 
 {% block content %}
 
-<div class="dropdown">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-        Options
-    </button>
-    <div class="dropdown-menu">
-        <a class="dropdown-item" href="{% url 'addVehicle' %}">Add Vehicle</a>
-        <a class="dropdown-item" href="{% url 'editVehicle' %}">Update Vehicle</a>
-        <a class="dropdown-item" href="{% url 'deleteVehicle' %}">Delete Vehicle</a>
-    </div>
-</div>
-
 {% if vehicles %}
 <div class="row" style="clear:right;">
     {% for vehicle in vehicles %}
