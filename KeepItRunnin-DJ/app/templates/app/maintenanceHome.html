@@ -32,7 +32,7 @@
                     <p>Comments: {{maint.comments}}</p>
                 </div>
             </div>
-        </div>
+        </div><hr/>
     {% endfor %}
 {% else %}
     <div class="w3-container" >
@@ -45,26 +45,7 @@
         </div>
     </div>
 {% endif %}
-</div><hr>
-<div class="w3-col l3">
-    <div class="w3-card w3-margin w3-margin-top">
-        <div class="w3-container w3-white">
-            <h4><b>Options</b></h4>
-            <!--<a href='{% url 'addMaint' %}'><button class="btn btn-primary" type='button'>Add Maintenance Plan</button></a>-->
-            <div class="w3-dropdown-hover">
-                <button class="btn btn-primary" type='button' >Add Maintenance Plan</button>
-                <div class="w3-dropdown-content w3-bar-block w3-border">
-                    <a href='{% url 'addMaint' %}' class="w3-bar-item w3-button">Oil Change</a>
-                    <a href='{% url 'addMaint' %}' class="w3-bar-item w3-button">Custom Plan</a>
-                </div>
-            </div>
-            <a href='{% url 'viewMaint' %}'><button class="btn btn-primary" type='button'>View Maintenance Plan</button></a>
-            <a href='{% url 'logMaint' %}'><button class="btn btn-primary" type='button'>Log Maintenance</button></a>
-            <a href='{% url 'viewMaintHist' %}'><button class="btn btn-primary" type='button'>Maintenance History</button></a>
-            <a href='{% url 'chooseMaint' %}'><button class="btn btn-primary" type='button'>Edit Maintenance Plan</button></a>
-        </div>
-    </div><hr>
-</div>
+
 
 {% endblock %}
 

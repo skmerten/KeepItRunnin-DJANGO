@@ -45,7 +45,7 @@
     </nav>
        <br/>
     <h2 class="h1" style="text-align:left;margin-left: 20px; font-family: Arial, Helvetica, sans-serif;">{{ title }}</h2>
-    {% if request.get_full_path == "/vehicle/" %}
+    {% if request.path == "/vehicle/" %}
     <div class="dropdown">
          <button type="button" style="margin-left:20px;"class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
             Options
@@ -54,6 +54,34 @@
             <a class="dropdown-item" href="{% url 'addVehicle' %}">Add Vehicle</a>
             <a class="dropdown-item" href="{% url 'editVehicle' %}">Update Vehicle</a>
             <a class="dropdown-item" href="{% url 'deleteVehicle' %}">Delete Vehicle</a>
+        </div>
+    </div>
+    {% endif %}
+    {% if request.path == "/maintenance/" %}
+    <div class="dropdown">
+         <button type="button" style="margin-left:20px;"class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            Options
+        </button>
+        <div class="dropdown-menu" aria-labelledby="optionsDrop">
+            <a class="dropdown-item" href="{% url 'addMaint' %}">Add Maintenance Plan</a>
+            <a class="dropdown-item" href="{% url 'viewMaint' %}">View Maintenance</a>
+            <a class="dropdown-item" href="{% url 'logMaint' %}">Log Maintenance</a>
+            <a class="dropdown-item" href="{% url 'viewMaintHist' %}">View Maintenance History</a>
+            <a class="dropdown-item" href="{% url 'chooseMaint' %}">Edit Maintenance Plan</a>
+        </div>
+    </div>
+    {% endif %}
+    {% if request.path == "/parts/" %}
+    <div class="dropdown">
+         <button type="button" style="margin-left:20px;"class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            Options
+        </button>
+        <div class="dropdown-menu" aria-labelledby="optionsDrop">
+            <a class="dropdown-item" href="{% url 'addPart' %}">Need New Part</a>
+            <a class="dropdown-item" href="{% url 'viewPart' %}">View Needed Parts</a>
+            <a class="dropdown-item" href="{% url 'logPart' %}">Log Part Purchase</a>
+            <a class="dropdown-item" href="{% url 'viewPartHist' %}">View Past Purchases</a>
+            <a class="dropdown-item" href="{% url 'editPart' %}">Edit Parts Needed</a>
         </div>
     </div>
     {% endif %}

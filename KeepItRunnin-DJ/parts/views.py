@@ -19,7 +19,8 @@ def partHome(request):
         'app/partsHome.html',
         {
             'title':'Parts',
-            'year':datetime.now().year
+            'year':datetime.now().year,
+            'parts': Part.objects.filter(maintenance__vehicle__user = request.user)
         }
     )
 
