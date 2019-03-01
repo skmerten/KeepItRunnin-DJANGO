@@ -9,24 +9,4 @@
 	</form><br>
 </div>
 
-
-<!--
-<script>
-	function nextDueDate(f) {
-	var newDate = new Date(f.compDate.value);
-	var monthNum = f.months.value;
-	newDate.setMonth(newDate.getMonth()+parseInt(monthNum));
-	var month = newDate.getMonth();
-	var year = newDate.getFullYear();
-	var day = newDate.getDate();
-	f.nextDue.value = month + '/' + day + '/' + year;
-	}
-
-	function nextDueMile(f) {
-	var currentMile = f.currentMile.value;
-	var mileInterval = f.miles.value;
-	f.nextMile.value = parseInt(currentMile) + parseInt(mileInterval);
-	}
-</script>
-    -->
 {% endblock %}

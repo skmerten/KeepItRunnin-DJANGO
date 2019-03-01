@@ -42,12 +42,13 @@ class NewVehicle(forms.ModelForm):
     make = forms.CharField(label='Make', max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
     model = forms.CharField(label='Model', max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
     trim = forms.CharField(label='Trim', max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
+    color = forms.CharField(label='Color', max_length=100, required=False, widget=forms.TextInput(attrs={'class':'input'}))
     mileage = forms.IntegerField(label='Current Mileage', required=False, widget=forms.NumberInput(attrs={'class' : 'input'}))
     image = forms.ImageField(label='Photo Of Vehicle', required=False, widget=forms.ClearableFileInput(attrs={'class' : 'input'}))
         
     class Meta:
         model = Vehicle
-        fields = ('year','make','model','trim','mileage','image', )
+        fields = ('year','make','model','trim', 'color','mileage','image', )
 
 # Maintenance Class Forms
 class NewMaintenance(forms.ModelForm):
@@ -83,9 +84,9 @@ class DateInput(forms.DateInput):
 class NewMaintenanceHistory(forms.ModelForm):
 
     maintenance = forms.ModelChoiceField(label='Maintenance Plans', queryset=Maintenance.objects.all(), widget=forms.Select(attrs={'class':'input'}))
-    date_completed = forms.DateField(label='Date Completed', widget=forms.DateInput(attrs={'class':'input'}))
+    date_completed = forms.DateField(label='Date Completed', widget=forms.DateInput(attrs={'class':'input', 'type':'datetime-local'}))
     current_mileage = forms.IntegerField(label='Current Mileage', widget=forms.NumberInput(attrs={'class':'input'}))
-    next_due_date = forms.DateField(label='Next Due Date', widget=forms.DateInput(attrs={'class':'input'}))
+    next_due_date = forms.DateField(label='Next Due Date', widget=forms.DateInput(attrs={'class':'input', 'type':'datetime-local'}))
     next_due_mile = forms.IntegerField(label='Next Due Mileage', widget=forms.NumberInput(attrs={'class':'input'}))
     comments = forms.CharField(label='Comments*', required=True, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
     completed = forms.IntegerField(required=False, widget=forms.HiddenInput())

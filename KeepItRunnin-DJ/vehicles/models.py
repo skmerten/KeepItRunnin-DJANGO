@@ -7,6 +7,7 @@ class Vehicle(models.Model):
     make = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
     trim = models.CharField(max_length=100)
+    color = models.CharField(max_length=100)
     mileage = models.IntegerField(max_length=None)
     image = models.ImageField(blank=True, null=True)
     vehicle_creation = models.DateTimeField(auto_now_add=True)
