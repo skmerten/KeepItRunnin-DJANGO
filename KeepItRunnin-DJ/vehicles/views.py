@@ -64,7 +64,7 @@ def addVehicle(request):
             {
                 'title':'Add Vehicle',
                 'year':datetime.now().year,
-                'newVehicle':NewVehicle(initial={'user':user})
+                'form':NewVehicle(initial={'user':user})
             }
         )
 

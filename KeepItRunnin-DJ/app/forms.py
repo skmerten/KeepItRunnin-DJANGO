@@ -36,19 +36,33 @@ class NewUserForm(forms.ModelForm):
 
 # Vehicle Class Forms
 class NewVehicle(forms.ModelForm):
+
+    # General
     id = forms.IntegerField(required=False, widget=forms.HiddenInput())
     #user = forms.CharField(required=False, widget=forms.HiddenInput())
-    year = forms.CharField(label='Year*', max_length=4, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
-    make = forms.CharField(label='Make', max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
-    model = forms.CharField(label='Model', max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
-    trim = forms.CharField(label='Trim', max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
-    color = forms.CharField(label='Color', max_length=100, required=False, widget=forms.TextInput(attrs={'class':'input'}))
-    mileage = forms.IntegerField(label='Current Mileage', required=False, widget=forms.NumberInput(attrs={'class' : 'input'}))
-    image = forms.ImageField(label='Photo Of Vehicle', required=False, widget=forms.ClearableFileInput(attrs={'class' : 'input'}))
-        
+    name = forms.CharField(label='Nickname', help_text='A Name for your vehicle', max_length=255, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
+
+    # Vehicle General
+    year = forms.CharField(label='Year*', help_text='Just some basic info for you. (EX: 2014)', max_length=4, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
+    make = forms.CharField(label='Make', help_text='Just some basic info for you. (EX: Honda)',max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
+    model = forms.CharField(label='Model', help_text='Just some basic info for you. (EX: CR-V)',max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
+    trim = forms.CharField(label='Trim', help_text='Just some basic info for you. (EX: EX)',max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
+    color = forms.CharField(label='Color', help_text='Just some basic info for you. (EX: Black)',max_length=100, required=False, widget=forms.TextInput(attrs={'class':'input'}))
+    image = forms.ImageField(label='Photo Of Vehicle', help_text='Pop in a pretty picture of your car.',required=False, widget=forms.ClearableFileInput(attrs={'class' : 'input'}))
+
+    # Vehicle Details
+    mileage = forms.IntegerField(label='Current Mileage', help_text='We will automatically update this when you log maintenance.', required=False, widget=forms.NumberInput(attrs={'class' : 'input'}))
+    tankSize = forms.DecimalField(label='Gas Tank Size', help_text='This will be used later to predict fuel cost.', required = False, widget=forms.NumberInput(attrs={'class' : 'input'}))
+    transmission = forms.ChoiceField(label='Transmission Type', help_text='Third pedal of POWER or PRNDL?', choices=[('Automatic', 'Automatic'), ('Manual', 'Manual')], required=False, widget=forms.RadioSelect)
+    driveWheels = forms.ChoiceField(label='Drivetrain', help_text='This will be important for some maintenance tasks.', choices=[('FWD', 'Front Wheel Drive'), ('RWD', 'Rear Wheel Drive'), ('AWD', 'All Wheel Drive'), ('4WD', '4 Wheel Drive')], required=False, widget=forms.RadioSelect)
+
+    # Vehicle Stats
+    mpg = forms.DecimalField(label='Estimated MPG', help_text='We will help make this number more acurate as you drive', required = False, widget=forms.NumberInput(attrs={'class' : 'input'}))
+    status = forms.ChoiceField(label='Status', help_text='Will your car make it out of the driveway?', choices=[('Active', 'Driveable Condition'), ('Inactive', 'Non-driveable')], required=False, widget=forms.RadioSelect)
+
     class Meta:
         model = Vehicle
-        fields = ('year','make','model','trim', 'color','mileage','image', )
+        fields = ('name', 'year', 'make', 'model', 'trim', 'color', 'mileage', 'tankSize', 'mpg', 'transmission', 'driveWheels', 'status', 'image', )
 
 # Maintenance Class Forms
 class NewMaintenance(forms.ModelForm):

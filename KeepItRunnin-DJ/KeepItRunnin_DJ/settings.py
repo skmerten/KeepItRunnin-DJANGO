@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'parts',
     'vehicles',
     'crispy_forms',
+    'widget_tweaks',
     # Add your apps here to enable them
     'django.contrib.admin',
     'django.contrib.auth',

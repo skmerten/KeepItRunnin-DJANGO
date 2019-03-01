@@ -8,12 +8,20 @@
     <div class="col-lg-4">
         <div class="card">
             {% if vehicle.image %}
-                <a href="#"><img src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%"></button></a>
+                <a href="#"><img src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%"></a>
             {% endif %}
             <div class="w3-container w3-white">
-                <h4><b>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</b></h4>
-                <p>Mileage: {{vehicle.mileage}}</p>
-                <p>Date Added: {{vehicle.vehicle_creation}}</p>
+                {% if vehicle.name %}
+                    <h4><b>{{vehicle.name}}</b></h4>
+                {% endif %}
+                <h5><b>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</b></h5>
+                Mileage: {{vehicle.mileage}} <br />
+                Date Added: {{vehicle.vehicle_creation}}<br />
+                {% if vehicle.status == 'Active' %}
+                Ready to drive!
+                {% elif vehicles.status == 'Inactive' %}
+                Needs some work first.
+                {% endif %}
             </div>
         </div>
     </div>

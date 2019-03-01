@@ -1,20 +1,23 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-<!--
-<style>
-    input{
-        float:right;
-    }
-    text {
-        text-align:right;
-    }
-</style>
--->
+{% load widget_tweaks %}
 <div style="border-radius: 5px; background-color: #f2f2f2; padding: 20px;">
 	<form style="width: 500px; padding: 20px; align-self:auto"action ="{% url 'addVehicle' %}" enctype="multipart/form-data" method='post'>{% csrf_token %}
 		<h3>Vehicle Information</h3>
-           {{ newVehicle.as_p }}
+        {% for hidden_field in form.hidden_fields %}
+            {{ hidden_field }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+            <div class="form-group">
+            {{ field.label_tag }}
+                {{field}}
+                {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+            </div>
+        {% endfor %}
 		<input value="Submit" class="btn btn-primary" type="Submit" />
 	</form><br>
 </div>
