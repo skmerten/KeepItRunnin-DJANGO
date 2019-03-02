@@ -136,7 +136,6 @@
     <Content Include="app\static\app\content\bootstrap.css.map" />
     <Content Include="app\static\app\content\bootstrap.min.css.map" />
     <Content Include="app\static\app\content\forms.css" />
-    <Content Include="app\static\app\content\w3.css" />
     <Content Include="app\static\app\scripts\bootstrap.bundle.js" />
     <Content Include="app\static\app\scripts\bootstrap.bundle.js.map" />
     <Content Include="app\static\app\scripts\bootstrap.bundle.min.js" />

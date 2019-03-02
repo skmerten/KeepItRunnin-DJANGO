@@ -41,9 +41,11 @@ def addVehicle(request):
                 {
                     'title':'Vehicle',
                     'year':datetime.now().year,
-                    'vehicles': vehicles
+                    'vehicles': vehicles,
+                    'vehicleOptions' : True
                 }
             )
+
         else:
             assert isinstance(request, HttpRequest)
             return render(
@@ -85,7 +87,8 @@ def deleteVehicle(request):
                 {
                     'title':'Vehicle',
                     'year':datetime.now().year,
-                    'vehicles': vehicles
+                    'vehicles': vehicles,
+                    'vehicleOptions' : True
                 }
             )
     else:
@@ -124,7 +127,8 @@ def vehicleHome(request):
         {
             'title':'Vehicle',
             'year':datetime.now().year,
-            'vehicles': vehicles
+            'vehicles': vehicles,
+            'vehicleOptions' : True
         }
     )
 
@@ -163,12 +167,19 @@ def editVehicle(request):
     vehicle = Vehicle.objects.get(id = pk)
     form = NewVehicle(initial={
             'id': pk,
+            'name': vehicle.name,
             'year': vehicle.year,
             'make': vehicle.make,
             'model': vehicle.model,
             'trim': vehicle.trim,
             'mileage':vehicle.mileage,
             'image':vehicle.image,
+            'color': vehicle.color,
+            'tankSize': vehicle.tankSize, 
+            'transmission': vehicle.transmission,
+            'driveWheels': vehicle.driveWheels,
+            'mpg': vehicle.mpg,
+            'status': vehicle.status
         })
 
     assert isinstance(request, HttpRequest)
@@ -178,7 +189,7 @@ def editVehicle(request):
         {
             'title':'Edit Vehicle',
             'year':datetime.now().year,
-            'newVehicle': form
+            'form': form
         }
     )
 

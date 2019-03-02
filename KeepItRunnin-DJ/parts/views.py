@@ -20,7 +20,8 @@ def partHome(request):
         {
             'title':'Parts',
             'year':datetime.now().year,
-            'parts': Part.objects.filter(maintenance__vehicle__user = request.user)
+            'parts': Part.objects.filter(maintenance__vehicle__user = request.user),
+            'partOptions' : True
         }
     )
 

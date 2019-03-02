@@ -24,6 +24,7 @@ def maintenanceHome(request):
             'year':datetime.now().year,
             'maintenance':maintenance,
             'maint_hist':maint_hist,
+            'maintOptions':True
         }
     )
 

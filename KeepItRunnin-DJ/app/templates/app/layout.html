@@ -45,7 +45,7 @@
     </nav>
        <br/>
     <h2 class="h1" style="text-align:left;margin-left: 20px; font-family: Arial, Helvetica, sans-serif;">{{ title }}</h2>
-    {% if request.path == "/vehicle/" %}
+    {% if vehicleOptions %}
     <div class="dropdown">
          <button type="button" style="margin-left:20px;"class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
             Options
@@ -56,8 +56,7 @@
             <a class="dropdown-item" href="{% url 'deleteVehicle' %}">Delete Vehicle</a>
         </div>
     </div>
-    {% endif %}
-    {% if request.path == "/maintenance/" %}
+    {% elif maintOptions %}
     <div class="dropdown">
          <button type="button" style="margin-left:20px;"class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
             Options
@@ -70,8 +69,7 @@
             <a class="dropdown-item" href="{% url 'chooseMaint' %}">Edit Maintenance Plan</a>
         </div>
     </div>
-    {% endif %}
-    {% if request.path == "/parts/" %}
+    {% elif partOptions %}
     <div class="dropdown">
          <button type="button" style="margin-left:20px;"class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
             Options

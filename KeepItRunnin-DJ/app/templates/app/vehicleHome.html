@@ -8,24 +8,33 @@
     <div class="col-lg-4">
         <div class="card">
             {% if vehicle.image %}
-                <a href="#"><img src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%"></a>
+            <a href="#"><img class="card-img-top" src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%"></a>
             {% endif %}
-            <div class="w3-container w3-white">
+            <div class="card-body">
                 {% if vehicle.name %}
-                    <h4><b>{{vehicle.name}}</b></h4>
+                    <h4 class="card-title">{{vehicle.name}}</h4>
                 {% endif %}
                 <h5><b>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</b></h5>
                 Mileage: {{vehicle.mileage}} <br />
                 Date Added: {{vehicle.vehicle_creation}}<br />
                 {% if vehicle.status == 'Active' %}
-                Ready to drive!
+                <p class="card-text">Ready to drive!</p>
                 {% elif vehicles.status == 'Inactive' %}
-                Needs some work first.
+                <p class="card-text">Needs some work first.</p>
                 {% endif %}
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
+{% else %}
+    <div class="w3-container" >
+        <div class="w3-card w3-margin w3-margin-top">
+            <div class="w3-container w3-white">
+                <h4><b>No Vehicles Yet...</b></h4>
+                <p>Add a vehicle in the options menu to start!</p>
+            </div>
+        </div>
+    </div>
 {% endif %}
 {% endblock %}
