@@ -10,7 +10,7 @@ from vehicles.models import Vehicle
 from parts.models import Part, Part_History
 from maintenance.models import Maintenance, Maintenance_History
 from feed.models import Post
-
+from datetime import datetime, timedelta
 
 
 class BootstrapAuthenticationForm(AuthenticationForm):
@@ -43,22 +43,26 @@ class NewVehicle(forms.ModelForm):
     name = forms.CharField(label='Nickname', help_text='A Name for your vehicle', max_length=255, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
 
     # Vehicle General
-    year = forms.CharField(label='Year*', help_text='Just some basic info for you. (EX: 2014)', max_length=4, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
-    make = forms.CharField(label='Make', help_text='Just some basic info for you. (EX: Honda)',max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
-    model = forms.CharField(label='Model', help_text='Just some basic info for you. (EX: CR-V)',max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
-    trim = forms.CharField(label='Trim', help_text='Just some basic info for you. (EX: EX)',max_length=50, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
+    year = forms.IntegerField(label='Year*', help_text='Just some basic info for you. (EX: 2014)', required=True, widget=forms.NumberInput(attrs={'class' : 'input'}))
+    make = forms.CharField(label='Make', help_text='Just some basic info for you. (EX: Honda)',max_length=100, required=True, widget=forms.TextInput(attrs={'class' : 'input'}))
+    model = forms.CharField(label='Model', help_text='Just some basic info for you. (EX: CR-V)',max_length=100, required=True, widget=forms.TextInput(attrs={'class' : 'input'}))
+    trim = forms.CharField(label='Trim', help_text='Just some basic info for you. (EX: EX)',max_length=100, required=False, widget=forms.TextInput(attrs={'class' : 'input'}))
     color = forms.CharField(label='Color', help_text='Just some basic info for you. (EX: Black)',max_length=100, required=False, widget=forms.TextInput(attrs={'class':'input'}))
     image = forms.ImageField(label='Photo Of Vehicle', help_text='Pop in a pretty picture of your car.',required=False, widget=forms.ClearableFileInput(attrs={'class' : 'input'}))
 
     # Vehicle Details
-    mileage = forms.IntegerField(label='Current Mileage', help_text='We will automatically update this when you log maintenance.', required=False, widget=forms.NumberInput(attrs={'class' : 'input'}))
-    tankSize = forms.DecimalField(label='Gas Tank Size', help_text='This will be used later to predict fuel cost.', required = False, widget=forms.NumberInput(attrs={'class' : 'input'}))
+    mileage = forms.IntegerField(label='Current Mileage', help_text='We will automatically update this when you log maintenance.', required=True, widget=forms.NumberInput(attrs={'class' : 'input'}))
+    tankSize = forms.DecimalField(label='Gas Tank Size', help_text='This will be used later to predict fuel cost.',max_digits=5, decimal_places=2, required = False, widget=forms.NumberInput(attrs={'class' : 'input'}))
     transmission = forms.ChoiceField(label='Transmission Type', help_text='Third pedal of POWER or PRNDL?', choices=[('Automatic', 'Automatic'), ('Manual', 'Manual')], required=False, widget=forms.RadioSelect)
     driveWheels = forms.ChoiceField(label='Drivetrain', help_text='This will be important for some maintenance tasks.', choices=[('FWD', 'Front Wheel Drive'), ('RWD', 'Rear Wheel Drive'), ('AWD', 'All Wheel Drive'), ('4WD', '4 Wheel Drive')], required=False, widget=forms.RadioSelect)
 
     # Vehicle Stats
-    mpg = forms.DecimalField(label='Estimated MPG', help_text='We will help make this number more acurate as you drive', required = False, widget=forms.NumberInput(attrs={'class' : 'input'}))
+    mpg = forms.DecimalField(label='Estimated MPG', help_text='We will help make this number more acurate as you drive',max_digits=5, decimal_places=2, required = False, widget=forms.NumberInput(attrs={'class' : 'input'}))
     status = forms.ChoiceField(label='Status', help_text='Will your car make it out of the driveway?', choices=[('Active', 'Driveable Condition'), ('Inactive', 'Non-driveable')], required=False, widget=forms.RadioSelect)
+    
+    def __init__(self, *args, **kwargs):
+        super(NewVehicle, self).__init__(*args, **kwargs)
+        self.fields['year'].max_value = (datetime.now().year) + 1
 
     class Meta:
         model = Vehicle
@@ -71,7 +75,7 @@ class NewMaintenance(forms.ModelForm):
     #vehicle = forms.ModelChoiceField(label='Your Vehicles', widget=forms.Select(attrs={'class':'input'}))
     name = forms.CharField(label='Name*', required=True, max_length=100, widget=forms.TextInput(attrs={'class' : 'input'}))
     description = forms.CharField(label='Description*', required=False, max_length=100, widget=forms.TextInput(attrs={'class':'input'}))
-    months = forms.IntegerField(label='Monthly Interval*', widget=forms.NumberInput(attrs={'class':'input'}))
+    months = forms.DecimalField(label='Monthly Interval*',max_digits=5, decimal_places=2, widget=forms.NumberInput(attrs={'class':'input'}))
     miles = forms.IntegerField(label='Mileage Interval*', widget=forms.NumberInput(attrs={'class':'input'}))
     materials = forms.CharField(label='Materials Needed*', required=False, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))
     comments = forms.CharField(label='Comments*', required=False, max_length=255, widget=forms.TextInput(attrs={'class':'input'}))

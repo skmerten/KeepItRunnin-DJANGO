@@ -6,24 +6,39 @@
 <div class="row" style="clear:right;">
     {% for vehicle in vehicles %}
     <div class="col-lg-4">
-        <div class="card">
-            {% if vehicle.image %}
-            <a href="#"><img class="card-img-top" src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%"></a>
-            {% endif %}
-            <div class="card-body">
-                {% if vehicle.name %}
-                    <h4 class="card-title">{{vehicle.name}}</h4>
+        <form action ="{% url 'vehicleProfile' vehicle.pk %}" method = 'post'>{% csrf_token %}
+            <div class="card">
+                {% if vehicle.image %}
+                <input type="image" class="card-img-top" src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%">
                 {% endif %}
-                <h5><b>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</b></h5>
-                Mileage: {{vehicle.mileage}} <br />
-                Date Added: {{vehicle.vehicle_creation}}<br />
-                {% if vehicle.status == 'Active' %}
-                <p class="card-text">Ready to drive!</p>
-                {% elif vehicles.status == 'Inactive' %}
-                <p class="card-text">Needs some work first.</p>
-                {% endif %}
+                <div class="card-body">
+                    {% if vehicle.name %}
+                        <h4 class="card-title">{{vehicle.name}}</h4>
+                    {% endif %}
+                    <h5><b>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</b></h5>
+                    <!--Maintenance Section-->
+                    {% if vehicle.maintenance %}
+                    <p class="card-text">Maintenance: <span class="badge badge-warning">Due</span></p>
+                    {% else %}
+                    <p class="card-text">Maintenance: <span class="badge badge-success">Caught Up</span></p>
+                    {% endif %}
+
+                    <!--Parts Section-->
+                    {% if vehicle.parts %}
+                    <p class="card-text">Parts: <span class="badge badge-warning">Due</span></p>
+                    {% else %}
+                    <p class="card-text">Parts: <span class="badge badge-success">None Needed</span></p>
+                    {% endif %}
+
+                    <!--Status Section-->
+                    {% if vehicle.status == 'Active' %}
+                    <p class="card-text">Status: <span class="badge badge-success">Ready To Drive</span></p>
+                    {% elif vehicle.status == 'Inactive' %}
+                    <p class="card-text">Status: <span class="badge badge-danger">Not Ready To Drive</span></p>
+                    {% endif %}
+                </div>
             </div>
-        </div>
+        </form>
     </div>
     {% endfor %}
 </div>

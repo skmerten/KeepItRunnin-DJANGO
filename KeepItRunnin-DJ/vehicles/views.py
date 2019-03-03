@@ -103,18 +103,6 @@ def deleteVehicle(request):
             }
         )
 
-# Needs Updates
-@login_required(login_url='/login')
-def vehicleProfile(request):
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/vehicleProfile.html',
-        {
-            'title':'Select Vehicle',
-            'year':datetime.now().year,
-        }
-    )
 
 
 @login_required(login_url='/login')
@@ -145,20 +133,6 @@ def checkIn(request):
         }
     )
 
-# Needs Updates
-@login_required(login_url='/login')
-def viewVehicle(request):
-    vehicle = Vehicle.objects.get()
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/viewVehicle.html',
-        {
-            'title':'View Vehicles',
-            'year':datetime.now().year,
-            'vehicle': vehicle
-        }
-    )
 
 # Needs Updates
 @login_required(login_url='/login')
@@ -206,3 +180,17 @@ def chooseVehicle(request):
             'vehicle': ChooseVehicle(user = request.user)
         }
     )
+
+@login_required(login_url='/login')
+def vehicleProfile(request, id):
+    if request.method == 'POST':
+        vehicle = Vehicle.objects.get(user = request.user, id = id)
+        assert isinstance(request, HttpRequest)
+        return render(
+            request,
+            'app/vehicleProfile.html',
+            {
+                'title':vehicle,
+                'year':datetime.now().year,
+            }
+        )
