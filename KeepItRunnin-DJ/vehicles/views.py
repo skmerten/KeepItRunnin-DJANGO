@@ -183,14 +183,27 @@ def chooseVehicle(request):
 
 @login_required(login_url='/login')
 def vehicleProfile(request, id):
-    if request.method == 'POST':
+    if Vehicle.objects.filter(user = request.user, id = id).exists():
         vehicle = Vehicle.objects.get(user = request.user, id = id)
+    else:
+        vehicles = Vehicle.objects.filter(user = request.user)
         assert isinstance(request, HttpRequest)
         return render(
             request,
-            'app/vehicleProfile.html',
+            'app/vehicleHome.html',
             {
-                'title':vehicle,
+                'title':'Vehicle',
                 'year':datetime.now().year,
+                'vehicles': vehicles,
+                'vehicleOptions' : True,
             }
         )
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/vehicleProfile.html',
+        {
+            'title':vehicle,
+            'year':datetime.now().year,
+        }
+    )
