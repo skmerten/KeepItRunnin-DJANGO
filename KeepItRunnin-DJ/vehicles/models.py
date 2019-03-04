@@ -13,7 +13,6 @@ class Vehicle(models.Model):
     trim = models.CharField(max_length=100, blank=True, null=True)
     color = models.CharField(max_length=100, blank=True, null=True)
     image = models.ImageField(blank=True, null=True)
-    vehicle_creation = models.DateTimeField(auto_now_add=True)
 
     # Vehicle Details
     tankSize = models.DecimalField(blank=True, null=True, max_digits=5, decimal_places=2)
@@ -24,7 +23,12 @@ class Vehicle(models.Model):
     # Vehicle Stats
     #mileageDate = models.DateField()
     mpg = models.DecimalField(blank=True, null=True, max_digits=5, decimal_places=2)
-    status = models.CharField(max_length=20, blank=True, null=True)
+    status = models.CharField(max_length=20)
+
+    # Dates
+    vehicle_creation = models.DateField(auto_now_add=True)
+    mileage_date = models.DateField(auto_now_add=True)
+    last_modified = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return str(self.year) + ' - ' + self.make + ' - ' + self.model

@@ -54,7 +54,7 @@ def addVehicle(request):
                 {
                     'title':'Add Vehicle',
                     'year':datetime.now().year,
-                    'newVehicle':form
+                    'form':form
                 }
             )
     else:
@@ -205,5 +205,7 @@ def vehicleProfile(request, id):
         {
             'title':vehicle,
             'year':datetime.now().year,
+            'vehicle': vehicle,
+            'vehicleOptions' : True,
         }
     )

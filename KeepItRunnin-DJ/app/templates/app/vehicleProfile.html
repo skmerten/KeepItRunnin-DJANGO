@@ -2,6 +2,99 @@
 
 {% block content %}
 
+<div class="row" style="clear:right;">
+    <!--Status-->
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Details</h4>
+                <hr>
+                <!--Milage Section-->
+                {% if vehicle.mileage %}
+                <p class="card-text">Mileage: {{vehicle.mileage}} <span class="badge badge-warning">Update Soon</span></p>
+                {% elif vehicle.mileage == 0 %}
+                <p class="card-text">Mileage: {{vehicle.mileage}} <span class="badge badge-danger">Update Now</span></p>
+                {% else %}
+                <p class="card-text">Mileage: {{vehicle.mileage}} <span class="badge badge-success">Up To Date</span></p>
+                {% endif %}
 
+                <!--Parts Section-->
+                {% if vehicle.parts %}
+                <p class="card-text">Parts: <span class="badge badge-warning">Due</span></p>
+                {% else %}
+                <p class="card-text">Parts: <span class="badge badge-success">None Needed</span></p>
+                {% endif %}
+
+                <!--Status Section-->
+                {% if vehicle.status == 'Active' %}
+                <p class="card-text">Status: <span class="badge badge-success">Ready To Drive</span></p>
+                {% elif vehicle.status == 'Inactive' %}
+                <p class="card-text">Status: <span class="badge badge-danger">Not Ready To Drive</span></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!--Maintenance-->
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Maintenance</h4>
+                <hr>
+                <!--Maintenance Section-->
+                {% if vehicle.maintenance %}
+                <p class="card-text">Maintenance: <span class="badge badge-warning">Due</span></p>
+                {% else %}
+                <p class="card-text">Maintenance: <span class="badge badge-success">Caught Up</span></p>
+                {% endif %}
+
+                <!--Parts Section-->
+                {% if vehicle.parts %}
+                <p class="card-text">Parts: <span class="badge badge-warning">Due</span></p>
+                {% else %}
+                <p class="card-text">Parts: <span class="badge badge-success">None Needed</span></p>
+                {% endif %}
+
+                <!--Status Section-->
+                {% if vehicle.status == 'Active' %}
+                <p class="card-text">Status: <span class="badge badge-success">Ready To Drive</span></p>
+                {% elif vehicle.status == 'Inactive' %}
+                <p class="card-text">Status: <span class="badge badge-danger">Not Ready To Drive</span></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!--Parts-->
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Parts</h4>
+                <hr>
+                <!--Maintenance Section-->
+                {% if vehicle.maintenance %}
+                <p class="card-text">Maintenance: <span class="badge badge-warning">Due</span></p>
+                {% else %}
+                <p class="card-text">Maintenance: <span class="badge badge-success">Caught Up</span></p>
+                {% endif %}
+
+                <!--Parts Section-->
+                {% if vehicle.parts %}
+                <p class="card-text">Parts: <span class="badge badge-warning">Due</span></p>
+                {% else %}
+                <p class="card-text">Parts: <span class="badge badge-success">None Needed</span></p>
+                {% endif %}
+
+                <!--Status Section-->
+                {% if vehicle.status == 'Active' %}
+                <p class="card-text">Status: <span class="badge badge-success">Ready To Drive</span></p>
+                {% elif vehicle.status == 'Inactive' %}
+                <p class="card-text">Status: <span class="badge badge-danger">Not Ready To Drive</span></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>
 
 {% endblock %}

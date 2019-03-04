@@ -58,8 +58,8 @@ class NewVehicle(forms.ModelForm):
 
     # Vehicle Stats
     mpg = forms.DecimalField(label='Estimated MPG', help_text='We will help make this number more acurate as you drive',max_digits=5, decimal_places=2, required = False, widget=forms.NumberInput(attrs={'class' : 'input'}))
-    status = forms.ChoiceField(label='Status', help_text='Will your car make it out of the driveway?', choices=[('Active', 'Driveable Condition'), ('Inactive', 'Non-driveable')], required=False, widget=forms.RadioSelect)
-    
+    status = forms.ChoiceField(label='Status', help_text='Will your car make it out of the driveway?', choices=[('Active', 'Driveable Condition'), ('Inactive', 'Non-driveable')], required=True, widget=forms.RadioSelect)
+
     def __init__(self, *args, **kwargs):
         super(NewVehicle, self).__init__(*args, **kwargs)
         self.fields['year'].max_value = (datetime.now().year) + 1

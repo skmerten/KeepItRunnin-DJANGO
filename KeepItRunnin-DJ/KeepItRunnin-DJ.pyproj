@@ -169,7 +169,6 @@
     <Content Include="app\templates\app\viewPartHist.html" />
     <Content Include="app\templates\app\viewPart.html" />
     <Content Include="app\templates\app\viewVehicle.html" />
-    <Content Include="db.sqlite3" />
     <Content Include="maintenance\__pycache__\views.cpython-36.pyc" />
     <Content Include="maintenance\__pycache__\__init__.cpython-36.pyc" />
     <Content Include="requirements.txt" />
