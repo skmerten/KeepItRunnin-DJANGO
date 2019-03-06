@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from vehicles.models import Vehicle
 from parts.models import Part, Part_History
 from maintenance.models import Maintenance, Maintenance_Record
-from app.forms import NewMaintenance, ChooseMaintenance, NewMaintenanceHistory
+from maintenance.forms import NewMaintenance, NewMaintenanceHistory, ChooseMaintenance
 from maintenance.forms import NewOilChange
 
 @login_required(login_url='/login')
@@ -73,8 +73,6 @@ def addMaint(request):
 
 @login_required(login_url='/login')
 def chooseMaint(request):
-    maintenance = Maintenance.objects.filter(user = request.user)
-    form = ChooseMaintenance()
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -82,7 +80,7 @@ def chooseMaint(request):
         {
             'title':'Select Maintenance',
             'year':datetime.now().year,
-            'selectMaint': form
+            'selectMaint': ChooseMaintenance(user = request.user)
         }
     )
 

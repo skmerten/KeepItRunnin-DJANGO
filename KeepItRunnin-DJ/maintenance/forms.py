@@ -36,6 +36,11 @@ class NewMaintenance(forms.ModelForm):
 class ChooseMaintenance(forms.ModelForm):
     maintenance = forms.ModelChoiceField(label='Maintenance Plans', queryset=Maintenance.objects.all(), widget=forms.Select(attrs={'class':'input'}))
 
+    def __init__(self, user, *args, **kwargs):
+        super(ChooseMaintenance, self).__init__(*args, **kwargs)
+        qs = Maintenance.objects.filter(vehicle__user=user)
+        self.fields['maintenance'].queryset = qs
+
     class Meta:
         model = Maintenance
         fields = ('maintenance', )

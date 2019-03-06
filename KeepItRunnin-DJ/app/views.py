@@ -7,8 +7,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from vehicles.models import Vehicle
 from maintenance.models import Maintenance, Maintenance_Record
+from maintenance.forms import NewMaintenance, NewMaintenanceHistory, ChooseMaintenance
 from parts.models import Part, Part_History
-from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory, NewUserForm, BootstrapAuthenticationForm
+from app.forms import NewVehicle, NewPart, PartHistory, NewUserForm, BootstrapAuthenticationForm
 
 def newHome(request):
     if request.user.is_authenticated:

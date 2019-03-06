@@ -41,12 +41,13 @@
             <div class="card-body">
                 <h4 class="card-title">Maintenance</h4>
                 <hr>
-                {% if maintenances %}
-                    {% for maintenance in maintenances %}
+                {% if maintHist %}
+                    {% for maint in maintHist %}
                         <!--Maintenance Section-->
-                        <h5>{{maintenance.name}}</h5>
-                        <p>{{maintenance.description}}</p>
-                        <p> Next Due Date:</p>
+                        <h5>{{maint.maintenance.name}}</h5>
+                        <p>{{maint.maintenance.description}}</p>
+                        <p> Next Due Date:{{maint.next_due_date}}</p>
+                        <p> Next Due Mileage:{{maint.next_due_mile}}</p>
                         {% if maintenances|length > 1%}
                             <hr style="border-top:dotted; border-color:lightgray;"/>
                         {% endif %}
