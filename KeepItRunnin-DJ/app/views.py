@@ -6,14 +6,14 @@ from datetime import datetime, timedelta
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from vehicles.models import Vehicle
-from maintenance.models import Maintenance, Maintenance_History
+from maintenance.models import Maintenance, Maintenance_Record
 from parts.models import Part, Part_History
 from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory, NewUserForm, BootstrapAuthenticationForm
 
 def newHome(request):
     if request.user.is_authenticated:
         parts = Part.objects.filter(status = 0)
-        maintenance = Maintenance_History.objects.filter(completed=0, maintenance__vehicle__user=request.user)
+        maintenance = Maintenance_Record.objects.filter(completed=0, maintenance__vehicle__user=request.user)
         vehicles = Vehicle.objects.filter(user = request.user, 
                                           vehicle_creation__year = datetime.now().year,
                                           vehicle_creation__month = datetime.now().month,
@@ -70,7 +70,7 @@ def addUser(request):
 @login_required(login_url='/login')
 def home(request):
     parts = Part.objects.filter(status = 0)
-    maintenance = Maintenance_History.objects.filter(completed=0, maintenance__vehicle__user=request.user)
+    maintenance = Maintenance_Record.objects.filter(completed=0, maintenance__vehicle__user=request.user)
     vehicles = Vehicle.objects.filter(user = request.user, 
                                       vehicle_creation__year = datetime.now().year,
                                       vehicle_creation__month = datetime.now().month,

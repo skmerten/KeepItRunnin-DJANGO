@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from vehicles.models import Vehicle
 from parts.models import Part, Part_History
-from maintenance.models import Maintenance, Maintenance_History
+from maintenance.models import Maintenance, Maintenance_Record
 from feed.models import Post
 from datetime import datetime, timedelta
 
@@ -99,7 +99,7 @@ class ChooseMaintenance(forms.ModelForm):
 class DateInput(forms.DateInput):
     input_type = 'date'
 
-class NewMaintenanceHistory(forms.ModelForm):
+class NewMaintenanceRecord(forms.ModelForm):
 
     maintenance = forms.ModelChoiceField(label='Maintenance Plans', queryset=Maintenance.objects.all(), widget=forms.Select(attrs={'class':'input'}))
     date_completed = forms.DateField(label='Date Completed', widget=forms.DateInput(attrs={'class':'input', 'type':'datetime-local'}))
@@ -115,7 +115,7 @@ class NewMaintenanceHistory(forms.ModelForm):
         self.fields['maintenance'].queryset = qs
 
     class Meta:
-        model = Maintenance_History
+        model = Maintenance_Record
         fields = ('maintenance', 'date_completed', 'current_mileage', 'next_due_date', 'next_due_mile', 'comments', 'completed', )
         widgets = {
             'next_due_date' : DateInput(),

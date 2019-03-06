@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from vehicles.models import Vehicle
 from parts.models import Part, Part_History
-from maintenance.models import Maintenance, Maintenance_History
+from maintenance.models import Maintenance, Maintenance_Record
 from app.forms import NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory, NewUserForm, BootstrapAuthenticationForm
 
 # Needs Updates
@@ -47,7 +47,7 @@ def addPart(request):
 
             # render Home Page
             parts = Part.objects.all()
-            maintenance = Maintenance_History.objects.all()
+            maintenance = Maintenance_Record.objects.all()
             assert isinstance(request, HttpRequest)
             return render(
                 request,
@@ -95,7 +95,7 @@ def viewPartHist(request):
         {
             'title':'Part Purchase History''',
             'year':datetime.now().year,
-            'maintenanceHistory': Maintenance_History.objects.all()
+            'maintenanceHistory': Maintenance_Record.objects.all()
         }
     )
 

@@ -14,7 +14,7 @@ class Maintenance(models.Model):
     def __str__(self):
         return str(self.pk) + ' ' + self.vehicle.make + ' ' + self.vehicle.model + ' ' +  self.name
 
-class Maintenance_History(models.Model):
+class Maintenance_Record(models.Model):
     maintenance = models.ForeignKey(Maintenance, on_delete=models.CASCADE)
     comments = models.CharField(max_length=250)
     date_completed = models.DateTimeField()

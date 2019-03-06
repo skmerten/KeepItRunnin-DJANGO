@@ -7,14 +7,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from vehicles.models import Vehicle
 from parts.models import Part, Part_History
-from maintenance.models import Maintenance, Maintenance_History
+from maintenance.models import Maintenance, Maintenance_Record
 from app.forms import NewMaintenance, ChooseMaintenance, NewMaintenanceHistory
 from maintenance.forms import NewOilChange
 
 @login_required(login_url='/login')
 def maintenanceHome(request):
     maintenance = Maintenance.objects.filter(vehicle__user = request.user)
-    maint_hist = Maintenance_History.objects.filter(maintenance__vehicle__user = request.user)
+    maint_hist = Maintenance_Record.objects.filter(maintenance__vehicle__user = request.user)
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -126,7 +126,7 @@ def logMaint(request):
             vehicle.save()
                       
             parts = Part.objects.all()
-            maintenance = Maintenance_History.objects.filter(maintenance__vehicle__user=request.user)
+            maintenance = Maintenance_Record.objects.filter(maintenance__vehicle__user=request.user)
             assert isinstance(request, HttpRequest)
             return render(
                 request,
@@ -173,6 +173,6 @@ def viewMaintHist(request):
         {
             'title':'Maintenance History',
             'year':datetime.now().year,
-            'maintenanceHistory': Maintenance_History.objects.filter(maintenance__vehicle__user=request.user)
+            'maintenanceHistory': Maintenance_Record.objects.filter(maintenance__vehicle__user=request.user)
         }
     )

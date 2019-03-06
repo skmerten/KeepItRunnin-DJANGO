@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Vehicle
-from maintenance.models import Maintenance, Maintenance_History
+from maintenance.models import Maintenance, Maintenance_Record
 from parts.models import Part, Part_History
 from app.forms import ChooseVehicle, DeleteVehicle, NewVehicle, NewMaintenance, ChooseMaintenance, NewMaintenanceHistory, NewPart, PartHistory, NewUserForm, BootstrapAuthenticationForm
 
@@ -198,14 +198,19 @@ def vehicleProfile(request, id):
                 'vehicleOptions' : True,
             }
         )
+    maintenances = Maintenance.objects.filter(vehicle = vehicle)
+    maintHist = Maintenance_Record.objects.filter(maintenance__vehicle = vehicle)
+    vehicleData = str(vehicle.year) + " " + vehicle.make + " " + vehicle.model + " " + vehicle.trim
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/vehicleProfile.html',
         {
-            'title':vehicle,
+            'title':vehicleData,
             'year':datetime.now().year,
             'vehicle': vehicle,
+            'maintenances': maintenances,
+            'maintHist':maintHist,
             'vehicleOptions' : True,
         }
     )

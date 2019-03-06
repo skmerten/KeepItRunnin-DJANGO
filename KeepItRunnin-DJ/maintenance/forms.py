@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from vehicles.models import Vehicle
 from parts.models import Part, Part_History
-from maintenance.models import Maintenance, Maintenance_History, OilChange
+from maintenance.models import Maintenance, Maintenance_Record, OilChange
 from feed.models import Post
 
 
@@ -59,7 +59,7 @@ class NewMaintenanceHistory(forms.ModelForm):
         self.fields['maintenance'].queryset = qs
 
     class Meta:
-        model = Maintenance_History
+        model = Maintenance_Record
         fields = ('maintenance', 'date_completed', 'current_mileage', 'next_due_date', 'next_due_mile', 'comments', 'completed', )
         widgets = {
             'next_due_date' : DateInput(),
