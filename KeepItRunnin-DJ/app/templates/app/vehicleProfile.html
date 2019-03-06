@@ -46,7 +46,13 @@
                         <!--Maintenance Section-->
                         <h5>{{maint.maintenance.name}}</h5>
                         <p>{{maint.maintenance.description}}</p>
-                        <p> Next Due Date:{{maint.next_due_date}}</p>
+                        {% if maint.is_past_due %}
+                            <p> Next Due Date:{{maint.next_due_date}} <span class="badge badge-danger">Overdue</span></p>
+                        {% elif maint.is_due %}
+                            <p> Next Due Date:{{maint.next_due_date}} <span class="badge badge-warning">Due</span></p>
+                        {% elif maint.is_due_soon %}
+                            <p> Next Due Date:{{maint.next_due_date}} <span class="badge badge-success">Due Soon</span></p>
+                        {% endif %}
                         <p> Next Due Mileage:{{maint.next_due_mile}}</p>
                         {% if maintenances|length > 1%}
                             <hr style="border-top:dotted; border-color:lightgray;"/>
