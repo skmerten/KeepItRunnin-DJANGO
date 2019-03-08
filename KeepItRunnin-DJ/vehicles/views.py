@@ -20,11 +20,19 @@ def addVehicle(request):
             id = request.POST['id']
             if id:
                 vehicle = Vehicle.objects.get(pk = id)
+                vehicle.name = request.POST['name']
                 vehicle.year = request.POST['year']
                 vehicle.make = request.POST['make']
                 vehicle.model = request.POST['model']
                 vehicle.trim = request.POST['trim']
                 vehicle.mileage = request.POST['mileage']
+                vehicle.color = request.POST['color']
+                vehicle.transmission = request.POST['transmission']
+                vehicle.tankSize = request.POST['tankSize']
+                vehicle.driveWheels = request.POST['driveWheels']
+                vehicle.mpg = request.POST['mpg']
+                vehicle.status = request.POST['status']
+
                 if len(request.FILES) != 0:
                     vehicle.image = request.FILES['image']
                 vehicle.save()
@@ -200,7 +208,7 @@ def vehicleProfile(request, id):
             }
         )
     maintenances = Maintenance.objects.filter(vehicle = vehicle)
-    maintHist = Maintenance_Record.objects.filter(maintenance__vehicle = vehicle)
+    maintHist = Maintenance_Record.objects.filter(maintenance__vehicle = vehicle, completed = False)
     vehicleData = str(vehicle.year) + " " + vehicle.make + " " + vehicle.model + " " + vehicle.trim
     assert isinstance(request, HttpRequest)
     return render(

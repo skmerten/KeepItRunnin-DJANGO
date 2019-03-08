@@ -32,6 +32,7 @@ def maintenanceHome(request):
 def addMaint(request):
     if request.method == 'POST':
         form = NewMaintenance(request.user, request.POST)
+        # VERIFY NOT ALREADY EXIST
         if form.is_valid():
             id = request.POST['id']
             if id:
@@ -44,20 +45,19 @@ def addMaint(request):
                 record.materials = request.POST['materials']
                 record.comments = request.POST['comments']
                 record.save()
-                
             else:
                 form.save()
-
+            maintenance = Maintenance.objects.get(name = request.POST['name'], description = request.POST['description'])
             # render Home Page
-            maintenance = Maintenance.objects.filter(vehicle__user=request.user)
             assert isinstance(request, HttpRequest)
             return render(
                 request,
-                'app/viewMaint.html',
+                'app/logMaint.html',
                 {
                     'title':'Maintenance',
                     'year':datetime.now().year,
-                    'maintenance': maintenance
+                    'form': NewMaintenanceHistory(user=request.user, initial={'maintenance':maintenance,'completed': 0}),
+                    'postAdd':True,
                 }
             )
     assert isinstance(request, HttpRequest)
@@ -67,7 +67,7 @@ def addMaint(request):
         {
             'title':'Add Maintenance Plan',
             'year':datetime.now().year,
-            'newMaintenance': NewMaintenance(user = request.user),
+            'form': NewMaintenance(user = request.user),
         }
     )
 
@@ -117,11 +117,20 @@ def logMaint(request):
     if request.method == 'POST':
         form = NewMaintenanceHistory(request.user, request.POST)
         if form.is_valid():
-            form.save()
+            # Most Recent Log Maint
             maintenance = Maintenance.objects.get(id = request.POST['maintenance'])
+            if Maintenance_Record.objects.filter(maintenance__id = request.POST['maintenance']):
+                record = Maintenance_Record.objects.get(maintenance__id = request.POST['maintenance'], completed = 0)
+                record.completed = 1
+                record.save()
+            
             vehicle = Vehicle.objects.get(pk = maintenance.vehicle.id)
             vehicle.mileage = request.POST['current_mileage']
             vehicle.save()
+
+            form.save()
+           
+
                       
             parts = Part.objects.all()
             maintenance = Maintenance_Record.objects.filter(maintenance__vehicle__user=request.user)
