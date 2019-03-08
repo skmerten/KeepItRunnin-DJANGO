@@ -1,5 +1,6 @@
 from django.db import models
-from datetime import date
+from datetime import datetime
+from datetime import timedelta
 from django.contrib.auth.models import User
 from vehicles.models import Vehicle
 
@@ -26,14 +27,15 @@ class Maintenance_Record(models.Model):
 
     @property
     def is_past_due(self):
-        return date.today() > self.next_due_date
+        date1 = datetime.strptime(datetime.now(), "%m/%d/%y")
+
+        return date1 > self.next_due_date
     @property
     def is_due(self):
         return date.today() == self.next_due_date
     @property
     def is_due_soon(self):
         return date.today() < self.next_due_date
-
 
     def __str__(self):
         return self.maintenance.name + ' ' + self.maintenance.description + ' ' + 'due'
