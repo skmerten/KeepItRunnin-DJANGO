@@ -129,9 +129,7 @@ def logMaint(request):
             vehicle.save()
 
             form.save()
-           
-
-                      
+  
             parts = Part.objects.all()
             maintenance = Maintenance_Record.objects.filter(maintenance__vehicle__user=request.user)
             assert isinstance(request, HttpRequest)
