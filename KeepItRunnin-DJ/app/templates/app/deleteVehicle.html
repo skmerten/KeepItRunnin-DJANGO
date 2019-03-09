@@ -4,13 +4,13 @@
 
 <div style="border-radius: 5px; background-color: #f2f2f2; padding: 20px;">
 	<form action ="{% url 'deleteVehicle' %}" id="deleteVehicle" method = 'post'>{% csrf_token %}
+        <div class="alert alert-danger">
+          <strong>Success!</strong> Indicates a successful or positive action.
+        </div>
         {{vehicles}} 
 		<input class="btn btn-primary" value="Submit" type="Submit" />
 	</form><br>
 </div>
 
-<div class="alert alert-danger">
-    <strong>Warning!</strong><p> Deleting a vehicle will delete all associated maintenance and part records. This cannot be undone!</p>
-</div>
 
 {% endblock %}

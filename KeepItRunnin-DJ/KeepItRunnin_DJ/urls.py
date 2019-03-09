@@ -20,7 +20,9 @@ urlpatterns = [
     # /home 
     path('', app.views.newHome, name='newHome'),
     path('home/', app.views.home, name='home'),
-
+    path('about/', app.views.about, name='about'),
+    path('features/', app.views.features, name='features'),
+    path('contact/', app.views.contact, name='contact'),
     
     # /maintenance URLs
     path('maintenance/', maintenance.views.maintenanceHome, name='maintenanceHome'),

@@ -86,5 +86,35 @@ def home(request):
         }
     )
 
+def features(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/features.html',
+        {
+            'title':'KeepItRunnin''',
+            'year':datetime.now().year,
+        }
+    )
 
+def about(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/about.html',
+        {
+            'title':'KeepItRunnin''',
+            'year':datetime.now().year,
+        }
+    )
 
+def contact(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/contact.html',
+        {
+            'title':'KeepItRunnin''',
+            'year':datetime.now().year,
+        }
+    )

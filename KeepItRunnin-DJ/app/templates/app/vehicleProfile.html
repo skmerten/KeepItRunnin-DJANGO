@@ -5,10 +5,11 @@
 <div class="row" style="clear:right;">
     <!--Status-->
     <div class="col-lg-4">
-        <div class="card">
+        <div class="card border-primary">
+            <div class="card-header">
+                <h4 class="card-title text-center">Details</h4>
+            </div>
             <div class="card-body">
-                <h4 class="card-title">Details</h4>
-                <hr>
                 <!--Milage Section-->
                 {% if vehicle.mileage %}
                 <p class="card-text">Mileage: {{vehicle.mileage}} <span class="badge badge-warning">Update Soon</span></p>
@@ -34,13 +35,13 @@
             </div>
         </div>
     </div>
-
     <!--Maintenance-->
     <div class="col-lg-4">
-        <div class="card">
+        <div class="card border-primary">
+            <div class="card-header">
+                <h4 class="card-title text-center">Maintenance</h4>
+            </div>
             <div class="card-body">
-                <h4 class="card-title">Maintenance</h4>
-                <hr>
                 {% if maintHist %}
                     {% for maint in maintHist %}
                         <!--Maintenance Section-->
@@ -64,13 +65,13 @@
             </div>
         </div>
     </div>
-
     <!--Parts-->
     <div class="col-lg-4">
-        <div class="card">
+        <div class="card border-primary">
+            <div class="card-header">
+                <h4 class="card-title text-center">Parts</h4>
+            </div>
             <div class="card-body">
-                <h4 class="card-title">Parts</h4>
-                <hr>
                 {% if vehicle.maintenance.parts %}
                     <!--Maintenance Section-->
                     {% if vehicle.maintenance %}
@@ -98,7 +99,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 {% endblock %}

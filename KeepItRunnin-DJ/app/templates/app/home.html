@@ -1,23 +1,9 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-<!--
-<div class="w3-col l4">
-    <div class="w3-card w3-margin w3-margin-top">
-        <div class="w3-container w3-white">
-            <h4><b>Feed</b></h4>
-            {% if feed %}
-                {% for each in feed %}
-                    <p>{{each.items}}</p>
-                {% endfor %}
-            {% else %}
-                <p>You don't have any Feeds yet!</p>
-            {% endif %}
-        </div>
-    </div><hr>
-</div>
--->
-<div class="w3-col l8 s12">
+
+<div class="row" style="clear:right;">
+    <!--Status-->
     <div class="w3-card w3-margin w3-margin-top">
         {% if vehicles %}
             {% for vehicle in vehicles %}
@@ -32,38 +18,7 @@
                 {% endif %}
             {% endfor %}
         {% endif %}
-    </div><hr>
-</div>
-<!--
-<div>
-    <div class="w3-col l8 s12">
-        <div class="w3-card w3-margin w3-margin-top">
-        <header class="w3-container"><h4>Parts Needed</h4></header>
-            <div class="w3-container w3-white">
-                {% if parts %}
-            	    {% for part in parts %}
-                        <p>{{part.part_name}}</p>
-                    {% endfor %}
-                {% else %}
-                    <p>No Parts Needed</p>
-                {% endif %}
-            </div>
-        </div><hr>
-    </div>
-    <div class="w3-col l8 s12">
-        <div class="w3-card w3-margin w3-margin-top">
-        <header class="w3-container"><h4>Maintenance Needed</h4></header>
-            <div class="w3-container w3-white">
-                {% if maintenance %}
-			        {% for maint in maintenance %}
-                            <p>{{maint.maintenance.name}} {{maint.maintenance.description}}: Due {{maint.next_due_date}}</p>
-                    {% endfor %}
-                {% else %}
-                    <p>No Maintenance Due</p>
-                {% endif %}
-            </div>
-        </div><hr>
     </div>
 </div>
--->
+
 {% endblock %}
