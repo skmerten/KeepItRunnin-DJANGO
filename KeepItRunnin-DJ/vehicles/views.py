@@ -117,6 +117,8 @@ def deleteVehicle(request):
 @login_required(login_url='/login')
 def vehicleHome(request):
     vehicles = Vehicle.objects.filter(user = request.user)
+    maintenance = Maintenance_Record.objects.filter(maintenance__vehicle__user = request.user, completed = 0)
+
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -125,7 +127,8 @@ def vehicleHome(request):
             'title':'Vehicle',
             'year':datetime.now().year,
             'vehicles': vehicles,
-            'vehicleOptions' : True
+            'maintenance': maintenance,
+            'vehicleOptions' : True,
         }
     )
 

@@ -17,11 +17,19 @@
                     {% endif %}
                     <h5><b>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</b></h5>
                     <!--Maintenance Section-->
-                    {% if vehicle.maintenance %}
-                    <p class="card-text">Maintenance: <span class="badge badge-warning">Due</span></p>
-                    {% else %}
-                    <p class="card-text">Maintenance: <span class="badge badge-success">Caught Up</span></p>
-                    {% endif %}
+                    {% for maint in maintenance %}
+                        {% if maint.maintenance.vehicle == vehicle %}
+                            {% if maint.is_past_due %}
+                                <p class="card-text">Maintenance: {{maint.maintenance.name}} <span class="badge badge-danger">Overdue</span></p>
+                            {% elif maint.is_due %}
+                                <p class="card-text">Maintenance: {{maint.maintenance.name}} <span class="badge badge-warning">Due</span></p>
+                            {% elif maint.is_due_soon %}
+                                <p class="card-text">Maintenance: {{maint.maintenance.name}} <span class="badge badge-success">Caught Up</span></p>
+                            {% else %}
+                                <p class="card-text">Maintenance: {{maint.maintenance.name}} <span class="badge badge-success">Caught Up</span></p>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
 
                     <!--Parts Section-->
                     {% if vehicle.parts %}
@@ -36,6 +44,7 @@
                     {% elif vehicle.status == 'Inactive' %}
                     <p class="card-text">Status: <span class="badge badge-danger">Not Ready To Drive</span></p>
                     {% endif %}
+                       
                 </div>
             </div>
         </form>
