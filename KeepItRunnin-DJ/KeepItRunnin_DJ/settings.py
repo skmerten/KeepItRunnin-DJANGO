@@ -26,7 +26,7 @@ SECRET_KEY = '9b03a734-827a-451a-8c86-a65c2f384365'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '192.168.0.19']
+ALLOWED_HOSTS = ['localhost', '192.168.0.19', 'keepItRunnin.now.sh']
 
 
 # Application definition
@@ -38,8 +38,6 @@ INSTALLED_APPS = [
     'maintenance',
     'parts',
     'vehicles',
-    'crispy_forms',
-    'widget_tweaks',
     # Add your apps here to enable them
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,8 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
