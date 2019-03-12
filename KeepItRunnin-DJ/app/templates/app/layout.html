@@ -38,8 +38,18 @@
             </ul>
         </div>
     </nav>
+<!-- Side navigation -->
+<div class="sidenav">
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<!-- Page content -->
+<div class="main">
        <br/>
-    <h2 class="h1" style="text-align:left;margin-left: 20px; font-family: Arial, Helvetica, sans-serif;">{{ title }}</h2>
+    <h2 class="h1" style="text-align:left;margin-left: 15px; font-family: Arial, Helvetica, sans-serif;">{{ title }}</h2>
     {% if vehicleOptions %}
     <div class="dropdown">
          <button type="button" style="margin-left:20px; margin-bottom:10px"class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -86,7 +96,7 @@
             <p>&copy; {{ year }} - KeepItRunnin Maintenance Planner</p>
         </footer>
     </div>
-
+</div>
     <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
     <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
     <script src="{% static 'app/scripts/respond.js' %}"></script>

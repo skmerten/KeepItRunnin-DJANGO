@@ -2,23 +2,5 @@
 
 {% block content %}
 
-<div class="row" style="clear:right;">
-    <!--Status-->
-    <div class="w3-card w3-margin w3-margin-top">
-        {% if vehicles %}
-            {% for vehicle in vehicles %}
-                {% if vehicle.vehicle_creation %}
-                    {% if vehicle.image %}
-                        <img src="{{ vehicle.image.url }}" style="max-height:100%; max-width:100%">
-                    {% endif %}
-                    <div class="w3-container w3-white">
-                        <h4><b>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</b></h4>
-                        <p>{{vehicle.user.username}} Just Added A Vehicle Today!</p>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-    </div>
-</div>
 
 {% endblock %}

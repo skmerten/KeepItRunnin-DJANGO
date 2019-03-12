@@ -5,7 +5,7 @@
 {% if vehicles %}
 <div class="row" style="clear:right;">
     {% for vehicle in vehicles %}
-    <div class="col-lg-4">
+    <div class="col-lg-4 ">
         <form action ="{% url 'vehicleProfile' vehicle.pk %}" method = 'post'>{% csrf_token %}
             <div class="card">
                 {% if vehicle.image %}
