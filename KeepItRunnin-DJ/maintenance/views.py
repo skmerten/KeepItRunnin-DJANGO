@@ -58,6 +58,7 @@ def addMaint(request):
                     'year':datetime.now().year,
                     'form': NewMaintenanceHistory(user=request.user, initial={'maintenance':maintenance,'completed': 0}),
                     'postAdd':True,
+                    'maintOptions':True
                 }
             )
     assert isinstance(request, HttpRequest)
@@ -68,6 +69,7 @@ def addMaint(request):
             'title':'Add Maintenance Plan',
             'year':datetime.now().year,
             'form': NewMaintenance(user = request.user),
+            'maintOptions':True
         }
     )
 
@@ -80,7 +82,8 @@ def chooseMaint(request):
         {
             'title':'Select Maintenance',
             'year':datetime.now().year,
-            'selectMaint': ChooseMaintenance(user = request.user)
+            'selectMaint': ChooseMaintenance(user = request.user),
+            'maintOptions':True
         }
     )
 
@@ -107,7 +110,8 @@ def editMaint(request):
         {
             'title':'Edit Maintenance',
             'year':datetime.now().year,
-            'newMaintenance': form
+            'newMaintenance': form,
+            'maintOptions':True
         }
     )
 
@@ -139,7 +143,8 @@ def logMaint(request):
                 {
                     'title':'Maintenance History',
                     'year':datetime.now().year,
-                    'maintenanceHistory':maintenance
+                    'maintenanceHistory':maintenance,
+                    'maintOptions':True
                 }
             )
 
@@ -150,7 +155,8 @@ def logMaint(request):
         {
             'title':'Log Maintenance',
             'year':datetime.now().year,
-            'form':NewMaintenanceHistory(user=request.user, initial={'completed': 0})
+            'form':NewMaintenanceHistory(user=request.user, initial={'completed': 0}),
+            'maintOptions':True
         }
     )
 
@@ -164,7 +170,8 @@ def viewMaint(request):
         {
             'title':'Maintenance',
             'year':datetime.now().year,
-            'maintenance': maintenance
+            'maintenance': maintenance,
+            'maintOptions':True
         }
     )
 
@@ -178,6 +185,7 @@ def viewMaintHist(request):
         {
             'title':'Maintenance History',
             'year':datetime.now().year,
-            'maintenanceHistory': Maintenance_Record.objects.filter(maintenance__vehicle__user=request.user)
+            'maintenanceHistory': Maintenance_Record.objects.filter(maintenance__vehicle__user=request.user),
+            'maintOptions':True
         }
     )

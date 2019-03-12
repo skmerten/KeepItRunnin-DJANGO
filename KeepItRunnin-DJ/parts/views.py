@@ -57,7 +57,8 @@ def addPart(request):
                     'title':'KeepItRunnin''',
                     'year':datetime.now().year,
                     'parts':parts,
-                    'maint':maintenance
+                    'maint':maintenance,
+                    'partOptions' : True
                 }
             )
     assert isinstance(request, HttpRequest)
@@ -67,7 +68,8 @@ def addPart(request):
         {
             'title':'Add Part',
             'year':datetime.now().year,
-            'newPart': NewPart(user = request.user)
+            'newPart': NewPart(user = request.user),
+            'partOptions' : True
         }
     )
 
@@ -82,7 +84,8 @@ def viewPart(request):
         {
             'title':'View All Parts',
             'year':datetime.now().year,
-            'parts': part
+            'parts': part,
+            'partOptions' : True
         }
     )
 
@@ -96,7 +99,8 @@ def viewPartHist(request):
         {
             'title':'Part Purchase History''',
             'year':datetime.now().year,
-            'maintenanceHistory': Maintenance_Record.objects.all()
+            'maintenanceHistory': Maintenance_Record.objects.all(),
+            'partOptions' : True
         }
     )
 
@@ -119,7 +123,8 @@ def logPart(request):
                 {
                     'title':'Part Purchase History',
                     'year':datetime.now().year,
-                    'part':part_hist
+                    'part':part_hist,
+                    'partOptions' : True
                 }
             )
 
@@ -130,7 +135,8 @@ def logPart(request):
         {
             'title':'Purchased Part',
             'year':datetime.now().year,
-            'form': PartHistory(user = request.user)
+            'form': PartHistory(user = request.user),
+            'partOptions' : True
         }
     )
 
@@ -146,7 +152,8 @@ def choosePart(request):
         {
             'title':'Select Part',
             'year':datetime.now().year,
-            'selectMaint': form
+            'selectMaint': form,
+            'partOptions' : True
         }
     )
 
@@ -172,7 +179,8 @@ def editPart(request):
         {
             'title':'Edit Part',
             'year':datetime.now().year,
-            'newMaintenance': form
+            'newMaintenance': form,
+            'partOptions' : True
         }
     )
 
@@ -186,6 +194,7 @@ def viewPartHist(request):
         {
             'title':'Part Purchase History',
             'year':datetime.now().year,
-            'part':part_hist
+            'part':part_hist,
+            'partOptions' : True
         }
     )

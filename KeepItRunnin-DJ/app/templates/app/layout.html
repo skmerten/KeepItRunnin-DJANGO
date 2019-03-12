@@ -40,54 +40,29 @@
     </nav>
 <!-- Side navigation -->
 <div class="sidenav">
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+    {% if vehicleOptions %}
+        <a href="{% url 'addVehicle' %}">Add Vehicle</a>
+        <a href="{% url 'chooseVehicle' %}">Update Vehicle</a>
+        <a href="{% url 'deleteVehicle' %}">Delete Vehicle</a>
+    {% elif maintOptions %}
+        <a href="{% url 'addMaint' %}">Add Maintenance Plan</a>
+        <a href="{% url 'viewMaint' %}">View Maintenance</a>
+        <a href="{% url 'logMaint' %}">Log Maintenance</a>
+        <a href="{% url 'viewMaintHist' %}">View Maintenance History</a>
+        <a href="{% url 'chooseMaint' %}">Edit Maintenance Plan</a>
+    {% elif partOptions %}
+        <a href="{% url 'addPart' %}">Need New Part</a>
+        <a href="{% url 'viewPart' %}">View Needed Parts</a>
+        <a href="{% url 'logPart' %}">Log Part Purchase</a>
+        <a href="{% url 'viewPartHist' %}">View Past Purchases</a>
+        <a href="{% url 'editPart' %}">Edit Parts Needed</a>
+    {% endif %}
 </div>
 
 <!-- Page content -->
 <div class="main">
        <br/>
     <h2 class="h1" style="text-align:left;margin-left: 15px; font-family: Arial, Helvetica, sans-serif;">{{ title }}</h2>
-    {% if vehicleOptions %}
-    <div class="dropdown">
-         <button type="button" style="margin-left:20px; margin-bottom:10px"class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-            Options
-        </button>
-        <div class="dropdown-menu" aria-labelledby="optionsDrop">
-            <a class="dropdown-item" href="{% url 'addVehicle' %}">Add Vehicle</a>
-            <a class="dropdown-item" href="{% url 'chooseVehicle' %}">Update Vehicle</a>
-            <a class="dropdown-item" href="{% url 'deleteVehicle' %}">Delete Vehicle</a>
-        </div>
-    </div>
-    {% elif maintOptions %}
-    <div class="dropdown">
-         <button type="button" style="margin-left:20px;"class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-            Options
-        </button>
-        <div class="dropdown-menu" aria-labelledby="optionsDrop">
-            <a class="dropdown-item" href="{% url 'addMaint' %}">Add Maintenance Plan</a>
-            <a class="dropdown-item" href="{% url 'viewMaint' %}">View Maintenance</a>
-            <a class="dropdown-item" href="{% url 'logMaint' %}">Log Maintenance</a>
-            <a class="dropdown-item" href="{% url 'viewMaintHist' %}">View Maintenance History</a>
-            <a class="dropdown-item" href="{% url 'chooseMaint' %}">Edit Maintenance Plan</a>
-        </div>
-    </div>
-    {% elif partOptions %}
-    <div class="dropdown">
-         <button type="button" style="margin-left:20px;"class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-            Options
-        </button>
-        <div class="dropdown-menu" aria-labelledby="optionsDrop">
-            <a class="dropdown-item" href="{% url 'addPart' %}">Need New Part</a>
-            <a class="dropdown-item" href="{% url 'viewPart' %}">View Needed Parts</a>
-            <a class="dropdown-item" href="{% url 'logPart' %}">Log Part Purchase</a>
-            <a class="dropdown-item" href="{% url 'viewPartHist' %}">View Past Purchases</a>
-            <a class="dropdown-item" href="{% url 'editPart' %}">Edit Parts Needed</a>
-        </div>
-    </div>
-    {% endif %}
     <div class="container body-content">
 
 {% block content %}{% endblock %}

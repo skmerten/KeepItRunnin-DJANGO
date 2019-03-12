@@ -63,7 +63,8 @@ def addVehicle(request):
                 {
                     'title':'Add Vehicle',
                     'year':datetime.now().year,
-                    'form':form
+                    'form':form,
+                    'vehicleOptions' : True
                 }
             )
     else:
@@ -75,7 +76,8 @@ def addVehicle(request):
             {
                 'title':'Add Vehicle',
                 'year':datetime.now().year,
-                'form':NewVehicle(initial={'user':user})
+                'form':NewVehicle(initial={'user':user}),
+                'vehicleOptions' : True
             }
         )
 
@@ -108,7 +110,8 @@ def deleteVehicle(request):
             {
                 'title':'Delete Vehicle',
                 'year':datetime.now().year,
-                'vehicles':DeleteVehicle(user = request.user)
+                'vehicles':DeleteVehicle(user = request.user),
+                'vehicleOptions' : True
             }
         )
 
@@ -175,7 +178,8 @@ def editVehicle(request):
         {
             'title':'Edit Vehicle',
             'year':datetime.now().year,
-            'form': form
+            'form': form,
+            'vehicleOptions' : True
         }
     )
 
@@ -189,7 +193,8 @@ def chooseVehicle(request):
         {
             'title':'Select Vehicle',
             'year':datetime.now().year,
-            'vehicle': ChooseVehicle(user = request.user)
+            'vehicle': ChooseVehicle(user = request.user),
+            'vehicleOptions' : True
         }
     )
 
