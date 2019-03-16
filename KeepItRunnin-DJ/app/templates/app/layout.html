@@ -17,32 +17,26 @@
     <div class="toggle-btn" data-toggle="collapse" data-target="#menu-content">KeepItRunnin</div>
     <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
-            <li>
-                <a href="/">
-                    Dashboard
-                </a>
-            </li>
             <li data-toggle="collapse" data-target="#vehicle" class="collapsed">
                 <a href="#">Vehicle</a>
             </li>
             <ul class="sub-menu collapse" id="vehicle">
-                <li><a href="#">Vehicle</a></li>
-                <li><a href="#">Add</a></li>
-                <li><a href="#">Update</a></li>
-                <li><a href="#">Delete</a></li>
+                <li><a href="{% url 'vehicleHome' %}">Vehicle</a></li>
+                <li><a href="{% url 'addVehicle' %}">Add</a></li>
+                <li><a href="{% url 'chooseVehicle' %}">Update</a></li>
+                <li><a href="{% url 'deleteVehicle' %}">Delete</a></li>
             </ul>
             <li data-toggle="collapse" data-target="#maintenance" class="collapsed">
                 <a href="#">Maintenance</a>
             </li>
             <ul class="sub-menu collapse" id="maintenance">
-                <li><a href="#">Maintenance</a></li>
-                <li><a href="#">Add</a></li>
-                <li><a href="#">Update</a></li>
-                <li><a href="#">View</a></li>
-                <li><a href="#">Log</a></li>
-                <li><a href="#">View History</a></li>
+                <li><a href="{% url 'maintenanceHome' %}">Maintenance</a></li>
+                <li><a href="{% url 'addMaint' %}">Add</a></li>
+                <li><a href="{% url 'chooseMaint' %}">Update</a></li>
+                <li><a href="{% url 'viewMaint' %}">View</a></li>
+                <li><a href="{% url 'logMaint' %}">Log</a></li>
+                <li><a href="{% url 'viewMaintHist' %}">View History</a></li>
             </ul>
-
 
             <li data-toggle="collapse" data-target="#parts" class="collapsed">
                 <a href="#">Parts</a>

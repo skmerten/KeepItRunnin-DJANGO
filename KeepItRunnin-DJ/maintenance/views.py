@@ -110,7 +110,7 @@ def editMaint(request):
         {
             'title':'Edit Maintenance',
             'year':datetime.now().year,
-            'newMaintenance': form,
+            'form': form,
             'maintOptions':True
         }
     )
