@@ -78,7 +78,16 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
-
+/*Top Nav Bar Button Props*/
+.navbar .nav-link :hover{
+    border-left: 3px solid #2a77c4;
+    background-color: #4f5b69;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
 /* The sidebar menu */
 .nav-side-menu {
     height: 100%;
@@ -276,7 +285,7 @@ input[type="checkbox"].input-validation-error {
     }
 
     #main {
-        width: calc(100% - 175px);
+        width: calc(100% - 165px);
         float: right;
     }
 }
