@@ -3,41 +3,9 @@ body {
     padding-bottom: 30px;
 }
 
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-}
-
 .h1 {
     border-bottom-style: solid;
     font-family: "Courier New", Courier, monospace;
-}
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content{
-    display: none;
-    position: absolute;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -51,6 +19,17 @@ input,
 select,
 textarea {
     max-width: 240px;
+}
+
+/* Dropdown Items*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content{
+    display: none;
+    position: absolute;
 }
 
 /* styles for validation helpers */
@@ -79,8 +58,8 @@ input[type="checkbox"].input-validation-error {
 }
 
 /*Top Nav Bar Button Props*/
-.navbar .nav-link :hover{
-    border-left: 3px solid #2a77c4;
+.navbar li a:hover{
+    border-bottom: 3px solid #2a77c4;
     background-color: #4f5b69;
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
@@ -88,6 +67,16 @@ input[type="checkbox"].input-validation-error {
     -ms-transition: all 1s ease;
     transition: all 1s ease;
 }
+.navbar li a {
+    border-bottom: 3px solid #343a40
+}
+
+.navbar {
+    padding-bottom: 0px;
+    padding-left: 5px;
+}
+
+
 /* The sidebar menu */
 .nav-side-menu {
     height: 100%;
@@ -98,7 +87,7 @@ input[type="checkbox"].input-validation-error {
     left: 0;
     background-color: #343a40;
     overflow-x: hidden;
-    padding-top: 5px;
+    padding-top: 0px;
 }
 
 .sidenav a {
@@ -118,20 +107,6 @@ input[type="checkbox"].input-validation-error {
     padding: 0px 10px;
 }
 
-/*
-.nav-side-menu {
-    overflow: auto;
-    font-family: verdana;
-    font-size: 12px;
-    font-weight: 200;
-    background-color: #2e353d;
-    position: fixed;
-    top: 0px;
-    width: 160px;
-    height: 100%;
-    color: #e1ffff;
-}
-*/
     .nav-side-menu .brand {
         background-color: #23282e;
         line-height: 50px;
@@ -218,7 +193,7 @@ input[type="checkbox"].input-validation-error {
             }
 
     .nav-side-menu li {
-        padding-left: 0px;
+        padding-left: 10px;
         border-left: 3px solid #2e353d;
         border-bottom: 1px solid #23282e;
     }
