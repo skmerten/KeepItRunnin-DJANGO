@@ -36,18 +36,3 @@ class Maintenance_Record(models.Model):
 
     def __str__(self):
         return self.maintenance.name + ' ' + self.maintenance.description + ' ' + 'due'
-
-class OilChange(models.Model):
-    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
-    oilType = models.CharField(max_length=200,null=False)
-    oilBrand = models.CharField(max_length=200,null=False)
-    oilQuantity = models.DecimalField(max_digits = 5, decimal_places=2, null=False)
-    oilUnit = models.CharField(max_length=200,null=False)
-    filterSize = models.CharField(max_length=200,null=False)
-    filterBrand = models.CharField(max_length=200,null=False)
-    drnBltSize = models.CharField(max_length=200,null=False)
-    drnBltWasherType = models.CharField(max_length=200,null=False)
-    drnBltWasherSize = models.CharField(max_length=200,null=False)
-    gloves = models.BooleanField(null=False)
-    def __str__(self):
-        return self.vehicle + ' Oil Change'
