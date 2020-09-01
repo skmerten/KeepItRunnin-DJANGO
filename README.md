@@ -2,6 +2,8 @@
 
 Reqs: Django 2.1.5 | pillow | django-widget-tweaks | django-crispy-forms |
 
+To Run Application: Navigate to Manage.py directory and run "Python manage.py runserver"
+
 A personal project designed to help organize vehicle maintenance and scheduling.
 
 A user can create several vehicle profiles allowing for a unique vehicle maintenance schedule for each vehicle. (Older vehicles will require different maintenance than a brand new vehicle)
